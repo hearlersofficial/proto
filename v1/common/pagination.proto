@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.hearlers.v1.common;
+
+import "v1/common/sort_order.proto";
+
+
+
+message Pagination {
+  SortOrder sort_order = 1;
+  string since = 2;
+  int32 limit = 3;
+}
