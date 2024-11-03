@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package com.hearlers.v1.common;
 
-import "google/protobuf/any.proto";
 
 
 // The `Error` type defines the universal error message type.
@@ -13,8 +12,8 @@ message Error {
   int32 status = 1;
 
   // The logical error type, which conveys additional information about the error.
-  string type = 2;
+  int32 code = 2;
 
   // A list of errors that carries the details about the error.
-  repeated google.protobuf.Any errors = 3;
+  repeated string details = 3;
 }

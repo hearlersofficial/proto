@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package com.hearlers.v1.model;
+import "google/protobuf/timestamp.proto";
+
+option java_package = "com.hearlers.api.proto.v1.model";
+option java_multiple_files = true;
+
+
+enum AuthChannel {
+    AUTH_CHANNEL_NONE = 0;
+    AUTH_CHANNEL_KAKAO = 1;
+    AUTH_CHANNEL_NAVER = 2;
+  }
+
+message User {
+    int64 id = 1;
+    string name = 2;                       
+    AuthChannel authChannel = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;     
+    google.protobuf.Timestamp deleted_at = 6;
+}
