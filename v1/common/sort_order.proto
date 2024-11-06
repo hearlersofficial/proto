@@ -1,7 +1,8 @@
 syntax = "proto3";
 
 package com.hearlers.v1.common;
-
+option java_package = "com.hearlers.api.proto.v1.common";
+option java_multiple_files = true;
 
 enum SortOrder {
   SORT_ORDER_UNSPECIFIED = 0;
