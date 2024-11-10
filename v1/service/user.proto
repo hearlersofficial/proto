@@ -12,6 +12,7 @@ option java_multiple_files = true;
 service UserService {
   rpc findOne (FindOneUserRequest) returns (FindOneUserResult);
   rpc create (CreateUserRequest) returns (CreateUserResult);
+  rpc update (UpdateUserRequest) returns (UpdateUserResult);
 }
 
 message CreateUserRequest {
@@ -24,9 +25,23 @@ message CreateUserResult {
 }
 
 message FindOneUserRequest {
-    int32 user_id = 1;
+  optional int32 user_id = 1;
+  optional string nickname = 2;
+  optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
+  optional string unique_id = 4;
 }
   // Retrieves a single user.
 message FindOneUserResult {
     com.hearlers.v1.model.User user = 1;
 }
+
+message UpdateUserRequest {
+  int32 user_id = 1;
+  optional string nickname = 2;
+  optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
+  optional string unique_id = 4;
+} 
+
+message UpdateUserResult {
+  com.hearlers.v1.model.User user = 1;
+} 
