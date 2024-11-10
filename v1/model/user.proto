@@ -26,11 +26,7 @@ enum ProgressStatus {
 
 enum ProgressType {
   PROGRESS_TYPE_ONBOARDING = 0;
-  PROGRESS_TYPE_PROFILE_COMPLETION = 1;
-  PROGRESS_TYPE_VERIFICATION = 2;
-  PROGRESS_TYPE_SUBSCRIPTION = 3;
-  PROGRESS_TYPE_FIRST_SESSION = 4;
-  PROGRESS_TYPE_REVIEW = 5;
+  PROGRESS_TYPE_VERIFICATION = 1;
 }
 
 message User {
@@ -56,12 +52,10 @@ message UserProfile {
 }
 
 message UserProgress {
-  int64 id = 1;
-  int64 user_id = 2;
-  ProgressType progress_type = 3;
-  ProgressStatus status = 4;
-  string last_updated = 5;
-  string created_at = 6; 
-  string updated_at = 7;
-  string deleted_at = 8;
+  ProgressType progress_type = 1;
+  ProgressStatus status = 2;
+  string last_updated = 3;
+  string created_at = 4; 
+  string updated_at = 5;
+  string deleted_at = 6;
 }
