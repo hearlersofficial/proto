@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.hearlers.v1.model;
+option java_package = "com.hearlers.api.proto.v1.model";
+option java_multiple_files = true;
+
+enum CounselorType {
+    COUNSELOR_TYPE_DAHYE = 0;
+    COUNSELOR_TYPE_JIHWAN = 1;
+    COUNSELOR_TYPE_ELLIE = 2;
+    COUNSELOR_TYPE_YOON = 3;
+    COUNSELOR_TYPE_CHERRY = 4;
+    COUNSELOR_TYPE_ADEN = 5;
+    COUNSELOR_TYPE_HIKO = 6;
+    COUNSELOR_TYPE_ARU = 7;
+}
+
+message Counsel {
+    int32 id = 1;
+    CounselorType counselor_type = 2;
+    int32 user_id = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    string deleted_at = 6;
+}
