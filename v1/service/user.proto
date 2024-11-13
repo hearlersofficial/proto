@@ -3,17 +3,19 @@ syntax = "proto3";
 package com.hearlers.v1.service;
 
 import "v1/model/user.proto";
-import "google/protobuf/field_mask.proto";
-
+import "v1/common/pagination.proto";
 
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
 service UserService {
-  rpc findOne (FindOneUserRequest) returns (FindOneUserResult);
   rpc create (CreateUserRequest) returns (CreateUserResult);
+  rpc findOne (FindOneUserRequest) returns (FindOneUserResult);
+  // rpc findMany (FindManyUserRequest) returns (FindManyUserResult);
   rpc update (UpdateUserRequest) returns (UpdateUserResult);
 }
+
+  
 
 message CreateUserRequest {
   string nickname = 1;                       
@@ -35,11 +37,20 @@ message FindOneUserResult {
     com.hearlers.v1.model.User user = 1;
 }
 
+message FindManyUserRequest {
+  com.hearlers.v1.common.Pagination pagination = 1;
+} 
+
+message FindManyUserResult {
+  repeated com.hearlers.v1.model.User users = 1;
+}
+
 message UpdateUserRequest {
   int32 user_id = 1;
   optional string nickname = 2;
   optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
   optional string unique_id = 4;
+  optional com.hearlers.v1.model.UserProfile user_profile = 5;
 } 
 
 message UpdateUserResult {

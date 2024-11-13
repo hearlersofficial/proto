@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
@@ -35,27 +37,27 @@ message User {
     AuthChannel auth_channel = 3;
     UserProfile user_profile = 4;
     repeated UserProgress user_progresses = 5;
-    string created_at = 6;
-    string updated_at = 7;     
-    string deleted_at = 8;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;     
+    google.protobuf.Timestamp deleted_at = 8;
 }
 
 message UserProfile {
   string profile_image = 1;
   string phone_number = 2;
   Gender gender = 3;
-  string birthday = 4;
+  google.protobuf.Timestamp birthday = 4;
   string introduction = 5;
-  string created_at = 6; 
-  string updated_at = 7;
-  string deleted_at = 8;
+  google.protobuf.Timestamp created_at = 6; 
+  google.protobuf.Timestamp updated_at = 7;
+  google.protobuf.Timestamp deleted_at = 8;
 }
 
 message UserProgress {
   ProgressType progress_type = 1;
   ProgressStatus status = 2;
-  string last_updated = 3;
-  string created_at = 4; 
-  string updated_at = 5;
-  string deleted_at = 6;
+  google.protobuf.Timestamp last_updated = 3;
+  google.protobuf.Timestamp created_at = 4; 
+  google.protobuf.Timestamp updated_at = 5;
+  google.protobuf.Timestamp deleted_at = 6;
 }
