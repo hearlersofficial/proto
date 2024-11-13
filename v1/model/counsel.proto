@@ -23,3 +23,10 @@ message Counsel {
     string updated_at = 5;
     string deleted_at = 6;
 }
+
+message CounselSummary {
+    int32 counsel_id = 1;
+    CounselorType counselor_type = 2;
+    string last_message = 3;
+    string last_message_time = 4;
+}
