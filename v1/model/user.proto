@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
-
+import "google/protobuf/struct.proto";
 package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
@@ -31,6 +31,53 @@ enum ProgressType {
   PROGRESS_TYPE_VERIFICATION = 1;
 }
 
+enum Mbti {
+  MBTI_NONE = 0;
+  MBTI_ENTP = 1;
+  MBTI_ENFP = 2;
+  MBTI_ENTJ = 3;
+  MBTI_ENFJ = 4;
+  MBTI_ESTP = 5;
+  MBTI_ESTJ = 6;
+  MBTI_ESFP = 7;
+  MBTI_ESFJ = 8;
+  MBTI_INTJ = 9;
+  MBTI_INFJ = 10;
+  MBTI_INTP = 11;
+  MBTI_INFP = 12;
+  MBTI_ISTP = 13;
+  MBTI_ISTJ = 14;
+  MBTI_ISFP = 15;
+  MBTI_ISFJ = 16;
+}
+
+enum DevicePlatform {
+  DEVICE_PLATFORM_NONE = 0;
+  DEVICE_PLATFORM_WEB = 1;
+  DEVICE_PLATFORM_IOS = 2;
+  DEVICE_PLATFORM_ANDROID = 3;
+  DEVICE_PLATFORM_DESKTOP = 4;
+}
+
+enum ActivityType {
+  ACTIVITY_TYPE_NONE = 0;
+  ACTIVITY_TYPE_LOGIN = 1;
+  ACTIVITY_TYPE_LOGOUT = 2;
+  ACTIVITY_TYPE_UNLOGINNED_USER_COME_IN = 3;
+  ACTIVITY_TYPE_UNLOGINNED_USER_STARTED_COUNSELING = 4;
+  ACTIVITY_TYPE_UNLOGINNED_USER_FINISHED_COUNSELING = 5;
+  ACTIVITY_TYPE_ONBOARDING_START = 6;
+  ACTIVITY_TYPE_ONBOARDING_END = 7;
+  ACTIVITY_TYPE_SET_CONVERSATION_PREFERENCE = 8;
+  ACTIVITY_TYPE_COUNSELING_START = 9;
+  ACTIVITY_TYPE_COUNSELING_END = 10;
+  ACTIVITY_TYPE_PROFILE_UPDATE = 11;
+  ACTIVITY_TYPE_FEEDBACK_SUBMIT = 12;
+  ACTIVITY_TYPE_SUBSCRIPTION_START = 13;
+  ACTIVITY_TYPE_SUBSCRIPTION_CANCEL = 14;
+  ACTIVITY_TYPE_PAYMENT_COMPLETE = 15;
+}
+
 message User {
     int32 id = 1;
     string nickname = 2;                       
@@ -48,9 +95,10 @@ message UserProfile {
   Gender gender = 3;
   google.protobuf.Timestamp birthday = 4;
   string introduction = 5;
-  google.protobuf.Timestamp created_at = 6; 
-  google.protobuf.Timestamp updated_at = 7;
-  google.protobuf.Timestamp deleted_at = 8;
+  Mbti mbti = 6;
+  google.protobuf.Timestamp created_at = 7; 
+  google.protobuf.Timestamp updated_at = 8;
+  google.protobuf.Timestamp deleted_at = 9;
 }
 
 message UserProgress {
@@ -60,4 +108,16 @@ message UserProgress {
   google.protobuf.Timestamp created_at = 4; 
   google.protobuf.Timestamp updated_at = 5;
   google.protobuf.Timestamp deleted_at = 6;
+}
+
+message UserActivity {
+  ActivityType activity_type = 1;
+  google.protobuf.Struct activity_data = 2;
+  DevicePlatform platform = 3;
+  string ip_address = 4;
+  string user_agent = 5;
+  int32 duration_seconds = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  google.protobuf.Timestamp deleted_at = 9;
 }

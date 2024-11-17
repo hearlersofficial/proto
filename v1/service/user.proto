@@ -4,7 +4,7 @@ package com.hearlers.v1.service;
 
 import "v1/model/user.proto";
 import "v1/common/pagination.proto";
-
+import "google/protobuf/struct.proto";
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
@@ -13,6 +13,7 @@ service UserService {
   rpc findOne (FindOneUserRequest) returns (FindOneUserResult);
   // rpc findMany (FindManyUserRequest) returns (FindManyUserResult);
   rpc update (UpdateUserRequest) returns (UpdateUserResult);
+  rpc createActivity (CreateActivityRequest) returns (CreateActivityResult);
 }
 
   
@@ -56,3 +57,16 @@ message UpdateUserRequest {
 message UpdateUserResult {
   com.hearlers.v1.model.User user = 1;
 } 
+
+message CreateActivityRequest {
+  com.hearlers.v1.model.ActivityType activity_type = 1;
+  google.protobuf.Struct activity_data = 2;
+  com.hearlers.v1.model.DevicePlatform platform = 3;
+  string ip_address = 4;
+  string user_agent = 5;
+  int32 duration_seconds = 6;
+}
+
+message CreateActivityResult {
+  com.hearlers.v1.model.UserActivity user_activity = 1;
+}
