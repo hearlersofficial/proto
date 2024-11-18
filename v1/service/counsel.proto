@@ -11,7 +11,7 @@ option java_multiple_files = true;
 service CounselService {
     rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResult);
     rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResult);
-    rpc GenerateMessage (GenerateMessageRequest) returns (GenerateMessageResult);
+    rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResult);
 }
 
 message CreateCounselRequest {
@@ -32,11 +32,11 @@ message GetCounselListResult {
     repeated com.hearlers.v1.model.Counsel counsel_list = 1;
 }
 
-message GenerateMessageRequest {
+message CreateMessageRequest {
     int32 counsel_id = 1;
     string message = 2;
 }
 
-message GenerateMessageResult {
+message CreateMessageResult {
     com.hearlers.v1.model.CounselMessage counsel_message = 1;
 }
