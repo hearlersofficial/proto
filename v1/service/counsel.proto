@@ -21,6 +21,7 @@ message CreateCounselRequest {
   
 message CreateCounselResult {
     com.hearlers.v1.model.Counsel counsel = 1;
+    repeated com.hearlers.v1.model.CounselMessage counsel_messages = 2;
 }
 
 message GetCounselListRequest {
@@ -28,7 +29,7 @@ message GetCounselListRequest {
 }
 
 message GetCounselListResult {
-    repeated com.hearlers.v1.model.CounselSummary counsel_list = 1;
+    repeated com.hearlers.v1.model.Counsel counsel_list = 1;
 }
 
 message GenerateMessageRequest {

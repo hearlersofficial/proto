@@ -21,17 +21,11 @@ message Counsel {
     int32 id = 1;
     CounselorType counselor_type = 2;
     int32 user_id = 3;
-    repeated CounselMessage messages = 4;
-    google.protobuf.Timestamp created_at = 5;
-    google.protobuf.Timestamp updated_at = 6;
-    google.protobuf.Timestamp deleted_at = 7;
-}
-
-message CounselSummary {
-    int32 counsel_id = 1;
-    CounselorType counselor_type = 2;
-    string last_message = 3;
-    string last_message_time = 4;
+    string last_message = 4;
+    google.protobuf.Timestamp last_chated_at = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
+    google.protobuf.Timestamp deleted_at = 8;
 }
 
 message CounselMessage {
