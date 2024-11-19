@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package com.hearlers.v1.service;
+
+import "v1/model/counsel.proto";
+
+
+option java_package = "com.hearlers.api.proto.v1.service";
+option java_multiple_files = true;
+
+service CounselService {
+    rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResult);
+    rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResult);
+    rpc GenerateMessage (GenerateMessageRequest) returns (GenerateMessageResult);
+}
+
+message CreateCounselRequest {
+    int32 user_id = 1;                       
+    com.hearlers.v1.model.CounselorType counselor_type = 2;
+}
+  
+message CreateCounselResult {
+    com.hearlers.v1.model.Counsel counsel = 1;
+    repeated com.hearlers.v1.model.CounselMessage counsel_messages = 2;
+}
+
+message GetCounselListRequest {
+    int32 user_id = 1;
+}
+
+message GetCounselListResult {
+    repeated com.hearlers.v1.model.Counsel counsel_list = 1;
+}
+
+message GenerateMessageRequest {
+    int32 counsel_id = 1;
+    string message = 2;
+}
+
+message GenerateMessageResult {
+    com.hearlers.v1.model.CounselMessage counsel_message = 1;
+}

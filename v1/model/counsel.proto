@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package com.hearlers.v1.model;
+option java_package = "com.hearlers.api.proto.v1.model";
+option java_multiple_files = true;
+
+enum CounselorType {
+    COUNSELOR_TYPE_DAHYE = 0;
+    COUNSELOR_TYPE_JIHWAN = 1;
+    COUNSELOR_TYPE_ELLIE = 2;
+    COUNSELOR_TYPE_YOON = 3;
+    COUNSELOR_TYPE_CHERRY = 4;
+    COUNSELOR_TYPE_ADEN = 5;
+    COUNSELOR_TYPE_HIKO = 6;
+    COUNSELOR_TYPE_ARU = 7;
+}
+
+message Counsel {
+    int32 id = 1;
+    CounselorType counselor_type = 2;
+    int32 user_id = 3;
+    string last_message = 4;
+    google.protobuf.Timestamp last_chated_at = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
+    google.protobuf.Timestamp deleted_at = 8;
+}
+
+message CounselMessage {
+    int32 id = 1;
+    int32 counsel_id = 2;
+    string message = 3;
+    bool is_user_message = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+    google.protobuf.Timestamp deleted_at = 7;
+}
