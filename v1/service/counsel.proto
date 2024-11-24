@@ -12,6 +12,7 @@ service CounselService {
     rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResult);
     rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResult);
     rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResult);
+    rpc GetMessageList (GetMessageListRequest) returns (GetMessageListResult);
 }
 
 message CreateCounselRequest {
@@ -39,4 +40,12 @@ message CreateMessageRequest {
 
 message CreateMessageResult {
     com.hearlers.v1.model.CounselMessage counsel_message = 1;
+}
+
+message GetMessageListRequest {
+    int32 counsel_id = 1;
+}
+
+message GetMessageListResult {
+    repeated com.hearlers.v1.model.CounselMessage message_list = 1;
 }
