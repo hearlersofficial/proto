@@ -1,0 +1,23 @@
+syntax = "proto3";
+import "v1/model/counsel.proto";
+import "google/protobuf/timestamp.proto";
+package com.hearlers.v1.message;
+option java_package = "com.hearlers.api.proto.v1.message";
+option java_multiple_files = true;
+
+// topic: counsel.created
+message CounselCreatedPayload {
+  int32 counsel_id = 1;
+  int32 user_id = 2;
+  com.hearlers.v1.model.CounselorType counselor_type = 3;
+  google.protobuf.Timestamp occurred_at = 4;
+}
+
+// topic: counsel.message.created
+message CounselMessageCreatedPayload {
+  int32 counsel_id = 1;
+  string message = 2;
+  bool is_user_message = 3;
+  google.protobuf.Timestamp occurred_at = 4;
+}
+
