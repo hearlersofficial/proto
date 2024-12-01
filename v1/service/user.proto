@@ -1,43 +1,90 @@
 syntax = "proto3";
 
 package com.hearlers.v1.service;
-
 import "v1/model/user.proto";
+import "v1/model/auth_user.proto";
+import "google/protobuf/timestamp.proto";
 import "v1/common/pagination.proto";
 import "google/protobuf/struct.proto";
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
 service UserService {
-  rpc create (CreateUserRequest) returns (CreateUserResult);
-  rpc findOne (FindOneUserRequest) returns (FindOneUserResult);
-  // rpc findMany (FindManyUserRequest) returns (FindManyUserResult);
-  rpc update (UpdateUserRequest) returns (UpdateUserResult);
-  rpc createActivity (CreateActivityRequest) returns (CreateActivityResult);
+  // 최초 접속 시 user & authUser 생성
+  rpc InitializeUser (InitializeUserRequest) returns (InitializeUserResponse);
+  // 인증 채널 연결
+  rpc ConnectAuthChannel (ConnectAuthChannelRequest) returns (ConnectAuthChannelResponse);
+  // 리프레시 토큰 저장
+  rpc SaveRefreshToken (SaveRefreshTokenRequest) returns (SaveRefreshTokenResponse);
+  // 리프레시 토큰 인증
+  rpc VerifyRefreshToken (VerifyRefreshTokenRequest) returns (VerifyRefreshTokenResponse);
+  // 유저 조회
+  rpc FindOneUser (FindOneUserRequest) returns (FindOneUserResponse);
+  // 유저 목록 조회
+  // rpc FindManyUser (FindManyUserRequest) returns (FindManyUserResult);
+  // 인증 유저 조회
+  rpc FindOneAuthUser (FindOneAuthUserRequest) returns (FindOneAuthUserResponse);
+  // 유저 업데이트
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  // 활동 생성
+  rpc CreateActivity (CreateActivityRequest) returns (CreateActivityResponse);
 }
 
   
 
-message CreateUserRequest {
-  string nickname = 1;                       
-  com.hearlers.v1.model.AuthChannel auth_channel = 2;
-}
+// initializeUser
+message InitializeUserRequest {}
 
-message CreateUserResult {
+message InitializeUserResponse {
   com.hearlers.v1.model.User user = 1;
+  com.hearlers.v1.model.AuthUser auth_user = 2;
 }
 
+// connectAuthChannel
+message ConnectAuthChannelRequest {
+  int32 user_id = 1;
+  com.hearlers.v1.model.AuthChannel auth_channel = 2;
+  string unique_id = 3;
+}
+
+message ConnectAuthChannelResponse {
+  com.hearlers.v1.model.AuthUser auth_user = 1;
+}
+
+// saveRefreshToken
+message SaveRefreshTokenRequest {
+  int32 user_id = 1;
+  string token = 2;
+  google.protobuf.Timestamp expires_at = 3;
+}
+
+message SaveRefreshTokenResponse {
+  bool success = 1;
+}
+
+// verifyRefreshToken
+message VerifyRefreshTokenRequest {
+  int32 user_id = 1;
+  string token = 2;
+}
+
+message VerifyRefreshTokenResponse {
+  bool success = 1;
+}
+
+// findOneUser
 message FindOneUserRequest {
   optional int32 user_id = 1;
   optional string nickname = 2;
   optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
   optional string unique_id = 4;
 }
-  // Retrieves a single user.
-message FindOneUserResult {
+
+message FindOneUserResponse {
     com.hearlers.v1.model.User user = 1;
 }
 
+// findManyUser
 message FindManyUserRequest {
   com.hearlers.v1.common.Pagination pagination = 1;
 } 
@@ -46,6 +93,19 @@ message FindManyUserResult {
   repeated com.hearlers.v1.model.User users = 1;
 }
 
+// findOneAuthUser
+message FindOneAuthUserRequest {
+  optional int32 auth_user_id = 1;
+  optional int32 user_id = 2;
+  optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
+  optional string unique_id = 4;
+}
+
+message FindOneAuthUserResponse {
+  com.hearlers.v1.model.AuthUser auth_user = 1;
+}
+
+// updateUser
 message UpdateUserRequest {
   int32 user_id = 1;
   optional string nickname = 2;
@@ -54,10 +114,11 @@ message UpdateUserRequest {
   optional com.hearlers.v1.model.UserProfile user_profile = 5;
 } 
 
-message UpdateUserResult {
+message UpdateUserResponse {
   com.hearlers.v1.model.User user = 1;
 } 
 
+// createActivity
 message CreateActivityRequest {
   com.hearlers.v1.model.ActivityType activity_type = 1;
   google.protobuf.Struct activity_data = 2;
@@ -67,6 +128,6 @@ message CreateActivityRequest {
   int32 duration_seconds = 6;
 }
 
-message CreateActivityResult {
+message CreateActivityResponse {
   com.hearlers.v1.model.UserActivity user_activity = 1;
 }

@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package com.hearlers.v1.model;
+option java_package = "com.hearlers.api.proto.v1.model";
+option java_multiple_files = true;
+
+enum AuthChannel {
+    AUTH_CHANNEL_UNSPECIFIED = 0;
+    AUTH_CHANNEL_UNLINKED = 1;
+    AUTH_CHANNEL_KAKAO = 2;
+    AUTH_CHANNEL_NAVER = 3;
+}
+
+message AuthUser {
+    int32 id = 1;
+    int32 user_id = 2;
+    AuthChannel auth_channel = 3;
+    OAuthChannelInfo oauth_channel_info = 4;
+    repeated RefreshToken refresh_tokens = 5;
+    google.protobuf.Timestamp last_login_at = 6;
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
+    google.protobuf.Timestamp deleted_at = 9;
+}
+
+message OAuthChannelInfo {
+    int32 id = 1;
+    AuthChannel auth_channel = 2;
+    string unique_id = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+    google.protobuf.Timestamp deleted_at = 6;
+}
+
+message RefreshToken {
+    string token = 1;
+    google.protobuf.Timestamp expires_at = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+}

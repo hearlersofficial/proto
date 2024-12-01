@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
-import "v1/model/user.proto";
+import "v1/model/auth_user.proto";
 
 package com.hearlers.v1.message;
 option java_package = "com.hearlers.api.proto.v1.message";

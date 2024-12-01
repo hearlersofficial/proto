@@ -3,36 +3,34 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 package com.hearlers.v1.model;
+
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
 
-enum AuthChannel {
-    AUTH_CHANNEL_NONE = 0;
-    AUTH_CHANNEL_KAKAO = 1;
-    AUTH_CHANNEL_NAVER = 2;
-  }
 
 enum Gender {
-  GENDER_NONE = 0;
+  GENDER_UNSPECIFIED = 0;
   GENDER_MALE = 1;
   GENDER_FEMALE = 2;
 }
 
 enum ProgressStatus {
-  PROGRESS_STATUS_NOT_STARTED = 0;
-  PROGRESS_STATUS_IN_PROGRESS = 1;
-  PROGRESS_STATUS_COMPLETED = 2;
-  PROGRESS_STATUS_BLOCKED = 3;
+  PROGRESS_STATUS_UNSPECIFIED = 0;
+  PROGRESS_STATUS_NOT_STARTED = 1;
+  PROGRESS_STATUS_IN_PROGRESS = 2;
+  PROGRESS_STATUS_COMPLETED = 3;
+  PROGRESS_STATUS_BLOCKED = 4;
 }
 
 enum ProgressType {
-  PROGRESS_TYPE_ONBOARDING = 0;
-  PROGRESS_TYPE_VERIFICATION = 1;
+  PROGRESS_TYPE_UNSPECIFIED = 0;
+  PROGRESS_TYPE_ONBOARDING = 1;
+  PROGRESS_TYPE_VERIFICATION = 2;
 }
 
 enum Mbti {
-  MBTI_NONE = 0;
+  MBTI_UNSPECIFIED = 0;
   MBTI_ENTP = 1;
   MBTI_ENFP = 2;
   MBTI_ENTJ = 3;
@@ -52,7 +50,7 @@ enum Mbti {
 }
 
 enum DevicePlatform {
-  DEVICE_PLATFORM_NONE = 0;
+  DEVICE_PLATFORM_UNSPECIFIED = 0;
   DEVICE_PLATFORM_WEB = 1;
   DEVICE_PLATFORM_IOS = 2;
   DEVICE_PLATFORM_ANDROID = 3;
@@ -60,7 +58,7 @@ enum DevicePlatform {
 }
 
 enum ActivityType {
-  ACTIVITY_TYPE_NONE = 0;
+  ACTIVITY_TYPE_UNSPECIFIED = 0;
   ACTIVITY_TYPE_LOGIN = 1;
   ACTIVITY_TYPE_LOGOUT = 2;
   ACTIVITY_TYPE_UNLOGINNED_USER_COME_IN = 3;
@@ -81,12 +79,11 @@ enum ActivityType {
 message User {
     int32 id = 1;
     string nickname = 2;                       
-    AuthChannel auth_channel = 3;
-    UserProfile user_profile = 4;
-    repeated UserProgress user_progresses = 5;
-    google.protobuf.Timestamp created_at = 6;
-    google.protobuf.Timestamp updated_at = 7;     
-    google.protobuf.Timestamp deleted_at = 8;
+    UserProfile user_profile = 3;
+    repeated UserProgress user_progresses = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;     
+    google.protobuf.Timestamp deleted_at = 7;
 }
 
 message UserProfile {

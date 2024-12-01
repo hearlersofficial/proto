@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package com.hearlers.v1.common;
+option java_package = "com.hearlers.api.proto.v1.common";
+option java_multiple_files = true;
+enum CoreStatus {
+    CORE_STATUS_ACTIVE = 0;
+    CORE_STATUS_INACTIVE = 1;
+}
