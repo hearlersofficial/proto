@@ -13,6 +13,9 @@ service CounselService {
     rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResult);
     rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResult);
     rpc GetMessageList (GetMessageListRequest) returns (GetMessageListResult);
+    rpc GetPromptList (GetPromptListRequest) returns (GetPromptListResult);
+    rpc CreatePrompt (CreatePromptRequest) returns (CreatePromptResult);
+    rpc UpdatePrompt (UpdatePromptRequest) returns (UpdatePromptResult);
 }
 
 message CreateCounselRequest {
@@ -48,4 +51,42 @@ message GetMessageListRequest {
 
 message GetMessageListResult {
     repeated com.hearlers.v1.model.CounselMessage message_list = 1;
+}
+
+message GetPromptListRequest {
+    com.hearlers.v1.model.CounselPromptType prompt_type = 1;
+}
+
+message GetPromptListResult {
+    repeated com.hearlers.v1.model.CounselPrompt prompt_list = 1;
+}
+
+message CreatePromptRequest {
+    string persona = 1;
+    string context = 2;
+    string instruction = 3;
+    string tone = 4;
+    string additional_prompt = 5;
+    com.hearlers.v1.model.CounselPromptType prompt_type = 6;
+    string description = 7;
+    string version = 8;
+}
+
+message CreatePromptResult {
+    com.hearlers.v1.model.CounselPrompt prompt = 1;
+}
+
+message UpdatePromptRequest {
+    int32 prompt_id = 1;
+    string persona = 2;
+    string context = 3;
+    string instruction = 4;
+    string tone = 5;
+    string additional_prompt = 6;
+    string description = 7;
+    string version = 8;
+}
+
+message UpdatePromptResult {
+    com.hearlers.v1.model.CounselPrompt prompt = 1;
 }

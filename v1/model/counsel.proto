@@ -17,6 +17,21 @@ enum CounselorType {
     COUNSELOR_TYPE_ARU = 7;
 }
 
+
+
+enum CounselPromptType {
+    COUNSEL_PROMPT_TYPE_SYSTEM_MSG = 0;
+    COUNSEL_PROMPT_TYPE_POSITIVE_MSG = 1;
+    COUNSEL_PROMPT_TYPE_DEPRESSED_REASON_MSG = 2;
+    COUNSEL_PROMPT_TYPE_DEPRESSED_NO_REASON_MSG = 3;
+    COUNSEL_PROMPT_TYPE_ANXIOUS_REASON_MSG = 4;
+    COUNSEL_PROMPT_TYPE_ANXIOUS_NO_REASON_MSG = 5;
+    COUNSEL_PROMPT_TYPE_TIRED_REASON_MSG = 6;
+    COUNSEL_PROMPT_TYPE_TIRED_NO_REASON_MSG = 7;
+    COUNSEL_PROMPT_TYPE_WHY_LIVE_MSG = 8;
+    COUNSEL_PROMPT_TYPE_BRANCH_MSG = 9;
+}
+
 message Counsel {
     int32 id = 1;
     CounselorType counselor_type = 2;
@@ -36,4 +51,19 @@ message CounselMessage {
     google.protobuf.Timestamp created_at = 5;
     google.protobuf.Timestamp updated_at = 6;
     google.protobuf.Timestamp deleted_at = 7;
+}
+
+message CounselPrompt {
+    int32 id = 1;
+    string persona = 2;
+    string context = 3;
+    string instruction = 4;
+    string tone = 5;
+    string additional_prompt = 6;
+    CounselPromptType prompt_type = 7;
+    string description = 8;
+    string version = 9;
+    google.protobuf.Timestamp created_at = 10;
+    google.protobuf.Timestamp updated_at = 11;
+    google.protobuf.Timestamp deleted_at = 12;
 }
