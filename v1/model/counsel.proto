@@ -7,16 +7,17 @@ option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
 enum CounselorType {
-    COUNSELOR_TYPE_DAHYE = 0;
-    COUNSELOR_TYPE_JIHWAN = 1;
-    COUNSELOR_TYPE_ELLIE = 2;
-    COUNSELOR_TYPE_YOON = 3;
-    COUNSELOR_TYPE_CHERRY = 4;
-    COUNSELOR_TYPE_ADEN = 5;
-    COUNSELOR_TYPE_HIKO = 6;
-    COUNSELOR_TYPE_ARU = 7;
+    COUNSELOR_TYPE_DEPRESSED = 0;
+    COUNSELOR_TYPE_ANXIOUS = 1;
+    COUNSELOR_TYPE_TIRED = 2;
+    COUNSELOR_TYPE_LONELY = 3;
 }
 
+enum CounselorGender {
+    COUNSELOR_GENDER_MALE = 0;
+    COUNSELOR_GENDER_FEMALE = 1;
+    COUNSELOR_GENDER_NONE = 2;
+}
 
 
 enum CounselPromptType {
@@ -34,7 +35,7 @@ enum CounselPromptType {
 
 message Counsel {
     int32 id = 1;
-    CounselorType counselor_type = 2;
+    int32 counselor_id = 2;
     int32 user_id = 3;
     string last_message = 4;
     google.protobuf.Timestamp last_chated_at = 5;
@@ -66,4 +67,18 @@ message CounselPrompt {
     google.protobuf.Timestamp created_at = 10;
     google.protobuf.Timestamp updated_at = 11;
     google.protobuf.Timestamp deleted_at = 12;
+}
+
+message Counselor {
+    int32 id = 1;
+    CounselorType counselor_type = 2;
+    string name = 3;
+    string description = 4;
+    CounselorGender gender = 5;
+    string intro_message = 6;
+    string response_option1 = 7;
+    string response_option2 = 8;
+    google.protobuf.Timestamp created_at = 9;
+    google.protobuf.Timestamp updated_at = 10;
+    google.protobuf.Timestamp deleted_at = 11;
 }
