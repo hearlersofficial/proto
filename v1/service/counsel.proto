@@ -11,16 +11,24 @@ option java_multiple_files = true;
 service CounselService {
     rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResult);
     rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResult);
+
     rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResult);
     rpc GetMessageList (GetMessageListRequest) returns (GetMessageListResult);
+
     rpc GetPromptList (GetPromptListRequest) returns (GetPromptListResult);
     rpc CreatePrompt (CreatePromptRequest) returns (CreatePromptResult);
     rpc UpdatePrompt (UpdatePromptRequest) returns (UpdatePromptResult);
+
+    rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResult);
+    rpc GetCounselorList (GetCounselorListRequest) returns (GetCounselorListResult);
+    rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResult);
 }
 
 message CreateCounselRequest {
     int32 user_id = 1;                       
-    com.hearlers.v1.model.CounselorType counselor_type = 2;
+    int32 counselor_id = 2;
+    string intro_message = 3;
+    string response_message = 4;
 }
   
 message CreateCounselResult {
@@ -30,6 +38,7 @@ message CreateCounselResult {
 
 message GetCounselListRequest {
     int32 user_id = 1;
+    int32 counselor_id = 2;
 }
 
 message GetCounselListResult {
@@ -89,4 +98,35 @@ message UpdatePromptRequest {
 
 message UpdatePromptResult {
     com.hearlers.v1.model.CounselPrompt prompt = 1;
+}
+
+message CreateCounselorRequest {
+    com.hearlers.v1.model.CounselorType counselor_type = 1;
+    string name = 2;
+    string description = 3;
+    com.hearlers.v1.model.CounselorGender counselor_gender = 4;
+}
+
+message CreateCounselorResult {
+    com.hearlers.v1.model.Counselor counselor = 1;
+}
+
+message GetCounselorListRequest {
+    com.hearlers.v1.model.CounselorType counselor_type = 1;
+}
+
+message GetCounselorListResult {
+    repeated com.hearlers.v1.model.Counselor counselor_list = 1;
+}
+
+message UpdateCounselorRequest {
+    int32 counselor_id = 1;
+    com.hearlers.v1.model.CounselorType counselor_type = 2;
+    string name = 3;
+    string description = 4;
+    com.hearlers.v1.model.CounselorGender counselor_gender = 5;
+}
+
+message UpdateCounselorResult {
+    com.hearlers.v1.model.Counselor counselor = 1;
 }
