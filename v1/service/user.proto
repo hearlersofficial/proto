@@ -107,9 +107,7 @@ message FindOneAuthUserResponse {
 message UpdateUserRequest {
   int32 user_id = 1;
   optional string nickname = 2;
-  optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
-  optional string unique_id = 4;
-  optional com.hearlers.v1.model.UserProfile user_profile = 5;
+  optional com.hearlers.v1.model.UserProfile user_profile = 3;
 } 
 
 message UpdateUserResponse {
