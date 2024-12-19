@@ -24,6 +24,10 @@ service UserService {
   // rpc FindManyUser (FindManyUserRequest) returns (FindManyUserResult);
   // 인증 유저 조회
   rpc FindOneAuthUser (FindOneAuthUserRequest) returns (FindOneAuthUserResponse);
+  // 잔여 토큰 체크
+  rpc CheckRemainingTokens (CheckRemainingTokensRequest) returns (CheckRemainingTokensResponse);
+  // 토큰 예약 (잔여 토큰 없을 시 에러)
+  rpc ReserveTokens (ReserveTokensRequest) returns (ReserveTokensResponse);
   // 유저 업데이트
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
   // 활동 생성
@@ -101,6 +105,27 @@ message FindOneAuthUserRequest {
 
 message FindOneAuthUserResponse {
   com.hearlers.v1.model.AuthUser auth_user = 1;
+}
+
+// checkRemainingTokens
+message CheckRemainingTokensRequest {
+  int32 user_id = 1;
+}
+
+message CheckRemainingTokensResponse {
+  int32 remaining_tokens = 1;
+  int32 max_tokens = 2;
+  bool reserved = 3;
+  google.protobuf.Timestamp reserved_timeout = 4;
+}
+
+// reserveTokens
+message ReserveTokensRequest {
+  int32 user_id = 1;
+}
+
+message ReserveTokensResponse {
+  bool success = 1;
 }
 
 // updateUser
