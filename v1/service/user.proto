@@ -125,7 +125,9 @@ message ReserveTokensRequest {
 }
 
 message ReserveTokensResponse {
-  bool success = 1;
+  int32 remaining_tokens = 1;
+  int32 max_tokens = 2;
+  bool reserved = 3;
 }
 
 // updateUser
