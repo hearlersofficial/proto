@@ -1,0 +1,6 @@
+version: v1
+plugins:
+  - name: java
+    out: ../gen
+  - name: grpc-java
+    out: ../gen
