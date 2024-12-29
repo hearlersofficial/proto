@@ -3,7 +3,6 @@ syntax = "proto3";
 package com.hearlers.v1.service;
 import "v1/model/user.proto";
 import "v1/model/auth_user.proto";
-import "google/protobuf/timestamp.proto";
 import "v1/common/pagination.proto";
 import "google/protobuf/struct.proto";
 option java_package = "com.hearlers.api.proto.v1.service";
@@ -59,7 +58,8 @@ message ConnectAuthChannelResponse {
 message SaveRefreshTokenRequest {
   int32 user_id = 1;
   string token = 2;
-  google.protobuf.Timestamp expires_at = 3;
+  // YYYY-MM-DD HH:MM:SS
+  string expires_at = 3;
 }
 
 message SaveRefreshTokenResponse {
@@ -83,7 +83,7 @@ message FindOneUserRequest {
 }
 
 message FindOneUserResponse {
-    com.hearlers.v1.model.User user = 1;
+  com.hearlers.v1.model.User user = 1;
 }
 
 // findManyUser
@@ -116,7 +116,8 @@ message CheckRemainingTokensResponse {
   int32 remaining_tokens = 1;
   int32 max_tokens = 2;
   bool reserved = 3;
-  google.protobuf.Timestamp reserved_timeout = 4;
+  // YYYY-MM-DD HH:MM:SS
+  string reserved_timeout = 4;
 }
 
 // reserveTokens

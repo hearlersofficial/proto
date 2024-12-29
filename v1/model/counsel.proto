@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-
 package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
@@ -38,10 +36,14 @@ message Counsel {
     int32 counselor_id = 2;
     int32 user_id = 3;
     string last_message = 4;
-    google.protobuf.Timestamp last_chated_at = 5;
-    google.protobuf.Timestamp created_at = 6;
-    google.protobuf.Timestamp updated_at = 7;
-    google.protobuf.Timestamp deleted_at = 8;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string last_chated_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 6;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 7;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 8;
 }
 
 message CounselMessage {
@@ -49,9 +51,12 @@ message CounselMessage {
     int32 counsel_id = 2;
     string message = 3;
     bool is_user_message = 4;
-    google.protobuf.Timestamp created_at = 5;
-    google.protobuf.Timestamp updated_at = 6;
-    google.protobuf.Timestamp deleted_at = 7;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 6;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 7;
 }
 
 message CounselPrompt {
@@ -64,9 +69,12 @@ message CounselPrompt {
     CounselPromptType prompt_type = 7;
     string description = 8;
     string version = 9;
-    google.protobuf.Timestamp created_at = 10;
-    google.protobuf.Timestamp updated_at = 11;
-    google.protobuf.Timestamp deleted_at = 12;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 10;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 11;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 12;
 }
 
 message Counselor {
@@ -78,7 +86,10 @@ message Counselor {
     string intro_message = 6;
     string response_option1 = 7;
     string response_option2 = 8;
-    google.protobuf.Timestamp created_at = 9;
-    google.protobuf.Timestamp updated_at = 10;
-    google.protobuf.Timestamp deleted_at = 11;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 9;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 10;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 11;
 }

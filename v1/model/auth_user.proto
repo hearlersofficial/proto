@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-
 package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
@@ -19,24 +17,34 @@ message AuthUser {
     AuthChannel auth_channel = 3;
     OAuthChannelInfo oauth_channel_info = 4;
     repeated RefreshToken refresh_tokens = 5;
-    google.protobuf.Timestamp last_login_at = 6;
-    google.protobuf.Timestamp created_at = 7;
-    google.protobuf.Timestamp updated_at = 8;
-    google.protobuf.Timestamp deleted_at = 9;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string last_login_at = 6;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 7;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 8;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 9;
 }
 
 message OAuthChannelInfo {
     int32 id = 1;
     AuthChannel auth_channel = 2;
     string unique_id = 3;
-    google.protobuf.Timestamp created_at = 4;
-    google.protobuf.Timestamp updated_at = 5;
-    google.protobuf.Timestamp deleted_at = 6;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 6;
 }
 
 message RefreshToken {
     string token = 1;
-    google.protobuf.Timestamp expires_at = 2;
-    google.protobuf.Timestamp created_at = 3;
-    google.protobuf.Timestamp updated_at = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string expires_at = 2;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 3;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 4;
 }

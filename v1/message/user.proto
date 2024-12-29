@@ -1,8 +1,6 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
 import "v1/model/auth_user.proto";
-
 package com.hearlers.v1.message;
 option java_package = "com.hearlers.api.proto.v1.message";
 option java_multiple_files = true;
@@ -11,5 +9,6 @@ option java_multiple_files = true;
 message UserUpdatedPayload {
   int32 user_id = 1;
   com.hearlers.v1.model.AuthChannel auth_channel = 2;
-  google.protobuf.Timestamp occurred_at = 3;
+  // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+  string occurred_at = 3;
 }
