@@ -135,7 +135,12 @@ message ReserveTokensResponse {
 message UpdateUserRequest {
   int32 user_id = 1;
   optional string nickname = 2;
-  optional com.hearlers.v1.model.UserProfile user_profile = 3;
+  optional string profile_image = 3;
+  optional string phone_number = 4;
+  optional com.hearlers.v1.model.Gender gender = 5;
+  optional string birthday = 6;
+  optional string introduction = 7;
+  optional com.hearlers.v1.model.Mbti mbti = 8;
 } 
 
 message UpdateUserResponse {
