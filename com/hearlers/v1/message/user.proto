@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "v1/model/auth_user.proto";
+import "com/hearlers/v1/model/auth_user.proto";
 package com.hearlers.v1.message;
 option java_package = "com.hearlers.api.proto.v1.message";
 option java_multiple_files = true;

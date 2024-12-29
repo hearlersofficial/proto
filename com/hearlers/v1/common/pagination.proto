@@ -1,9 +1,15 @@
 syntax = "proto3";
 
 package com.hearlers.v1.common;
+
+import "com/hearlers/v1/common/sort_order.proto";
+
 option java_package = "com.hearlers.api.proto.v1.common";
 option java_multiple_files = true;
-enum CoreStatus {
-    CORE_STATUS_ACTIVE = 0;
-    CORE_STATUS_INACTIVE = 1;
+
+
+message Pagination {
+  SortOrder sort_order = 1;
+  string since = 2;
+  int32 limit = 3;
 }

@@ -7,6 +7,9 @@ lint:
     - DEFAULT
     - UNARY_RPC
   disallow_comment_ignores: true
+  except:
+    - PACKAGE_VERSION_SUFFIX
+
 breaking:
   use:
     - WIRE_JSON
