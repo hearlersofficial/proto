@@ -13,9 +13,10 @@ service CounselService {
 
     rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResult);
     rpc GetMessageList (GetMessageListRequest) returns (GetMessageListResult);
+    rpc ReactMessage (ReactMessageRequest) returns (ReactMessageResult);
 
-    rpc GetPromptList (GetPromptListRequest) returns (GetPromptListResult);
     rpc CreatePrompt (CreatePromptRequest) returns (CreatePromptResult);
+    rpc GetPromptList (GetPromptListRequest) returns (GetPromptListResult);
     rpc UpdatePrompt (UpdatePromptRequest) returns (UpdatePromptResult);
 
     rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResult);
@@ -44,6 +45,7 @@ message GetCounselListResult {
     repeated com.hearlers.v1.model.Counsel counsel_list = 1;
 }
 
+
 message CreateMessageRequest {
     int32 counsel_id = 1;
     string message = 2;
@@ -61,13 +63,15 @@ message GetMessageListResult {
     repeated com.hearlers.v1.model.CounselMessage message_list = 1;
 }
 
-message GetPromptListRequest {
-    com.hearlers.v1.model.CounselPromptType prompt_type = 1;
+message ReactMessageRequest {
+    int32 message_id = 1;
+    com.hearlers.v1.model.CounselMessageReaction reaction = 2;
 }
 
-message GetPromptListResult {
-    repeated com.hearlers.v1.model.CounselPrompt prompt_list = 1;
+message ReactMessageResult {
+    com.hearlers.v1.model.CounselMessage counsel_message = 1;
 }
+
 
 message CreatePromptRequest {
     string persona = 1;
@@ -84,6 +88,14 @@ message CreatePromptResult {
     com.hearlers.v1.model.CounselPrompt prompt = 1;
 }
 
+message GetPromptListRequest {
+    com.hearlers.v1.model.CounselPromptType prompt_type = 1;
+}
+
+message GetPromptListResult {
+    repeated com.hearlers.v1.model.CounselPrompt prompt_list = 1;
+}
+
 message UpdatePromptRequest {
     int32 prompt_id = 1;
     string persona = 2;
@@ -98,6 +110,7 @@ message UpdatePromptRequest {
 message UpdatePromptResult {
     com.hearlers.v1.model.CounselPrompt prompt = 1;
 }
+
 
 message CreateCounselorRequest {
     com.hearlers.v1.model.CounselorType counselor_type = 1;
