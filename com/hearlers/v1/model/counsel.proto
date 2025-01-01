@@ -34,6 +34,12 @@ enum CounselPromptType {
     COUNSEL_PROMPT_TYPE_BRANCH_MSG = 10;
 }
 
+enum CounselMessageReaction {
+    COUNSEL_MESSAGE_REACTION_UNSPECIFIED = 0;
+    COUNSEL_MESSAGE_REACTION_LIKE = 1;
+    COUNSEL_MESSAGE_REACTION_DISLIKE = 2;
+}
+
 message Counsel {
     int32 id = 1;
     int32 counselor_id = 2;
@@ -55,11 +61,14 @@ message CounselMessage {
     string message = 3;
     bool is_user_message = 4;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string created_at = 5;
+    string reacted_at = 5;
+    CounselMessageReaction reaction = 6;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string updated_at = 6;
+    string created_at = 7;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string deleted_at = 7;
+    string updated_at = 8;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 9;
 }
 
 message CounselPrompt {
