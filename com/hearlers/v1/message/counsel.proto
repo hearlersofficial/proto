@@ -15,10 +15,11 @@ message CounselCreatedPayload {
 
 // topic: counsel.message.created
 message CounselMessageCreatedPayload {
-  int32 counsel_id = 1;
-  int32 user_id = 2;
-  string message = 3;
-  bool is_user_message = 4;
+  int32 counsel_message_id = 1;
+  int32 counsel_id = 2;
+  int32 user_id = 3;
+  string message = 4;
+  bool is_user_message = 5;
   // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-  string occurred_at = 5;
+  string occurred_at = 6;
 }
