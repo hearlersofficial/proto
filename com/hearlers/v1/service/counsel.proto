@@ -7,21 +7,58 @@ import "com/hearlers/v1/model/counsel.proto";
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
+// 김도훈 TODO: DB 구조랑 이거 오늘 대충 쓴거 데이터 스키마 최종본 정의해서 주고
+// 김도훈 TODO: User 생성됨 이벤트 발행
+// 이시흔 TODO: User쪽 연결 다 하기
+// 김성현 TODO: DB 스키마 바탕으로 Domain 객체 정의
+
+
+// DB와 도메인의 생김새가 다 나온 상태
+// R&R Counsel 쪽 도메인
+// 김도훈 -> 프롬프트 CRUD 및 PROTO -> 통해 Instruction CRUD 및 PROTO
+// 김성현 -> 상담과 회차 쪽에서 바뀐 프롬프트를 끌어 쓰고, 회차를 끝내는 로직 디벨롭
+// 이시흔 -> 어드민?? 이라고 해야하나, admin 인증 인가 JWT develop, ADMIN JWT 기반으로 프롬프트 CRUD API 제공
+// kakaoId === 서비스별로 사람 카카오 계정별로 고유하거든..! 근데 kakao Login + 특정 kakaoId 인 경우에만 admin JWT 주면은
+// 별도의 로그인을 안만들어도 됨 개 **짜치긴** 함,....ㅋㅋㄴㅋㅋ 어드민이 카카오에 종속적임. 근데 개발비용 개 낮음
+// AdminTable이 필요없고, user Service GRPC를 만들 필요도 없음
+// admin JWT 본질 -> 무상태성 + dbIO 없음, 어드민은 refresh안하면 DB IO X 없이 accessToken 기반 인증
+
+
+
+// LAST: 다 합쳐서 DIALOGUE 제작
+
+// TODO: USER_CREATED 시 이벤트를 통해 모든 Counselor 별 Dialogue 생성 (유저 생성과 동기화)
+
 service CounselService {
-    rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResult);
-    rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResult);
 
-    rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResult);
-    rpc GetMessageList (GetMessageListRequest) returns (GetMessageListResult);
-    rpc ReactMessage (ReactMessageRequest) returns (ReactMessageResult);
+    // 한 사이클의 상담
+    // TODO: 한 사이클의 끝을 어떻게 지정할 지 결정
+    rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResponse);
+    rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResponse);
 
-    rpc CreatePrompt (CreatePromptRequest) returns (CreatePromptResult);
-    rpc GetPromptList (GetPromptListRequest) returns (GetPromptListResult);
-    rpc UpdatePrompt (UpdatePromptRequest) returns (UpdatePromptResult);
+    // 상담 중 하나의 채팅 메시지 생성
+    rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResponse);
+    rpc GetMessageList (GetMessageListRequest) returns (GetMessageListResponse);
+    rpc ReactMessage (ReactMessageRequest) returns (ReactMessageResponse);
 
-    rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResult);
-    rpc GetCounselorList (GetCounselorListRequest) returns (GetCounselorListResult);
-    rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResult);
+    // TODO: GET DIALOGUE 
+    // DIALOGUE는 읽을 시 싱딤시와, 상담사의 모든 Counsels를 다 가지고 오는게 의미있는 단위
+    // DIALOGUE 뷰 테이블에 이미 상담사와 모든 유저의 대화 내용을 미리 조인해둔 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
+    // CQRS 패턴으로 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
+    // DDD를 안함
+    // 별도의 모듈
+    // rpc GetDialogue (GetDialogueRequest) returns (GetDialogueResponse);
+
+    // PROMPT TABLE 3개 CRUD
+
+
+    rpc CreatePrompt (CreatePromptRequest) returns (CreatePromptResponse);
+    rpc GetPromptList (GetPromptListRequest) returns (GetPromptListResponse);
+    rpc UpdatePrompt (UpdatePromptRequest) returns (UpdatePromptResponse);
+
+    rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResponse);
+    rpc GetCounselorList (GetCounselorListRequest) returns (GetCounselorListResponse);
+    rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResponse);
 }
 
 message CreateCounselRequest {
@@ -31,7 +68,7 @@ message CreateCounselRequest {
     string response_message = 4;
 }
   
-message CreateCounselResult {
+message CreateCounselResponse {
     com.hearlers.v1.model.Counsel counsel = 1;
     repeated com.hearlers.v1.model.CounselMessage counsel_messages = 2;
 }
@@ -41,7 +78,7 @@ message GetCounselListRequest {
     int32 counselor_id = 2;
 }
 
-message GetCounselListResult {
+message GetCounselListResponse {
     repeated com.hearlers.v1.model.Counsel counsel_list = 1;
 }
 
@@ -51,7 +88,7 @@ message CreateMessageRequest {
     string message = 2;
 }
 
-message CreateMessageResult {
+message CreateMessageResponse {
     com.hearlers.v1.model.CounselMessage counsel_message = 1;
 }
 
@@ -59,7 +96,7 @@ message GetMessageListRequest {
     int32 counsel_id = 1;
 }
 
-message GetMessageListResult {
+message GetMessageListResponse {
     repeated com.hearlers.v1.model.CounselMessage message_list = 1;
 }
 
@@ -68,7 +105,7 @@ message ReactMessageRequest {
     com.hearlers.v1.model.CounselMessageReaction reaction = 2;
 }
 
-message ReactMessageResult {
+message ReactMessageResponse {
     com.hearlers.v1.model.CounselMessage counsel_message = 1;
 }
 
@@ -84,7 +121,7 @@ message CreatePromptRequest {
     string version = 8;
 }
 
-message CreatePromptResult {
+message CreatePromptResponse {
     com.hearlers.v1.model.CounselPrompt prompt = 1;
 }
 
@@ -92,7 +129,7 @@ message GetPromptListRequest {
     com.hearlers.v1.model.CounselPromptType prompt_type = 1;
 }
 
-message GetPromptListResult {
+message GetPromptListResponse {
     repeated com.hearlers.v1.model.CounselPrompt prompt_list = 1;
 }
 
@@ -107,7 +144,7 @@ message UpdatePromptRequest {
     string version = 8;
 }
 
-message UpdatePromptResult {
+message UpdatePromptResponse {
     com.hearlers.v1.model.CounselPrompt prompt = 1;
 }
 
@@ -119,7 +156,7 @@ message CreateCounselorRequest {
     com.hearlers.v1.model.CounselorGender counselor_gender = 4;
 }
 
-message CreateCounselorResult {
+message CreateCounselorResponse {
     com.hearlers.v1.model.Counselor counselor = 1;
 }
 
@@ -127,7 +164,7 @@ message GetCounselorListRequest {
     com.hearlers.v1.model.CounselorType counselor_type = 1;
 }
 
-message GetCounselorListResult {
+message GetCounselorListResponse {
     repeated com.hearlers.v1.model.Counselor counselor_list = 1;
 }
 
@@ -139,6 +176,6 @@ message UpdateCounselorRequest {
     com.hearlers.v1.model.CounselorGender counselor_gender = 5;
 }
 
-message UpdateCounselorResult {
+message UpdateCounselorResponse {
     com.hearlers.v1.model.Counselor counselor = 1;
 }
