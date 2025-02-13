@@ -77,7 +77,7 @@ enum ActivityType {
 }
 
 message User {
-    int32 id = 1;
+    string id = 1;
     string nickname = 2;                       
     UserProfile user_profile = 3;
     repeated UserProgress user_progresses = 4;

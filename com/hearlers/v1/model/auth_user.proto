@@ -12,8 +12,8 @@ enum AuthChannel {
 }
 
 message AuthUser {
-    int32 id = 1;
-    int32 user_id = 2;
+    string id = 1;
+    string user_id = 2;
     AuthChannel auth_channel = 3;
     OAuthChannelInfo oauth_channel_info = 4;
     repeated RefreshToken refresh_tokens = 5;
@@ -28,7 +28,7 @@ message AuthUser {
 }
 
 message OAuthChannelInfo {
-    int32 id = 1;
+    string id = 1;
     AuthChannel auth_channel = 2;
     string unique_id = 3;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)

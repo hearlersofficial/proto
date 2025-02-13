@@ -7,7 +7,7 @@ option java_multiple_files = true;
 
 // topic: user.updated
 message UserUpdatedPayload {
-  int32 user_id = 1;
+  string user_id = 1;
   com.hearlers.v1.model.AuthChannel auth_channel = 2;
   // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
   string occurred_at = 3;

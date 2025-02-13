@@ -45,7 +45,7 @@ message InitializeUserResponse {
 
 // connectAuthChannel
 message ConnectAuthChannelRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   com.hearlers.v1.model.AuthChannel auth_channel = 2;
   string unique_id = 3;
 }
@@ -56,7 +56,7 @@ message ConnectAuthChannelResponse {
 
 // saveRefreshToken
 message SaveRefreshTokenRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   string token = 2;
   // YYYY-MM-DD HH:MM:SS
   string expires_at = 3;
@@ -68,7 +68,7 @@ message SaveRefreshTokenResponse {
 
 // verifyRefreshToken
 message VerifyRefreshTokenRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   string token = 2;
 }
 
@@ -78,7 +78,7 @@ message VerifyRefreshTokenResponse {
 
 // findOneUser
 message FindOneUserRequest {
-  optional int32 user_id = 1;
+  optional string user_id = 1;
   optional string nickname = 2;
 }
 
@@ -97,8 +97,8 @@ message FindManyUserResult {
 
 // findOneAuthUser
 message FindOneAuthUserRequest {
-  optional int32 auth_user_id = 1;
-  optional int32 user_id = 2;
+  optional string auth_user_id = 1;
+  optional string user_id = 2;
   optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
   optional string unique_id = 4;
 }
@@ -109,7 +109,7 @@ message FindOneAuthUserResponse {
 
 // checkRemainingTokens
 message CheckRemainingTokensRequest {
-  int32 user_id = 1;
+  string user_id = 1;
 }
 
 message CheckRemainingTokensResponse {
@@ -122,7 +122,7 @@ message CheckRemainingTokensResponse {
 
 // reserveTokens
 message ReserveTokensRequest {
-  int32 user_id = 1;
+  string user_id = 1;
 }
 
 message ReserveTokensResponse {
@@ -133,7 +133,7 @@ message ReserveTokensResponse {
 
 // updateUser
 message UpdateUserRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   optional string nickname = 2;
   optional string profile_image = 3;
   optional string phone_number = 4;

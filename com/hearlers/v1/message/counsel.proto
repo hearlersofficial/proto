@@ -6,18 +6,18 @@ option java_multiple_files = true;
 
 // topic: counsel.created
 message CounselCreatedPayload {
-  int32 counsel_id = 1;
-  int32 user_id = 2;
-  int32 counselor_id = 3;
+  string counsel_id = 1;
+  string user_id = 2;
+  string counselor_id = 3;
   // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
   string occurred_at = 4;
 }
 
 // topic: counsel.message.created
 message CounselMessageCreatedPayload {
-  int32 counsel_message_id = 1;
-  int32 counsel_id = 2;
-  int32 user_id = 3;
+  string counsel_message_id = 1;
+  string counsel_id = 2;
+  string user_id = 3;
   string message = 4;
   bool is_user_message = 5;
   // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)

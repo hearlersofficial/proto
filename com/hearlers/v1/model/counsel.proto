@@ -48,9 +48,9 @@ enum CounselMessageReaction {
 }
 
 message Counsel {
-    int32 id = 1;
-    int32 counselor_id = 2;
-    int32 user_id = 3;
+    string id = 1;
+    string counselor_id = 2;
+    string user_id = 3;
     string last_message = 4;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
     string last_chated_at = 5;
@@ -63,8 +63,8 @@ message Counsel {
 }
 
 message CounselMessage {
-    int32 id = 1;
-    int32 counsel_id = 2;
+    string id = 1;
+    string counsel_id = 2;
     string message = 3;
     bool is_user_message = 4;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
@@ -79,7 +79,7 @@ message CounselMessage {
 }
 
 message CounselPrompt {
-    int32 id = 1;
+    string id = 1;
     string persona = 2;
     string context = 3;
     string instruction = 4;
@@ -97,7 +97,7 @@ message CounselPrompt {
 }
 
 message Counselor {
-    int32 id = 1;
+    string id = 1;
     CounselorType counselor_type = 2;
     string name = 3;
     string description = 4;

@@ -62,8 +62,8 @@ service CounselService {
 }
 
 message CreateCounselRequest {
-    int32 user_id = 1;                       
-    int32 counselor_id = 2;
+    string user_id = 1;                       
+    string counselor_id = 2;
     string intro_message = 3;
     string response_message = 4;
 }
@@ -74,8 +74,8 @@ message CreateCounselResponse {
 }
 
 message GetCounselListRequest {
-    int32 user_id = 1;
-    int32 counselor_id = 2;
+    string user_id = 1;
+    string counselor_id = 2;
 }
 
 message GetCounselListResponse {
@@ -84,7 +84,7 @@ message GetCounselListResponse {
 
 
 message CreateMessageRequest {
-    int32 counsel_id = 1;
+    string counsel_id = 1;
     string message = 2;
 }
 
@@ -93,7 +93,7 @@ message CreateMessageResponse {
 }
 
 message GetMessageListRequest {
-    int32 counsel_id = 1;
+    string counsel_id = 1;
 }
 
 message GetMessageListResponse {
@@ -101,7 +101,7 @@ message GetMessageListResponse {
 }
 
 message ReactMessageRequest {
-    int32 message_id = 1;
+    string message_id = 1;
     com.hearlers.v1.model.CounselMessageReaction reaction = 2;
 }
 
@@ -134,7 +134,7 @@ message GetPromptListResponse {
 }
 
 message UpdatePromptRequest {
-    int32 prompt_id = 1;
+    string prompt_id = 1;
     string persona = 2;
     string context = 3;
     string instruction = 4;
@@ -169,7 +169,7 @@ message GetCounselorListResponse {
 }
 
 message UpdateCounselorRequest {
-    int32 counselor_id = 1;
+    string counselor_id = 1;
     com.hearlers.v1.model.CounselorType counselor_type = 2;
     string name = 3;
     string description = 4;
