@@ -98,7 +98,7 @@ message CounselPrompt {
 
 message Counselor {
     string id = 1;
-    CounselorType counselor_type = 2;
+    string tone_id = 2;
     string name = 3;
     string description = 4;
     CounselorGender gender = 5;
