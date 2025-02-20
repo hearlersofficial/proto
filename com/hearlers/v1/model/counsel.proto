@@ -4,12 +4,10 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
-enum CounselorType {
-    COUNSELOR_TYPE_UNSPECIFIED = 0;
-    COUNSELOR_TYPE_DEPRESSED = 1;
-    COUNSELOR_TYPE_ANXIOUS = 2;
-    COUNSELOR_TYPE_TIRED = 3;
-    COUNSELOR_TYPE_LONELY = 4;
+enum CounselMessageReaction {
+    COUNSEL_MESSAGE_REACTION_UNSPECIFIED = 0;
+    COUNSEL_MESSAGE_REACTION_LIKE = 1;
+    COUNSEL_MESSAGE_REACTION_DISLIKE = 2;
 }
 
 enum CounselorGender {
@@ -19,7 +17,6 @@ enum CounselorGender {
     COUNSELOR_GENDER_NONE = 3;
 }
 
-
 enum CounselTechniqueStage {
     COUNSEL_TECHNIQUE_STAGE_UNSPECIFIED = 0;
     COUNSEL_TECHNIQUE_STAGE_INITIAL = 1;
@@ -27,39 +24,17 @@ enum CounselTechniqueStage {
     // COUNSEL_TECHNIQUE_STAGE_END = 3;
 }
 
-enum CounselPromptType {
-    COUNSEL_PROMPT_TYPE_UNSPECIFIED = 0;
-    COUNSEL_PROMPT_TYPE_SYSTEM_MSG = 1;
-    COUNSEL_PROMPT_TYPE_POSITIVE_MSG = 2;
-    COUNSEL_PROMPT_TYPE_DEPRESSED_REASON_MSG = 3;
-    COUNSEL_PROMPT_TYPE_DEPRESSED_NO_REASON_MSG = 4;
-    COUNSEL_PROMPT_TYPE_ANXIOUS_REASON_MSG = 5;
-    COUNSEL_PROMPT_TYPE_ANXIOUS_NO_REASON_MSG = 6;
-    COUNSEL_PROMPT_TYPE_TIRED_REASON_MSG = 7;
-    COUNSEL_PROMPT_TYPE_TIRED_NO_REASON_MSG = 8;
-    COUNSEL_PROMPT_TYPE_WHY_LIVE_MSG = 9;
-    COUNSEL_PROMPT_TYPE_BRANCH_MSG = 10;
-}
-
-enum CounselMessageReaction {
-    COUNSEL_MESSAGE_REACTION_UNSPECIFIED = 0;
-    COUNSEL_MESSAGE_REACTION_LIKE = 1;
-    COUNSEL_MESSAGE_REACTION_DISLIKE = 2;
-}
-
 message Counsel {
     string id = 1;
     string counselor_id = 2;
     string user_id = 3;
     string last_message = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
     string last_chated_at = 5;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string created_at = 6;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string updated_at = 7;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string deleted_at = 8;
+    string counsel_technique_id = 6;
+    string counselor_user_relationship_id = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    string deleted_at = 10;
 }
 
 message CounselMessage {
@@ -78,24 +53,6 @@ message CounselMessage {
     string deleted_at = 9;
 }
 
-message CounselPrompt {
-    string id = 1;
-    string persona = 2;
-    string context = 3;
-    string instruction = 4;
-    string tone = 5;
-    string additional_prompt = 6;
-    CounselPromptType prompt_type = 7;
-    string description = 8;
-    string version = 9;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string created_at = 10;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string updated_at = 11;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
-    string deleted_at = 12;
-}
-
 message Counselor {
     string id = 1;
     string tone_id = 2;
@@ -111,4 +68,94 @@ message Counselor {
     string updated_at = 10;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
     string deleted_at = 11;
+}
+
+message CounselTechnique {
+    string id = 1;
+    string name = 2;
+    optional string tone_id = 3;
+    string context_id = 4;
+    string instruction_id = 5;
+    CounselTechniqueStage counsel_technique_stage = 6;
+    string next_counsel_technique_id = 7;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 8;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 9;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 10;
+}
+
+message CounselorUserRelationship {
+    string id = 1;
+    string counselor_id = 2;
+    string user_id = 3;
+    int32 rapport = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 6;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 7;
+}
+
+message Persona {
+    string id = 1;
+    string body = 2;
+    string counselor_id = 3;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 6;
+}
+
+message Context {
+    string id = 1;
+    string name = 2;
+    repeated string placeholders = 3;
+    string body = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 6;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 7;
+}
+
+message Instruction {
+    string id = 1;
+    string name = 2;
+    optional string initial_sentence = 3;
+    repeated InstructionItem instruction_items = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 6;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 7;
+}
+
+message InstructionItem {
+    string id = 1;
+    string body = 2;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 3;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 5;  
+}
+
+message Tone {
+    string id = 1;
+    string name = 2;
+    string body = 3;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string created_at = 4;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string updated_at = 5;
+    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    string deleted_at = 6;
 }
