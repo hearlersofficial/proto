@@ -77,7 +77,7 @@ message CounselTechnique {
     string context_id = 4;
     string instruction_id = 5;
     CounselTechniqueStage counsel_technique_stage = 6;
-    string next_counsel_technique_id = 7;
+    optional string next_counsel_technique_id = 7;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
     string created_at = 8;
     // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)

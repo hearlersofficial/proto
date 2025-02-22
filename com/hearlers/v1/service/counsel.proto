@@ -31,41 +31,77 @@ option java_multiple_files = true;
 
 service CounselService {
 
-    // 한 사이클의 상담
+    // 상담 (한 사이클)
     // TODO: 한 사이클의 끝을 어떻게 지정할 지 결정
     rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResponse);
-    rpc GetCounselList (GetCounselListRequest) returns (GetCounselListResponse);
+    // TODO: 상담사 별로 조회
+    rpc FindCounsels (FindCounselsRequest) returns (FindCounselsResponse);
+    rpc FindCounselById (FindCounselByIdRequest) returns (FindCounselByIdResponse);
 
-    // 상담 중 하나의 채팅 메시지 생성
+    // 상담 메시지 (상담 중 하나의 채팅팅)
     rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResponse);
-    rpc GetMessageList (GetMessageListRequest) returns (GetMessageListResponse);
+    rpc FindMessages (FindMessagesRequest) returns (FindMessagesResponse);
     rpc ReactMessage (ReactMessageRequest) returns (ReactMessageResponse);
 
-    // TODO: GET DIALOGUE 
-    // DIALOGUE는 읽을 시 싱딤시와, 상담사의 모든 Counsels를 다 가지고 오는게 의미있는 단위
-    // DIALOGUE 뷰 테이블에 이미 상담사와 모든 유저의 대화 내용을 미리 조인해둔 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
-    // CQRS 패턴으로 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
+    // 상담사
+    rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResponse);
+    rpc FindCounselors (FindCounselorsRequest) returns (FindCounselorsResponse);
+    rpc FindCounselorById (FindCounselorByIdRequest) returns (FindCounselorByIdResponse);
+    rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResponse);
+
+    // 상담사와 유저의 관계
+    // TODO: CQRS 패턴으로 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
+    // Relationship은 읽을 시 싱딤시와, 상담사의 모든 Counsels를 다 가지고 오는게 의미있는 단위
+    // Relationship 뷰 테이블에 이미 상담사와 모든 유저의 대화 내용을 미리 조인해둔 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
     // DDD를 안함
     // 별도의 모듈
-    // rpc GetDialogue (GetDialogueRequest) returns (GetDialogueResponse);
+    rpc FindCounselorUserRelationships (FindCounselorUserRelationshipsRequest) returns (FindCounselorUserRelationshipsResponse);
 
-    // PROMPT TABLE 3개 CRUD
+    // 상담 기법
+    rpc CreateCounselTechnique (CreateCounselTechniqueRequest) returns (CreateCounselTechniqueResponse);
+    rpc FindCounselTechniques (FindCounselTechniquesRequest) returns (FindCounselTechniquesResponse);
+    rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
+    rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
+    rpc SaveCounselTechniqueSequence (SaveCounselTechniqueSequenceRequest) returns (SaveCounselTechniqueSequenceResponse);
 
+    // Persona
+    rpc CreatePersona (CreatePersonaRequest) returns (CreatePersonaResponse);
+    rpc FindPersonas (FindPersonasRequest) returns (FindPersonasResponse);
+    rpc FindPersonaById (FindPersonaByIdRequest) returns (FindPersonaByIdResponse);
+    rpc UpdatePersona (UpdatePersonaRequest) returns (UpdatePersonaResponse);
 
-    rpc CreatePrompt (CreatePromptRequest) returns (CreatePromptResponse);
-    rpc GetPromptList (GetPromptListRequest) returns (GetPromptListResponse);
-    rpc UpdatePrompt (UpdatePromptRequest) returns (UpdatePromptResponse);
+    // Context
+    rpc CreateContext (CreateContextRequest) returns (CreateContextResponse);
+    rpc FindContexts (FindContextsRequest) returns (FindContextsResponse);
+    rpc FindContextById (FindContextByIdRequest) returns (FindContextByIdResponse);
+    rpc UpdateContext (UpdateContextRequest) returns (UpdateContextResponse);
 
-    rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResponse);
-    rpc GetCounselorList (GetCounselorListRequest) returns (GetCounselorListResponse);
-    rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResponse);
+    // Instruction
+    rpc CreateInstruction (CreateInstructionRequest) returns (CreateInstructionResponse);
+    rpc FindInstructions (FindInstructionsRequest) returns (FindInstructionsResponse);
+    rpc FindInstructionById (FindInstructionByIdRequest) returns (FindInstructionByIdResponse);
+    rpc UpdateInstruction (UpdateInstructionRequest) returns (UpdateInstructionResponse);
+
+    // InstructionItem
+    rpc CreateInstructionItem (CreateInstructionItemRequest) returns (CreateInstructionItemResponse);
+    rpc FindInstructionItems (FindInstructionItemsRequest) returns (FindInstructionItemsResponse);
+    rpc FindInstructionItemById (FindInstructionItemByIdRequest) returns (FindInstructionItemByIdResponse);
+    rpc UpdateInstructionItem (UpdateInstructionItemRequest) returns (UpdateInstructionItemResponse);
+
+    // Tone
+    rpc CreateTone (CreateToneRequest) returns (CreateToneResponse);
+    rpc FindTones (FindTonesRequest) returns (FindTonesResponse);
+    rpc FindToneById (FindToneByIdRequest) returns (FindToneByIdResponse);
+    rpc UpdateTone (UpdateToneRequest) returns (UpdateToneResponse);
 }
 
+
+// 상담
 message CreateCounselRequest {
     string user_id = 1;                       
     string counselor_id = 2;
-    string intro_message = 3;
-    string response_message = 4;
+    optional string intro_message = 3;
+    optional string response_message = 4;
 }
   
 message CreateCounselResponse {
@@ -73,31 +109,41 @@ message CreateCounselResponse {
     repeated com.hearlers.v1.model.CounselMessage counsel_messages = 2;
 }
 
-message GetCounselListRequest {
+message FindCounselsRequest {
     string user_id = 1;
-    string counselor_id = 2;
+    optional string counselor_id = 2;
 }
 
-message GetCounselListResponse {
-    repeated com.hearlers.v1.model.Counsel counsel_list = 1;
+message FindCounselsResponse {
+    repeated com.hearlers.v1.model.Counsel counsels = 1;
+}
+
+message FindCounselByIdRequest {
+    string counsel_id = 1;
+}
+
+message FindCounselByIdResponse {
+    com.hearlers.v1.model.Counsel counsel = 1;
 }
 
 
+// 상담 메시지
 message CreateMessageRequest {
     string counsel_id = 1;
     string message = 2;
 }
 
 message CreateMessageResponse {
-    com.hearlers.v1.model.CounselMessage counsel_message = 1;
+    com.hearlers.v1.model.CounselMessage created_counsel_message = 1;
+    com.hearlers.v1.model.CounselMessage counselor_response_message = 2;
 }
 
-message GetMessageListRequest {
+message FindMessagesRequest {
     string counsel_id = 1;
 }
 
-message GetMessageListResponse {
-    repeated com.hearlers.v1.model.CounselMessage message_list = 1;
+message FindMessagesResponse {
+    repeated com.hearlers.v1.model.CounselMessage counsel_messages = 1;
 }
 
 message ReactMessageRequest {
@@ -110,47 +156,9 @@ message ReactMessageResponse {
 }
 
 
-message CreatePromptRequest {
-    string persona = 1;
-    string context = 2;
-    string instruction = 3;
-    string tone = 4;
-    string additional_prompt = 5;
-    com.hearlers.v1.model.CounselPromptType prompt_type = 6;
-    string description = 7;
-    string version = 8;
-}
-
-message CreatePromptResponse {
-    com.hearlers.v1.model.CounselPrompt prompt = 1;
-}
-
-message GetPromptListRequest {
-    com.hearlers.v1.model.CounselPromptType prompt_type = 1;
-}
-
-message GetPromptListResponse {
-    repeated com.hearlers.v1.model.CounselPrompt prompt_list = 1;
-}
-
-message UpdatePromptRequest {
-    string prompt_id = 1;
-    string persona = 2;
-    string context = 3;
-    string instruction = 4;
-    string tone = 5;
-    string additional_prompt = 6;
-    string description = 7;
-    string version = 8;
-}
-
-message UpdatePromptResponse {
-    com.hearlers.v1.model.CounselPrompt prompt = 1;
-}
-
-
+// 상담사
 message CreateCounselorRequest {
-    com.hearlers.v1.model.CounselorType counselor_type = 1;
+    string tone_id = 1;
     string name = 2;
     string description = 3;
     com.hearlers.v1.model.CounselorGender counselor_gender = 4;
@@ -160,22 +168,281 @@ message CreateCounselorResponse {
     com.hearlers.v1.model.Counselor counselor = 1;
 }
 
-message GetCounselorListRequest {
-    com.hearlers.v1.model.CounselorType counselor_type = 1;
+message FindCounselorsRequest {
+    optional string tone_id = 1;
 }
 
-message GetCounselorListResponse {
-    repeated com.hearlers.v1.model.Counselor counselor_list = 1;
+message FindCounselorsResponse {
+    repeated com.hearlers.v1.model.Counselor counselors = 1;
+}
+
+message FindCounselorByIdRequest {
+    string counselor_id = 1;
+}
+
+message FindCounselorByIdResponse {
+    com.hearlers.v1.model.Counselor counselor = 1;
 }
 
 message UpdateCounselorRequest {
     string counselor_id = 1;
-    com.hearlers.v1.model.CounselorType counselor_type = 2;
-    string name = 3;
-    string description = 4;
-    com.hearlers.v1.model.CounselorGender counselor_gender = 5;
+    optional string tone_id = 2;
+    optional string name = 3;
+    optional string description = 4;
+    optional com.hearlers.v1.model.CounselorGender counselor_gender = 5;
 }
 
 message UpdateCounselorResponse {
     com.hearlers.v1.model.Counselor counselor = 1;
+}
+
+
+// 상담사와 유저의 관계
+message FindCounselorUserRelationshipsRequest {
+    string counselor_id = 1;
+    string user_id = 2;
+}
+
+message FindCounselorUserRelationshipsResponse {
+    repeated com.hearlers.v1.model.CounselorUserRelationship counselor_user_relationships = 1;
+}
+
+
+// 상담 기법
+message CreateCounselTechniqueRequest {
+    string name = 1;
+    optional string tone_id = 2;
+    string context_id = 3;
+    string instruction_id = 4;
+    com.hearlers.v1.model.CounselTechniqueStage counsel_technique_stage = 5;
+    optional string next_counsel_technique_id = 6;
+}
+
+message CreateCounselTechniqueResponse {
+    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+}
+
+message FindCounselTechniquesRequest {
+    optional string name = 1;
+    optional string tone_id = 2;
+    optional com.hearlers.v1.model.CounselTechniqueStage counsel_technique_stage = 3;
+}
+
+message FindCounselTechniquesResponse {
+    repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
+}
+
+message FindCounselTechniqueByIdRequest {
+    string counsel_technique_id = 1;
+}
+
+message FindCounselTechniqueByIdResponse {
+    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+}
+
+message UpdateCounselTechniqueRequest {
+    string counsel_technique_id = 1;
+    optional string name = 2;
+    optional string tone_id = 3;
+    optional string context_id = 4;
+    optional string instruction_id = 5;
+    optional com.hearlers.v1.model.CounselTechniqueStage counsel_technique_stage = 6;
+    optional string next_counsel_technique_id = 7;
+}
+
+message UpdateCounselTechniqueResponse {
+    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+}
+
+message SaveCounselTechniqueSequenceRequest {
+    repeated string counsel_technique_ids = 1;
+}
+
+message SaveCounselTechniqueSequenceResponse {
+    repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
+}
+
+// Persona
+message CreatePersonaRequest {
+    string counselor_id = 1;
+    string body = 2;
+}
+
+message CreatePersonaResponse {
+    com.hearlers.v1.model.Persona persona = 1;
+}
+
+message FindPersonasRequest {
+    optional string counselor_id = 1;
+}
+
+message FindPersonasResponse {
+    repeated com.hearlers.v1.model.Persona personas = 1;
+}
+
+message FindPersonaByIdRequest {
+    string persona_id = 1;
+}
+
+message FindPersonaByIdResponse {
+    com.hearlers.v1.model.Persona persona = 1;
+}
+
+message UpdatePersonaRequest {
+    string persona_id = 1;
+    optional string body = 2;
+}
+
+message UpdatePersonaResponse {
+    com.hearlers.v1.model.Persona persona = 1;
+}
+
+
+// Context
+message CreateContextRequest {
+    string name = 1;
+    string body = 2;
+    repeated string placeholders = 3;
+}
+
+message CreateContextResponse {
+    com.hearlers.v1.model.Context context = 1;
+}
+
+message FindContextsRequest {
+    optional string name = 1;
+}
+
+message FindContextsResponse {
+    repeated com.hearlers.v1.model.Context contexts = 1;
+}
+
+message FindContextByIdRequest {
+    string context_id = 1;
+}
+
+message FindContextByIdResponse {
+    com.hearlers.v1.model.Context context = 1;
+}
+
+message UpdateContextRequest {
+    string context_id = 1;
+    optional string name = 2;
+    optional string body = 3;
+    repeated string placeholders = 4;
+}
+
+message UpdateContextResponse {
+    com.hearlers.v1.model.Context context = 1;
+}
+
+
+// Instruction
+message CreateInstructionRequest {
+    string name = 1;
+    optional string initial_sentence = 2;
+    repeated string instruction_item_ids = 3;
+}
+
+message CreateInstructionResponse {
+    com.hearlers.v1.model.Instruction instruction = 1;
+}
+
+message FindInstructionsRequest {
+    optional string name = 1;
+}
+
+message FindInstructionsResponse {
+    repeated com.hearlers.v1.model.Instruction instructions = 1;
+}
+
+message FindInstructionByIdRequest {
+    string instruction_id = 1;
+}
+
+message FindInstructionByIdResponse {
+    com.hearlers.v1.model.Instruction instruction = 1;
+}
+
+message UpdateInstructionRequest {
+    string instruction_id = 1;
+    optional string name = 2;
+    optional string initial_sentence = 3;
+    repeated string instruction_item_ids = 4;
+}
+
+message UpdateInstructionResponse {
+    com.hearlers.v1.model.Instruction instruction = 1;
+}
+
+
+// InstructionItem
+message CreateInstructionItemRequest {
+    string body = 1;
+}
+
+message CreateInstructionItemResponse {
+    com.hearlers.v1.model.InstructionItem instruction_item = 1;
+}
+
+message FindInstructionItemsRequest {
+    optional string keyword = 1;
+}
+
+message FindInstructionItemsResponse {
+    repeated com.hearlers.v1.model.InstructionItem instruction_items = 1;
+}
+
+message FindInstructionItemByIdRequest {
+    string instruction_item_id = 1;
+}
+
+message FindInstructionItemByIdResponse {
+    com.hearlers.v1.model.InstructionItem instruction_item = 1;
+}
+
+message UpdateInstructionItemRequest {
+    string instruction_item_id = 1;
+    optional string body = 2;
+}
+
+message UpdateInstructionItemResponse {
+    com.hearlers.v1.model.InstructionItem instruction_item = 1;
+}
+
+
+// Tone
+message CreateToneRequest {
+    string name = 1;
+    string body = 2;
+}
+
+message CreateToneResponse {
+    com.hearlers.v1.model.Tone tone = 1;
+}
+
+message FindTonesRequest {
+    optional string name = 1;
+}
+
+message FindTonesResponse {
+    repeated com.hearlers.v1.model.Tone tones = 1;
+}
+
+message FindToneByIdRequest {
+    string tone_id = 1;
+}
+
+message FindToneByIdResponse {
+    com.hearlers.v1.model.Tone tone = 1;
+}
+
+message UpdateToneRequest {
+    string tone_id = 1;
+    optional string name = 2;
+    optional string body = 3;
+}
+
+message UpdateToneResponse {
+    com.hearlers.v1.model.Tone tone = 1;
 }
