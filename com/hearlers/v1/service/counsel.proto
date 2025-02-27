@@ -123,7 +123,7 @@ message FindCounselByIdRequest {
 }
 
 message FindCounselByIdResponse {
-    com.hearlers.v1.model.Counsel counsel = 1;
+    optional com.hearlers.v1.model.Counsel counsel = 1;
 }
 
 
@@ -181,7 +181,7 @@ message FindCounselorByIdRequest {
 }
 
 message FindCounselorByIdResponse {
-    com.hearlers.v1.model.Counselor counselor = 1;
+    optional com.hearlers.v1.model.Counselor counselor = 1;
 }
 
 message UpdateCounselorRequest {
@@ -237,7 +237,7 @@ message FindCounselTechniqueByIdRequest {
 }
 
 message FindCounselTechniqueByIdResponse {
-    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+    optional com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
 message UpdateCounselTechniqueRequest {
@@ -285,7 +285,7 @@ message FindPersonaByIdRequest {
 }
 
 message FindPersonaByIdResponse {
-    com.hearlers.v1.model.Persona persona = 1;
+    optional com.hearlers.v1.model.Persona persona = 1;
 }
 
 message UpdatePersonaRequest {
@@ -322,7 +322,7 @@ message FindContextByIdRequest {
 }
 
 message FindContextByIdResponse {
-    com.hearlers.v1.model.Context context = 1;
+    optional com.hearlers.v1.model.Context context = 1;
 }
 
 message UpdateContextRequest {
@@ -361,7 +361,7 @@ message FindInstructionByIdRequest {
 }
 
 message FindInstructionByIdResponse {
-    com.hearlers.v1.model.Instruction instruction = 1;
+    optional com.hearlers.v1.model.Instruction instruction = 1;
 }
 
 message UpdateInstructionRequest {
@@ -398,7 +398,7 @@ message FindInstructionItemByIdRequest {
 }
 
 message FindInstructionItemByIdResponse {
-    com.hearlers.v1.model.InstructionItem instruction_item = 1;
+    optional com.hearlers.v1.model.InstructionItem instruction_item = 1;
 }
 
 message UpdateInstructionItemRequest {
@@ -434,7 +434,7 @@ message FindToneByIdRequest {
 }
 
 message FindToneByIdResponse {
-    com.hearlers.v1.model.Tone tone = 1;
+    optional com.hearlers.v1.model.Tone tone = 1;
 }
 
 message UpdateToneRequest {

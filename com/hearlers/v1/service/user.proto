@@ -83,11 +83,12 @@ message FindOneUserRequest {
 }
 
 message FindOneUserResponse {
-  com.hearlers.v1.model.User user = 1;
-}
+  optional com.hearlers.v1.model.User user = 1;
+} 
+
 
 // findManyUser
-message FindManyUserRequest {
+message FindManyUserRequest { 
   com.hearlers.v1.common.Pagination pagination = 1;
 } 
 
@@ -104,7 +105,7 @@ message FindOneAuthUserRequest {
 }
 
 message FindOneAuthUserResponse {
-  com.hearlers.v1.model.AuthUser auth_user = 1;
+  optional com.hearlers.v1.model.AuthUser auth_user = 1;
 }
 
 // checkRemainingTokens
