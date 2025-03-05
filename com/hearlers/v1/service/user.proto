@@ -31,6 +31,8 @@ service UserService {
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
   // 활동 생성
   rpc CreateActivity (CreateActivityRequest) returns (CreateActivityResponse);
+  // 권한 변경
+  rpc UpdateAuthority (UpdateAuthorityRequest) returns (UpdateAuthorityResponse);
 }
 
   
@@ -160,4 +162,14 @@ message CreateActivityRequest {
 
 message CreateActivityResponse {
   com.hearlers.v1.model.UserActivity user_activity = 1;
+}
+
+// updateAuthority
+message UpdateAuthorityRequest {
+  string auth_user_id = 1;
+  com.hearlers.v1.model.Authority authority = 2;
+}
+
+message UpdateAuthorityResponse {
+  com.hearlers.v1.model.AuthUser auth_user = 1;
 }
