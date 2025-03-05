@@ -81,11 +81,11 @@ message User {
     string nickname = 2;                       
     UserProfile user_profile = 3;
     repeated UserProgress user_progresses = 4;
-    // YYYY-MM-DD HH:MM:SS
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 5;
-    // YYYY-MM-DD HH:MM:SS
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 6;     
-    // YYYY-MM-DD HH:MM:SS
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 7;
 }
 
@@ -93,28 +93,28 @@ message UserProfile {
   string profile_image = 1;
   string phone_number = 2;
   Gender gender = 3;
-  // YYYY-MM-DD 00:00:00
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string birthday = 4;
   string introduction = 5;
   Mbti mbti = 6;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string created_at = 7; 
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string updated_at = 8;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string deleted_at = 9;
 }
 
 message UserProgress {
   ProgressType progress_type = 1;
   ProgressStatus status = 2;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string last_updated = 3;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string created_at = 4; 
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string updated_at = 5;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string deleted_at = 6;
 }
 
@@ -125,10 +125,10 @@ message UserActivity {
   string ip_address = 4;
   string user_agent = 5;
   int32 duration_seconds = 6;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string created_at = 7;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string updated_at = 8;
-  // YYYY-MM-DD HH:MM:SS
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
   string deleted_at = 9;
 }

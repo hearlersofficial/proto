@@ -42,14 +42,14 @@ message CounselMessage {
     string counsel_id = 2;
     string message = 3;
     bool is_user_message = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string reacted_at = 5;
     CounselMessageReaction reaction = 6;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 7;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 8;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 9;
 }
 
@@ -62,11 +62,11 @@ message Counselor {
     string intro_message = 6;
     string response_option1 = 7;
     string response_option2 = 8;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 9;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 10;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 11;
 }
 
@@ -78,11 +78,11 @@ message CounselTechnique {
     string instruction_id = 5;
     CounselTechniqueStage counsel_technique_stage = 6;
     optional string next_counsel_technique_id = 7;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 8;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 9;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 10;
 }
 
@@ -91,11 +91,11 @@ message CounselorUserRelationship {
     string counselor_id = 2;
     string user_id = 3;
     int32 rapport = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 5;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 6;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 7;
 }
 
@@ -103,11 +103,11 @@ message Persona {
     string id = 1;
     string body = 2;
     string counselor_id = 3;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 5;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 6;
 }
 
@@ -116,11 +116,11 @@ message Context {
     string name = 2;
     repeated string placeholders = 3;
     string body = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 5;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 6;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 7;
 }
 
@@ -129,22 +129,22 @@ message Instruction {
     string name = 2;
     optional string initial_sentence = 3;
     repeated InstructionItem instruction_items = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 5;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 6;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 7;
 }
 
 message InstructionItem {
     string id = 1;
     string body = 2;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 3;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 5;  
 }
 
@@ -152,10 +152,10 @@ message Tone {
     string id = 1;
     string name = 2;
     string body = 3;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 4;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 5;
-    // YYYY-MM-DD HH:mm:ss (2024-12-29 12:34:56)
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
     string deleted_at = 6;
 }
