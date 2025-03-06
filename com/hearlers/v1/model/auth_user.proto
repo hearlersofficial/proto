@@ -31,7 +31,7 @@ message AuthUser {
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string deleted_at = 10;
+    optional string deleted_at = 10;
 }
 
 message OAuthChannelInfo {
@@ -43,7 +43,7 @@ message OAuthChannelInfo {
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 5;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string deleted_at = 6;
+    optional string deleted_at = 6;
 }
 
 message RefreshToken {
