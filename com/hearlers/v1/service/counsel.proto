@@ -215,7 +215,6 @@ message CreateCounselTechniqueRequest {
     string context_id = 3;
     string instruction_id = 4;
     com.hearlers.v1.model.CounselTechniqueStage counsel_technique_stage = 5;
-    optional string next_counsel_technique_id = 6;
 }
 
 message CreateCounselTechniqueResponse {
@@ -247,7 +246,6 @@ message UpdateCounselTechniqueRequest {
     optional string context_id = 4;
     optional string instruction_id = 5;
     optional com.hearlers.v1.model.CounselTechniqueStage counsel_technique_stage = 6;
-    optional string next_counsel_technique_id = 7;
 }
 
 message UpdateCounselTechniqueResponse {
