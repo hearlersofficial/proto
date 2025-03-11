@@ -1,6 +1,6 @@
-version: v1
+version: v2
 plugins:
-  - name: java
+  - remote: buf.build/protocolbuffers/java:v29.2
     out: ../gen
-  - name: grpc-java
+  - remote: buf.build/grpc/java:v1.71.0
     out: ../gen
