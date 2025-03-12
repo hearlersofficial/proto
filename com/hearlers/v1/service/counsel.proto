@@ -333,6 +333,7 @@ message UpdateContextRequest {
     optional string name = 2;
     optional string body = 3;
     repeated string placeholders = 4;
+    bool has_placeholders = 5;
 }
 
 message UpdateContextResponse {
@@ -377,6 +378,7 @@ message UpdateInstructionRequest {
     optional string initial_sentence = 3;
     bool has_initial_sentence = 4;
     repeated string instruction_item_ids = 5;
+    bool has_instruction_item_ids = 6;
 }
 
 message UpdateInstructionResponse {
