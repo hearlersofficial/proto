@@ -239,13 +239,18 @@ message FindCounselTechniqueByIdResponse {
     optional com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
+// Tone Id 의 경우 nullable field
+// Tone Id 의 변경이 없을 경우 has_tone = false
+// Tone Id 를 null 로 변경할 경우 has_tone = true, tone_id = null
+// Tone Id 를 다른 값으로 변경할 경우 has_tone = true, tone_id = "new_tone_id"
 message UpdateCounselTechniqueRequest {
     string counsel_technique_id = 1;
     optional string name = 2;
     optional string tone_id = 3;
-    optional string context_id = 4;
-    optional string instruction_id = 5;
-    optional com.hearlers.v1.model.CounselTechniqueStage counsel_technique_stage = 6;
+    bool has_tone = 4;
+    optional string context_id = 5;
+    optional string instruction_id = 6;
+    optional com.hearlers.v1.model.CounselTechniqueStage counsel_technique_stage = 7;
 }
 
 message UpdateCounselTechniqueResponse {
@@ -362,11 +367,16 @@ message FindInstructionByIdResponse {
     optional com.hearlers.v1.model.Instruction instruction = 1;
 }
 
+// initial sentence 의 경우 nullable field
+// initial sentence 의 변경이 없을 경우 has_initial_sentence = false
+// initial sentence 를 null 로 변경할 경우 has_initial_sentence = true, initial_sentence = null
+// initial sentence 를 다른 값으로 변경할 경우 has_initial_sentence = true, initial_sentence = "new_initial_sentence"
 message UpdateInstructionRequest {
     string instruction_id = 1;
     optional string name = 2;
     optional string initial_sentence = 3;
-    repeated string instruction_item_ids = 4;
+    bool has_initial_sentence = 4;
+    repeated string instruction_item_ids = 5;
 }
 
 message UpdateInstructionResponse {
