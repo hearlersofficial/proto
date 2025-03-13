@@ -15,19 +15,7 @@ enum Gender {
   GENDER_FEMALE = 2;
 }
 
-enum ProgressStatus {
-  PROGRESS_STATUS_UNSPECIFIED = 0;
-  PROGRESS_STATUS_NOT_STARTED = 1;
-  PROGRESS_STATUS_IN_PROGRESS = 2;
-  PROGRESS_STATUS_COMPLETED = 3;
-  PROGRESS_STATUS_BLOCKED = 4;
-}
 
-enum ProgressType {
-  PROGRESS_TYPE_UNSPECIFIED = 0;
-  PROGRESS_TYPE_ONBOARDING = 1;
-  PROGRESS_TYPE_VERIFICATION = 2;
-}
 
 enum Mbti {
   MBTI_UNSPECIFIED = 0;
@@ -80,13 +68,12 @@ message User {
     string id = 1;
     string nickname = 2;                       
     UserProfile user_profile = 3;
-    repeated UserProgress user_progresses = 4;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 5;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string updated_at = 6;     
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string deleted_at = 7;
+    optional string deleted_at = 7;
 }
 
 message UserProfile {
@@ -102,21 +89,9 @@ message UserProfile {
   // ISO 8601 (2024-12-29T12:34:56.000Z)
   string updated_at = 8;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string deleted_at = 9;
+  optional string deleted_at = 9;
 }
 
-message UserProgress {
-  ProgressType progress_type = 1;
-  ProgressStatus status = 2;
-  // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string last_updated = 3;
-  // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string created_at = 4; 
-  // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string updated_at = 5;
-  // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string deleted_at = 6;
-}
 
 message UserActivity {
   ActivityType activity_type = 1;
@@ -130,5 +105,5 @@ message UserActivity {
   // ISO 8601 (2024-12-29T12:34:56.000Z)
   string updated_at = 8;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string deleted_at = 9;
+  optional string deleted_at = 9;
 }
