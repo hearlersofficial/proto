@@ -18,11 +18,14 @@ service UserService {
   // 리프레시 토큰 인증
   rpc VerifyRefreshToken (VerifyRefreshTokenRequest) returns (VerifyRefreshTokenResponse);
   // 유저 조회
-  rpc FindOneUser (FindOneUserRequest) returns (FindOneUserResponse);
+  rpc FindUserByUserId (FindUserByUserIdRequest) returns (FindUserByUserIdResponse);
+  rpc FindUserByNickname (FindUserByNicknameRequest) returns (FindUserByNicknameResponse);
   // 유저 목록 조회
   // rpc FindManyUser (FindManyUserRequest) returns (FindManyUserResult);
   // 인증 유저 조회
-  rpc FindOneAuthUser (FindOneAuthUserRequest) returns (FindOneAuthUserResponse);
+  rpc FindAuthUserByAuthUserId (FindAuthUserByAuthUserIdRequest) returns (FindAuthUserByAuthUserIdResponse);
+  rpc FindAuthUserByUserId (FindAuthUserByUserIdRequest) returns (FindAuthUserByUserIdResponse);
+  rpc FindAuthUserByChannelInfo (FindAuthUserByChannelInfoRequest) returns (FindAuthUserByChannelInfoResponse);
   // 잔여 토큰 체크
   rpc CheckRemainingTokens (CheckRemainingTokensRequest) returns (CheckRemainingTokensResponse);
   // 토큰 예약 (잔여 토큰 없을 시 에러)
@@ -79,15 +82,22 @@ message VerifyRefreshTokenResponse {
 }
 
 // findOneUser
-message FindOneUserRequest {
-  optional string user_id = 1;
-  optional string nickname = 2;
+message FindUserByUserIdRequest {
+  string user_id = 1;
 }
 
-message FindOneUserResponse {
+message FindUserByUserIdResponse {
   optional com.hearlers.v1.model.User user = 1;
 } 
 
+// findUserByNickname
+message FindUserByNicknameRequest {
+  string nickname = 1;
+}
+
+message FindUserByNicknameResponse {
+  optional com.hearlers.v1.model.User user = 1;
+}
 
 // findManyUser
 message FindManyUserRequest { 
@@ -99,14 +109,28 @@ message FindManyUserResult {
 }
 
 // findOneAuthUser
-message FindOneAuthUserRequest {
-  optional string auth_user_id = 1;
-  optional string user_id = 2;
-  optional com.hearlers.v1.model.AuthChannel auth_channel = 3;
-  optional string unique_id = 4;
+message FindAuthUserByAuthUserIdRequest {
+  string auth_user_id = 1;
 }
 
-message FindOneAuthUserResponse {
+message FindAuthUserByAuthUserIdResponse {
+  optional com.hearlers.v1.model.AuthUser auth_user = 1;
+}
+
+message FindAuthUserByUserIdRequest {
+  string user_id = 1;
+}
+
+message FindAuthUserByUserIdResponse {
+  optional com.hearlers.v1.model.AuthUser auth_user = 1;
+}
+
+message FindAuthUserByChannelInfoRequest {  
+  com.hearlers.v1.model.AuthChannel auth_channel = 1;
+  string unique_id = 2;
+}
+
+message FindAuthUserByChannelInfoResponse {
   optional com.hearlers.v1.model.AuthUser auth_user = 1;
 }
 
