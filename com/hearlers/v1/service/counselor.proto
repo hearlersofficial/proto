@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package com.hearlers.v1.service;
+
+import "com/hearlers/v1/model/counselor.proto";
+
+option java_package = "com.hearlers.api.proto.v1.service";
+option java_multiple_files = true;
+
+service CounselorService {
+    // 상담사
+    rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResponse);
+    rpc FindCounselors (FindCounselorsRequest) returns (FindCounselorsResponse);
+    rpc FindCounselorById (FindCounselorByIdRequest) returns (FindCounselorByIdResponse);
+    rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResponse);
+}
+
+// 상담사
+message CreateCounselorRequest {
+    string tone_id = 1;
+    string name = 2;
+    string description = 3;
+    com.hearlers.v1.model.CounselorGender counselor_gender = 4;
+    string persona = 5;
+}
+
+message CreateCounselorResponse {
+    com.hearlers.v1.model.Counselor counselor = 1;
+}
+
+message FindCounselorsRequest {
+    optional string tone_id = 1;
+}
+
+message FindCounselorsResponse {
+    repeated com.hearlers.v1.model.Counselor counselors = 1;
+}
+
+message FindCounselorByIdRequest {
+    string counselor_id = 1;
+}
+
+message FindCounselorByIdResponse {
+    optional com.hearlers.v1.model.Counselor counselor = 1;
+}
+
+message UpdateCounselorRequest {
+    string counselor_id = 1;
+    optional string tone_id = 2;
+    optional string name = 3;
+    optional string description = 4;
+    optional com.hearlers.v1.model.CounselorGender counselor_gender = 5;
+    optional string persona = 6;
+}
+
+message UpdateCounselorResponse {
+    com.hearlers.v1.model.Counselor counselor = 1;
+}

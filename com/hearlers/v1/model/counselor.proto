@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package com.hearlers.v1.model;
+option java_package = "com.hearlers.api.proto.v1.model";
+option java_multiple_files = true;
+
+enum CounselorGender {
+    COUNSELOR_GENDER_UNSPECIFIED = 0;
+    COUNSELOR_GENDER_MALE = 1;
+    COUNSELOR_GENDER_FEMALE = 2;
+    COUNSELOR_GENDER_NONE = 3;
+}
+
+message Counselor {
+    string id = 1;
+    string tone_id = 2;
+    string name = 3;
+    string description = 4;
+    CounselorGender gender = 5;
+    Persona persona = 6;
+    string intro_message = 7;
+    string response_option1 = 8;
+    string response_option2 = 9;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 10;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 11;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 12;
+}
+
+message Persona {
+    string id = 1;
+    string body = 2;
+    string counselor_id = 3;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 5;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 6;
+}
