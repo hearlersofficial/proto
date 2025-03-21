@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package com.hearlers.v1.model;
+option java_package = "com.hearlers.api.proto.v1.model";
+option java_multiple_files = true;
+
+message Context {
+    string id = 1;
+    string name = 2;
+    repeated string placeholders = 3;
+    string body = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 5;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 6;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 7;
+}
+
+message Instruction {
+    string id = 1;
+    string name = 2;
+    optional string initial_sentence = 3;
+    repeated InstructionItem instruction_items = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 5;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 6;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 7;
+}
+
+message InstructionItem {
+    string id = 1;
+    string body = 2;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 3;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 5;
+}
+
+message Tone {
+    string id = 1;
+    string name = 2;
+    string body = 3;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 5;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 6;
+}
+
+
+message CounselTechnique {
+    string id = 1;
+    string name = 2;
+    string tone_id = 3;
+    string context_id = 4;
+    string instruction_id = 5;
+    optional string next_counsel_technique_id = 7;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 8;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 9;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 10;
+}
