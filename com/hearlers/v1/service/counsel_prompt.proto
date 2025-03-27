@@ -8,24 +8,6 @@ option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
 service CounselPromptService {
-    // Context
-    rpc CreateContext (CreateContextRequest) returns (CreateContextResponse);
-    rpc FindContexts (FindContextsRequest) returns (FindContextsResponse);
-    rpc FindContextById (FindContextByIdRequest) returns (FindContextByIdResponse);
-    rpc UpdateContext (UpdateContextRequest) returns (UpdateContextResponse);
-
-    // Instruction
-    rpc CreateInstruction (CreateInstructionRequest) returns (CreateInstructionResponse);
-    rpc FindInstructions (FindInstructionsRequest) returns (FindInstructionsResponse);
-    rpc FindInstructionById (FindInstructionByIdRequest) returns (FindInstructionByIdResponse);
-    rpc UpdateInstruction (UpdateInstructionRequest) returns (UpdateInstructionResponse);
-
-    // InstructionItem
-    rpc CreateInstructionItem (CreateInstructionItemRequest) returns (CreateInstructionItemResponse);
-    rpc FindInstructionItems (FindInstructionItemsRequest) returns (FindInstructionItemsResponse);
-    rpc FindInstructionItemById (FindInstructionItemByIdRequest) returns (FindInstructionItemByIdResponse);
-    rpc UpdateInstructionItem (UpdateInstructionItemRequest) returns (UpdateInstructionItemResponse);
-
     // Tone
     rpc CreateTone (CreateToneRequest) returns (CreateToneResponse);
     rpc FindTones (FindTonesRequest) returns (FindTonesResponse);
@@ -38,130 +20,6 @@ service CounselPromptService {
     rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
     rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
     rpc SaveCounselTechniqueSequence (SaveCounselTechniqueSequenceRequest) returns (SaveCounselTechniqueSequenceResponse);
-}
-
-// Context
-message CreateContextRequest {
-    string name = 1;
-    string body = 2;
-    repeated string placeholders = 3;
-}
-
-message CreateContextResponse {
-    com.hearlers.v1.model.Context context = 1;
-}
-
-message FindContextsRequest {
-    optional string name = 1;
-}
-
-message FindContextsResponse {
-    repeated com.hearlers.v1.model.Context contexts = 1;
-}
-
-message FindContextByIdRequest {
-    string context_id = 1;
-}
-
-message FindContextByIdResponse {
-    optional com.hearlers.v1.model.Context context = 1;
-}
-
-// has_placeholders = false 일 경우 placeholders 를 수정하지 않음
-// has_placeholders = true && placeholders = [] 일 경우 placeholders 를 빈배열로 수정
-// has_placeholders = true && placeholders = ["new_placeholder"] 일 경우 placeholders 를 ["new_placeholder"] 로 수정
-message UpdateContextRequest {
-    string context_id = 1;
-    optional string name = 2;
-    optional string body = 3;
-    repeated string placeholders = 4;
-    bool has_placeholders = 5;
-}
-
-message UpdateContextResponse {
-    com.hearlers.v1.model.Context context = 1;
-}
-
-
-// Instruction
-message CreateInstructionRequest {
-    string name = 1;
-    optional string initial_sentence = 2;
-    repeated string instruction_item_ids = 3;
-}
-
-message CreateInstructionResponse {
-    com.hearlers.v1.model.Instruction instruction = 1;
-}
-
-message FindInstructionsRequest {
-    optional string name = 1;
-}
-
-message FindInstructionsResponse {
-    repeated com.hearlers.v1.model.Instruction instructions = 1;
-}
-
-message FindInstructionByIdRequest {
-    string instruction_id = 1;
-}
-
-message FindInstructionByIdResponse {
-    optional com.hearlers.v1.model.Instruction instruction = 1;
-}
-
-// has_initial_sentence = false 일 경우 initial_sentence 를 수정하지 않음
-// has_initial_sentence = true && initial_sentence = undefined 일 경우 initial_sentence 를 null 로 수정
-// has_initial_sentence = true && initial_sentence = "new_initial_sentence" 일 경우 initial_sentence 를 "new_initial_sentence" 로 수정
-// has_instruction_item_ids = false 일 경우 instruction_item_ids 를 수정하지 않음
-// has_instruction_item_ids = true && instruction_item_ids = [] 일 경우 instruction_item_ids 를 빈배열로 수정
-// has_instruction_item_ids = true && instruction_item_ids = ["new_instruction_item_id"] 일 경우 instruction_item_ids 를 ["new_instruction_item_id"] 로 수정
-message UpdateInstructionRequest {
-    string instruction_id = 1;
-    optional string name = 2;
-    optional string initial_sentence = 3;
-    bool has_initial_sentence = 4;
-    repeated string instruction_item_ids = 5;
-    bool has_instruction_item_ids = 6;
-}
-
-message UpdateInstructionResponse {
-    com.hearlers.v1.model.Instruction instruction = 1;
-}
-
-
-// InstructionItem
-message CreateInstructionItemRequest {
-    string body = 1;
-}
-
-message CreateInstructionItemResponse {
-    com.hearlers.v1.model.InstructionItem instruction_item = 1;
-}
-
-message FindInstructionItemsRequest {
-    optional string keyword = 1;
-}
-
-message FindInstructionItemsResponse {
-    repeated com.hearlers.v1.model.InstructionItem instruction_items = 1;
-}
-
-message FindInstructionItemByIdRequest {
-    string instruction_item_id = 1;
-}
-
-message FindInstructionItemByIdResponse {
-    optional com.hearlers.v1.model.InstructionItem instruction_item = 1;
-}
-
-message UpdateInstructionItemRequest {
-    string instruction_item_id = 1;
-    optional string body = 2;
-}
-
-message UpdateInstructionItemResponse {
-    com.hearlers.v1.model.InstructionItem instruction_item = 1;
 }
 
 
@@ -206,8 +64,8 @@ message UpdateToneResponse {
 message CreateCounselTechniqueRequest {
     string name = 1;
     string tone_id = 2;
-    string context_id = 3;
-    string instruction_id = 4;
+    string context = 3;
+    string instruction = 4;
 }
 
 message CreateCounselTechniqueResponse {
@@ -235,8 +93,8 @@ message UpdateCounselTechniqueRequest {
     string counsel_technique_id = 1;
     optional string name = 2;
     optional string tone_id = 3;
-    optional string context_id = 5;
-    optional string instruction_id = 6;
+    optional string context = 4;
+    optional string instruction = 5;
 }
 
 message UpdateCounselTechniqueResponse {
