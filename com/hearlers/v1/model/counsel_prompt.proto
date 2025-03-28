@@ -4,8 +4,6 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
-
-
 message Tone {
     string id = 1;
     string name = 2;
@@ -18,13 +16,13 @@ message Tone {
     optional string deleted_at = 6;
 }
 
-
 message CounselTechnique {
     string id = 1;
     string name = 2;
     string tone_id = 3;
     string context = 4;
     string instruction = 5;
+    int32 message_threshold = 6;
     optional string next_counsel_technique_id = 7;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 8;

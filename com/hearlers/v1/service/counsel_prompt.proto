@@ -66,6 +66,7 @@ message CreateCounselTechniqueRequest {
     string tone_id = 2;
     string context = 3;
     string instruction = 4;
+    int32 message_threshold = 5;
 }
 
 message CreateCounselTechniqueResponse {
@@ -92,9 +93,9 @@ message FindCounselTechniqueByIdResponse {
 message UpdateCounselTechniqueRequest {
     string counsel_technique_id = 1;
     optional string name = 2;
-    optional string tone_id = 3;
-    optional string context = 4;
-    optional string instruction = 5;
+    optional string context = 3;
+    optional string instruction = 4;
+    optional int32 message_threshold = 5;
 }
 
 message UpdateCounselTechniqueResponse {
@@ -102,7 +103,8 @@ message UpdateCounselTechniqueResponse {
 }
 
 message SaveCounselTechniqueSequenceRequest {
-    repeated string counsel_technique_ids = 1;
+    string toneId = 1;
+    repeated string counsel_technique_ids = 2;
 }
 
 message SaveCounselTechniqueSequenceResponse {
