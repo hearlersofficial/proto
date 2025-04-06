@@ -8,59 +8,135 @@ option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
 service CounselPromptService {
-    // Tone
-    rpc CreateTone (CreateToneRequest) returns (CreateToneResponse);
-    rpc FindTones (FindTonesRequest) returns (FindTonesResponse);
-    rpc FindToneById (FindToneByIdRequest) returns (FindToneByIdResponse);
-    rpc UpdateTone (UpdateToneRequest) returns (UpdateToneResponse);
+    // prompt version
+    rpc FindPromptVersions (FindPromptVersionsRequest) returns (FindPromptVersionsResponse);
+    rpc FindPromptVersionById (FindPromptVersionByIdRequest) returns (FindPromptVersionByIdResponse);
+    rpc FindTemporaryVersion (FindTemporaryVersionRequest) returns (FindTemporaryVersionResponse);
+    rpc LoadExistingPromptVersion (LoadExistingPromptVersionRequest) returns (LoadExistingPromptVersionResponse);
+    rpc SaveTemporaryVersion (SaveTemporaryVersionRequest) returns (SaveTemporaryVersionResponse);
+    rpc ActivatePromptVersion (ActivatePromptVersionRequest) returns (ActivatePromptVersionResponse);
 
-    // 상담 기법
+    // persona prompt
+    rpc FindPersonaPromptById (FindPersonaPromptByIdRequest) returns (FindPersonaPromptByIdResponse);
+    rpc UpdatePersonaPrompt (UpdatePersonaPromptRequest) returns (UpdatePersonaPromptResponse);
+    
+    // tone prompt
+    rpc FindTonePromptById (FindTonePromptByIdRequest) returns (FindTonePromptByIdResponse);
+    rpc UpdateTonePrompt (UpdateTonePromptRequest) returns (UpdateTonePromptResponse);
+
+    // counsel technique
     rpc CreateCounselTechnique (CreateCounselTechniqueRequest) returns (CreateCounselTechniqueResponse);
     rpc FindCounselTechniques (FindCounselTechniquesRequest) returns (FindCounselTechniquesResponse);
     rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
     rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
     rpc SaveCounselTechniqueSequence (SaveCounselTechniqueSequenceRequest) returns (SaveCounselTechniqueSequenceResponse);
+
+    // prompt activate history
+    rpc FindPromptActivateHistories (FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
 }
 
-
-// Tone
-message CreateToneRequest {
-    string name = 1;
-    string body = 2;
-}
-
-message CreateToneResponse {
-    com.hearlers.v1.model.Tone tone = 1;
-}
-
-message FindTonesRequest {
+// prompt version
+message FindPromptVersionsRequest {
     optional string name = 1;
 }
 
-message FindTonesResponse {
-    repeated com.hearlers.v1.model.Tone tones = 1;
+message FindPromptVersionsResponse {
+    repeated com.hearlers.v1.model.PromptVersion prompt_versions = 1;
 }
 
-message FindToneByIdRequest {
+message FindPromptVersionByIdRequest {
+    string prompt_version_id = 1;
+}
+
+message FindPromptVersionByIdResponse {
+    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+}
+
+// 현재 수정중인 임시버전 조회
+// 수정중인 임시버전이 없을 경우, 새롭게 생성 및 현재 활성화 버전 복사
+message FindTemporaryVersionRequest {}
+
+message FindTemporaryVersionResponse {
+    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+}
+
+// 저장된 버전을 임시버전으로 복사
+message LoadExistingPromptVersionRequest {
+    string prompt_version_id = 1;
+}
+
+message LoadExistingPromptVersionResponse {
+    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+}
+
+// 임시버전 저장
+message SaveTemporaryVersionRequest {
+    string name = 1;
+    string description = 2;
+}
+
+message SaveTemporaryVersionResponse {
+    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+}
+
+// 저장된 버전 활성화(서비스 반영)
+// 이후 생성되는 상담들부터 해당 버전 적용(기존 상담들 영향 x)
+// 임시버전은 활성화 불가
+message ActivatePromptVersionRequest {
+    string prompt_version_id = 1;
+}
+
+message ActivatePromptVersionResponse {
+    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+}
+
+
+// persona prompt
+// 불변객체(수정 시 새로운 객체 생성)
+message FindPersonaPromptByIdRequest {
+    string persona_prompt_id = 1;
+}
+
+message FindPersonaPromptByIdResponse {
+    optional com.hearlers.v1.model.PersonaPrompt persona_prompt = 1;
+}
+
+// 임시버전에서 수정
+message UpdatePersonaPromptRequest {
+    string counselor_id = 1;
+    string body = 2;
+}
+
+message UpdatePersonaPromptResponse {
+    optional com.hearlers.v1.model.PersonaPrompt persona_prompt = 1;
+}
+
+
+// tone prompt
+// 불변객체(수정 시 새로운 객체 생성)
+message FindTonePromptByIdRequest {
+    string tone_prompt_id = 1;
+}
+
+message FindTonePromptByIdResponse {
+    optional com.hearlers.v1.model.TonePrompt tone_prompt = 1;
+}
+
+// 임시버전에서 수정
+message UpdateTonePromptRequest {
     string tone_id = 1;
+    string body = 2;
 }
 
-message FindToneByIdResponse {
-    optional com.hearlers.v1.model.Tone tone = 1;
-}
-
-message UpdateToneRequest {
-    string tone_id = 1;
-    optional string name = 2;
-    optional string body = 3;
-}
-
-message UpdateToneResponse {
-    com.hearlers.v1.model.Tone tone = 1;
+message UpdateTonePromptResponse {
+    optional com.hearlers.v1.model.TonePrompt tone_prompt = 1;
 }
 
 
-// 상담 기법
+// counsel technique
+// 불변객체(수정 시 새로운 객체 생성)
+// 임시기법(다른 기법들과 링크x)으로 생성
+// 추후 순서지정 필요
 message CreateCounselTechniqueRequest {
     string name = 1;
     string tone_id = 2;
@@ -89,7 +165,10 @@ message FindCounselTechniqueByIdRequest {
 message FindCounselTechniqueByIdResponse {
     optional com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
-    
+
+// 임시버전에서 수정
+// 아직 링크되지 않은 임시기법은 수정 불가
+// 수정 후 해당 기법이 포함된 기법리스트 반환
 message UpdateCounselTechniqueRequest {
     string counsel_technique_id = 1;
     optional string name = 2;
@@ -99,14 +178,27 @@ message UpdateCounselTechniqueRequest {
 }
 
 message UpdateCounselTechniqueResponse {
-    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+    repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
 }
 
+// 임시버전에서 수정
+// 기존 기법 및 임시기법들을 연결
+// 연결된 최종 기법 리스트 반환
 message SaveCounselTechniqueSequenceRequest {
-    string toneId = 1;
+    string tone_id = 1;
     repeated string counsel_technique_ids = 2;
 }
 
 message SaveCounselTechniqueSequenceResponse {
     repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
+}
+
+
+// prompt activate history
+message FindPromptActivateHistoriesRequest {
+    optional string prompt_version_id = 1;
+}
+
+message FindPromptActivateHistoriesResponse {
+    repeated com.hearlers.v1.model.PromptActivateHistory prompt_activate_histories = 1;
 }

@@ -13,6 +13,12 @@ service CounselorService {
     rpc FindCounselors (FindCounselorsRequest) returns (FindCounselorsResponse);
     rpc FindCounselorById (FindCounselorByIdRequest) returns (FindCounselorByIdResponse);
     rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResponse);
+
+    // 톤
+    rpc CreateTone (CreateToneRequest) returns (CreateToneResponse);
+    rpc FindTones (FindTonesRequest) returns (FindTonesResponse);
+    rpc FindToneById (FindToneByIdRequest) returns (FindToneByIdResponse);
+    rpc UpdateTone (UpdateToneRequest) returns (UpdateToneResponse);
 }
 
 // 상담사
@@ -21,7 +27,6 @@ message CreateCounselorRequest {
     string name = 2;
     string description = 3;
     com.hearlers.v1.model.CounselorGender counselor_gender = 4;
-    string persona = 5;
 }
 
 message CreateCounselorResponse {
@@ -50,9 +55,45 @@ message UpdateCounselorRequest {
     optional string name = 3;
     optional string description = 4;
     optional com.hearlers.v1.model.CounselorGender counselor_gender = 5;
-    optional string persona = 6;
 }
 
 message UpdateCounselorResponse {
     com.hearlers.v1.model.Counselor counselor = 1;
+}
+
+
+// 톤
+message CreateToneRequest {
+    string name = 1;
+    string description = 2;
+}
+
+message CreateToneResponse {
+    com.hearlers.v1.model.Tone tone = 1;
+}
+
+message FindTonesRequest {
+    optional string name = 1;
+}
+
+message FindTonesResponse {
+    repeated com.hearlers.v1.model.Tone tones = 1;
+}
+
+message FindToneByIdRequest {
+    string tone_id = 1;
+}
+
+message FindToneByIdResponse {
+    optional com.hearlers.v1.model.Tone tone = 1;
+}
+
+message UpdateToneRequest {
+    string tone_id = 1;
+    optional string name = 2;
+    optional string description = 3;
+}
+
+message UpdateToneResponse {
+    com.hearlers.v1.model.Tone tone = 1;
 }

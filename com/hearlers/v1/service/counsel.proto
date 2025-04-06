@@ -32,6 +32,7 @@ service CounselService {
 
 
 // 상담
+// 현재 활성화된 프롬프트 버전 적용
 message CreateCounselRequest {
     string user_id = 1;                       
     string counselor_id = 2;
