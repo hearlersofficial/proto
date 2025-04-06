@@ -4,10 +4,62 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
-message Tone {
+message PromptVersion {
     string id = 1;
     string name = 2;
-    string body = 3;
+    string description = 3;
+    bool is_active = 4;
+    bool is_temporary = 5;
+    bool is_bookmarked = 6;
+    repeated PromptByCounselor prompt_by_counselors= 7;
+    repeated PromptByTone prompt_by_tones = 8;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 9;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 10;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 11;
+}
+
+message PromptByCounselor {
+    string counselor_id = 1;
+    string persona_prompt_id = 2;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 3;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 5;
+}
+
+message PromptByTone {
+    string tone_id = 1;
+    optional string tone_prompt_id = 2;
+    optional string first_counsel_technique_id = 3;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 5;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 6;
+}
+
+message PersonaPrompt {
+    string id = 1;
+    string body = 2;
+    string counselor_id = 3;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 5;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 6;
+}
+
+message TonePrompt {
+    string id = 1;
+    string body = 2;
+    string tone_id = 3;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 4;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
@@ -23,11 +75,25 @@ message CounselTechnique {
     string context = 4;
     string instruction = 5;
     int32 message_threshold = 6;
-    optional string next_counsel_technique_id = 7;
+    bool is_temporary = 7;
+    optional string next_counsel_technique_id = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 8;
+    string created_at = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 9;
+    string updated_at = 10;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 10;
+    optional string deleted_at = 11;
+}
+
+message PromptActivateHistory {
+    string id = 1;
+    string prompt_version_id = 2;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string activated_at = 3;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string created_at = 4;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    string updated_at = 5;
+    // ISO 8601 (2024-12-29T12:34:56.000Z)
+    optional string deleted_at = 6;
 }

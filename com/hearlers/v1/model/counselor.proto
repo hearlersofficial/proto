@@ -17,22 +17,21 @@ message Counselor {
     string name = 3;
     string description = 4;
     CounselorGender gender = 5;
-    Persona persona = 6;
-    string intro_message = 7;
-    string response_option1 = 8;
-    string response_option2 = 9;
+    string intro_message = 6;
+    string response_option1 = 7;
+    string response_option2 = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 10;
+    string created_at = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 11;
+    string updated_at = 10;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 12;
+    optional string deleted_at = 11;
 }
 
-message Persona {
+message Tone {
     string id = 1;
-    string body = 2;
-    string counselor_id = 3;
+    string name = 2;
+    string description = 3;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 4;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
