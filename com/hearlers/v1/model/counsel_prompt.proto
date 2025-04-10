@@ -11,8 +11,8 @@ message PromptVersion {
     bool is_active = 4;
     bool is_temporary = 5;
     bool is_bookmarked = 6;
-    repeated PromptByCounselor prompt_by_counselors= 7;
-    repeated PromptByTone prompt_by_tones = 8;
+    repeated CounselorScopedPrompt counselor_scoped_prompts = 7;
+    repeated ToneScopedPrompt tone_scoped_prompts = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
@@ -21,7 +21,7 @@ message PromptVersion {
     optional string deleted_at = 11;
 }
 
-message PromptByCounselor {
+message CounselorScopedPrompt {
     string counselor_id = 1;
     string persona_prompt_id = 2;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
@@ -32,7 +32,7 @@ message PromptByCounselor {
     optional string deleted_at = 5;
 }
 
-message PromptByTone {
+message ToneScopedPrompt {
     string tone_id = 1;
     optional string tone_prompt_id = 2;
     optional string first_counsel_technique_id = 3;
