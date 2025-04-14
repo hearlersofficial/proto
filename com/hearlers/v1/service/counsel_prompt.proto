@@ -26,7 +26,7 @@ service CounselPromptService {
 
     // counsel technique
     rpc CreateCounselTechnique (CreateCounselTechniqueRequest) returns (CreateCounselTechniqueResponse);
-    rpc FindCounselTechniques (FindCounselTechniquesRequest) returns (FindCounselTechniquesResponse);
+    rpc FindOrderedCounselTechniques (FindOrderedCounselTechniquesRequest) returns (FindOrderedCounselTechniquesResponse);
     rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
     rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
     rpc SaveCounselTechniqueSequence (SaveCounselTechniqueSequenceRequest) returns (SaveCounselTechniqueSequenceResponse);
@@ -149,12 +149,11 @@ message CreateCounselTechniqueResponse {
     com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
-message FindCounselTechniquesRequest {
-    optional string name = 1;
-    optional string tone_id = 2;
+message FindOrderedCounselTechniquesRequest {
+    string first_counsel_technique_id = 1;
 }
 
-message FindCounselTechniquesResponse {
+message FindOrderedCounselTechniquesResponse {
     repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
 }
 
