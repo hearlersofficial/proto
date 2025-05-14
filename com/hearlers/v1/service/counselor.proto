@@ -3,7 +3,7 @@ syntax = "proto3";
 package com.hearlers.v1.service;
 
 import "com/hearlers/v1/model/counselor.proto";
-
+import "com/hearlers/v1/common/presigned_url.proto";
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
@@ -13,6 +13,22 @@ service CounselorService {
     rpc FindCounselors (FindCounselorsRequest) returns (FindCounselorsResponse);
     rpc FindCounselorById (FindCounselorByIdRequest) returns (FindCounselorByIdResponse);
     rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResponse);
+    rpc GenerateCounselorImageUrl (GenerateCounselorImageUrlRequest) returns (GenerateCounselorImageUrlResponse);
+
+    // 버블
+    rpc CreateBubble (CreateBubbleRequest) returns (CreateBubbleResponse);
+    rpc FindBubbles (FindBubblesRequest) returns (FindBubblesResponse);
+    rpc FindBubbleById (FindBubbleByIdRequest) returns (FindBubbleByIdResponse);
+    rpc FindRandomBubble (FindRandomBubbleRequest) returns (FindRandomBubbleResponse);
+    rpc UpdateBubble (UpdateBubbleRequest) returns (UpdateBubbleResponse);
+    rpc DeleteBubble (DeleteBubbleRequest) returns (DeleteBubbleResponse);
+
+    // 에피소드
+    rpc CreateEpisode (CreateEpisodeRequest) returns (CreateEpisodeResponse);
+    rpc FindEpisodes (FindEpisodesRequest) returns (FindEpisodesResponse);
+    rpc FindEpisodeById (FindEpisodeByIdRequest) returns (FindEpisodeByIdResponse);
+    rpc UpdateEpisode (UpdateEpisodeRequest) returns (UpdateEpisodeResponse);
+    rpc GenerateCutSceneImageUrl (GenerateCutSceneImageUrlRequest) returns (GenerateCutSceneImageUrlResponse);
 
     // 톤
     rpc CreateTone (CreateToneRequest) returns (CreateToneResponse);
@@ -59,6 +75,122 @@ message UpdateCounselorRequest {
 
 message UpdateCounselorResponse {
     com.hearlers.v1.model.Counselor counselor = 1;
+}
+
+message GenerateCounselorImageUrlRequest {
+    string counselor_id = 1;
+    com.hearlers.v1.common.Extension extension = 2;
+}
+
+message GenerateCounselorImageUrlResponse {
+    com.hearlers.v1.common.PresignedUrl presigned_url = 1;
+}
+
+
+// 버블
+message CreateBubbleRequest {
+    string counselor_id = 1;
+    string question = 2;
+    string response_option1 = 3;
+    string response_option2 = 4;
+}
+
+message CreateBubbleResponse {
+    com.hearlers.v1.model.Bubble bubble = 1;
+}
+
+message FindBubblesRequest {
+    string counselor_id = 1;
+}
+
+message FindBubblesResponse {
+    repeated com.hearlers.v1.model.Bubble bubbles = 1;
+}
+
+message FindBubbleByIdRequest {
+    string bubble_id = 1;
+}
+
+message FindBubbleByIdResponse {
+    com.hearlers.v1.model.Bubble bubble = 1;
+}
+
+message FindRandomBubbleRequest {
+    string counselor_id = 1;
+}
+
+message FindRandomBubbleResponse {
+    com.hearlers.v1.model.Bubble bubble = 1;
+}
+
+message UpdateBubbleRequest {
+    string bubble_id = 1;
+    optional string question = 2;
+    optional string response_option1 = 3;
+    optional string response_option2 = 4;
+}
+
+message UpdateBubbleResponse {
+    com.hearlers.v1.model.Bubble bubble = 1;
+}
+
+message DeleteBubbleRequest {
+    string bubble_id = 1;
+}
+
+message DeleteBubbleResponse {
+    bool success = 1;
+}
+
+
+// 에피소드
+message CreateEpisodeRequest {
+    string counselor_id = 1;
+    string title = 2;
+    string content = 3;
+    int32 required_rapport_threshold = 4;
+    bool is_temporary = 5;
+}
+
+message CreateEpisodeResponse {
+    com.hearlers.v1.model.Episode episode = 1;
+}
+
+message FindEpisodesRequest {
+    string counselor_id = 1;
+}
+
+message FindEpisodesResponse {
+    repeated com.hearlers.v1.model.Episode episodes = 1;
+}
+
+message FindEpisodeByIdRequest {
+    string episode_id = 1;
+}
+
+message FindEpisodeByIdResponse {
+    com.hearlers.v1.model.Episode episode = 1;
+}
+
+message UpdateEpisodeRequest {
+    string episode_id = 1;
+    optional string title = 2;
+    optional string content = 3;
+    optional int32 required_rapport_threshold = 4;
+    optional bool is_temporary = 5;
+}
+
+message UpdateEpisodeResponse {
+    com.hearlers.v1.model.Episode episode = 1;
+}
+
+message GenerateCutSceneImageUrlRequest {
+    string episode_id = 1;
+    com.hearlers.v1.common.Extension extension = 2;
+}
+
+message GenerateCutSceneImageUrlResponse {
+    com.hearlers.v1.common.PresignedUrl presigned_url = 1;
 }
 
 
