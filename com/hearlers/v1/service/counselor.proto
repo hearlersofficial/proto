@@ -42,7 +42,8 @@ message CreateCounselorRequest {
     string tone_id = 1;
     string name = 2;
     string description = 3;
-    com.hearlers.v1.model.CounselorGender counselor_gender = 4;
+    string profile_image = 4;
+    com.hearlers.v1.model.CounselorGender counselor_gender = 5;
 }
 
 message CreateCounselorResponse {
@@ -70,7 +71,8 @@ message UpdateCounselorRequest {
     optional string tone_id = 2;
     optional string name = 3;
     optional string description = 4;
-    optional com.hearlers.v1.model.CounselorGender counselor_gender = 5;
+    optional string profile_image = 5;
+    optional com.hearlers.v1.model.CounselorGender counselor_gender = 6;
 }
 
 message UpdateCounselorResponse {
@@ -147,9 +149,9 @@ message DeleteBubbleResponse {
 message CreateEpisodeRequest {
     string counselor_id = 1;
     string title = 2;
-    string content = 3;
-    int32 required_rapport_threshold = 4;
-    bool is_temporary = 5;
+    int32 required_rapport_threshold = 3;
+    bool is_temporary = 4;
+    repeated SaveEpisodeCutSceneRequest cut_scenes = 5;
 }
 
 message CreateEpisodeResponse {
@@ -178,11 +180,24 @@ message UpdateEpisodeRequest {
     optional string content = 3;
     optional int32 required_rapport_threshold = 4;
     optional bool is_temporary = 5;
+    repeated SaveEpisodeCutSceneRequest cut_scenes = 6;
 }
 
 message UpdateEpisodeResponse {
     com.hearlers.v1.model.Episode episode = 1;
 }
+
+// 리스트에 빠진 컷 장면은 삭제됨
+message SaveEpisodeCutSceneRequest {
+    optional string id = 1; // 있을 경우 수정, 없을 경우 생성
+    string episode_id = 2;
+    string speaker = 3;
+    string content = 4;
+    int32 order_index = 5;
+    string image = 6;
+}
+
+
 
 message GenerateCutSceneImageUrlRequest {
     string episode_id = 1;
