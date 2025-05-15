@@ -111,6 +111,7 @@ message FindBubblesResponse {
 
 message FindBubbleByIdRequest {
     string bubble_id = 1;
+    string counselor_id = 2;
 }
 
 message FindBubbleByIdResponse {
@@ -127,9 +128,10 @@ message FindRandomBubbleResponse {
 
 message UpdateBubbleRequest {
     string bubble_id = 1;
-    optional string question = 2;
-    optional string response_option1 = 3;
-    optional string response_option2 = 4;
+    string counselor_id = 2;
+    optional string question = 3;
+    optional string response_option1 = 4;
+    optional string response_option2 = 5;
 }
 
 message UpdateBubbleResponse {
@@ -138,6 +140,7 @@ message UpdateBubbleResponse {
 
 message DeleteBubbleRequest {
     string bubble_id = 1;
+    string counselor_id = 2;
 }
 
 message DeleteBubbleResponse {
