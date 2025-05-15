@@ -12,9 +12,12 @@ service CounselPromptService {
     rpc FindPromptVersions (FindPromptVersionsRequest) returns (FindPromptVersionsResponse);
     rpc FindPromptVersionById (FindPromptVersionByIdRequest) returns (FindPromptVersionByIdResponse);
     rpc FindTemporaryVersion (FindTemporaryVersionRequest) returns (FindTemporaryVersionResponse);
+    rpc FindActiveVersion (FindActiveVersionRequest) returns (FindActiveVersionResponse);
     rpc LoadExistingPromptVersion (LoadExistingPromptVersionRequest) returns (LoadExistingPromptVersionResponse);
     rpc SaveTemporaryVersion (SaveTemporaryVersionRequest) returns (SaveTemporaryVersionResponse);
     rpc ActivatePromptVersion (ActivatePromptVersionRequest) returns (ActivatePromptVersionResponse);
+    rpc BookmarkPromptVersions (BookmarkPromptVersionsRequest) returns (BookmarkPromptVersionsResponse);
+    rpc DeletePromptVersions (DeletePromptVersionsRequest) returns (DeletePromptVersionsResponse);
 
     // persona prompt
     rpc FindPersonaPromptById (FindPersonaPromptByIdRequest) returns (FindPersonaPromptByIdResponse);
@@ -60,6 +63,12 @@ message FindTemporaryVersionResponse {
     optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
+message FindActiveVersionRequest {}
+
+message FindActiveVersionResponse {
+    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+}
+
 // 저장된 버전을 임시버전으로 복사
 message LoadExistingPromptVersionRequest {
     string prompt_version_id = 1;
@@ -89,6 +98,22 @@ message ActivatePromptVersionRequest {
 message ActivatePromptVersionResponse {
     optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
+
+// 북마크
+message BookmarkPromptVersionsRequest {
+    repeated string prompt_version_ids = 1;
+}
+
+message BookmarkPromptVersionsResponse {
+    repeated com.hearlers.v1.model.PromptVersion prompt_versions = 1;
+}
+
+// 삭제
+message DeletePromptVersionsRequest {
+    repeated string prompt_version_ids = 1;
+}
+
+message DeletePromptVersionsResponse {}
 
 
 // persona prompt
