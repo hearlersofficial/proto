@@ -193,11 +193,10 @@ message UpdateEpisodeResponse {
 // 리스트에 빠진 컷 장면은 삭제됨
 message SaveEpisodeCutSceneRequest {
     optional string id = 1; // 있을 경우 수정, 없을 경우 생성
-    string episode_id = 2;
-    com.hearlers.v1.model.Speaker speaker = 3;
-    string content = 4;
-    int32 order_index = 5;
-    string image = 6;
+    com.hearlers.v1.model.Speaker speaker = 2;
+    string content = 3;
+    int32 order_index = 4;
+    string image = 5;
 }
 
 
