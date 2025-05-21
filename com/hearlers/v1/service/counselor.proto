@@ -163,6 +163,7 @@ message CreateEpisodeResponse {
 
 message FindEpisodesRequest {
     string counselor_id = 1;
+    bool with_temporary = 2;
 }
 
 message FindEpisodesResponse {
@@ -171,6 +172,7 @@ message FindEpisodesResponse {
 
 message FindEpisodeByIdRequest {
     string episode_id = 1;
+    bool with_temporary = 2;
 }
 
 message FindEpisodeByIdResponse {
