@@ -4,6 +4,8 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
+import "google/protobuf/wrappers.proto";
+
 enum CounselMessageReaction {
     COUNSEL_MESSAGE_REACTION_UNSPECIFIED = 0;
     COUNSEL_MESSAGE_REACTION_LIKE = 1;
@@ -31,7 +33,7 @@ message CounselMessage {
     string id = 1;
     string counsel_id = 2;
     string message = 3;
-    bool is_user_message = 4;
+    google.protobuf.BoolValue is_user_message = 4;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     optional string reacted_at = 5;
     optional CounselMessageReaction reaction = 6;

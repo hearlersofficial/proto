@@ -4,6 +4,7 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
+import "google/protobuf/wrappers.proto";
 enum CounselorGender {
     COUNSELOR_GENDER_UNSPECIFIED = 0;
     COUNSELOR_GENDER_MALE = 1;
@@ -45,7 +46,7 @@ message Episode {
     string counselor_id = 2;
     string title = 3;
     int32 required_rapport_threshold = 4;
-    bool is_temporary = 5;
+    google.protobuf.BoolValue is_temporary = 5;
     repeated EpisodeCutScene cut_scenes = 6;
     string created_at = 7;
     string updated_at = 8;
