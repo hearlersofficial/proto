@@ -3,7 +3,7 @@ syntax = "proto3";
 package com.hearlers.v1.service;
 
 import "com/hearlers/v1/model/counsel_prompt.proto";
-import "google/protobuf/wrappers.proto";
+
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
@@ -41,7 +41,7 @@ service CounselPromptService {
 // prompt version
 message FindPromptVersionsRequest {
     optional string name = 1;
-    optional google.protobuf.BoolValue is_bookmarked = 2;
+    optional bool is_bookmarked = 2;
 }
 
 message FindPromptVersionsResponse {
@@ -83,7 +83,7 @@ message LoadExistingPromptVersionResponse {
 message SaveTemporaryVersionRequest {
     string name = 1;
     string description = 2;
-    google.protobuf.BoolValue is_bookmarked = 3;
+    bool is_bookmarked = 3;
 }
 
 message SaveTemporaryVersionResponse {
@@ -95,7 +95,7 @@ message UpdatePromptVersionRequest {
     string prompt_version_id = 1;
     optional string name = 2;
     optional string description = 3;
-    optional google.protobuf.BoolValue is_bookmarked = 4;
+    optional bool is_bookmarked = 4;
 }
 
 message UpdatePromptVersionResponse {

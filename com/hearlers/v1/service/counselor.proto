@@ -4,7 +4,6 @@ package com.hearlers.v1.service;
 
 import "com/hearlers/v1/model/counselor.proto";
 import "com/hearlers/v1/common/presigned_url.proto";
-import "google/protobuf/wrappers.proto";
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
@@ -145,7 +144,7 @@ message DeleteBubbleRequest {
 }
 
 message DeleteBubbleResponse {
-    google.protobuf.BoolValue success = 1;
+    bool success = 1;
 }
 
 
@@ -154,7 +153,7 @@ message CreateEpisodeRequest {
     string counselor_id = 1;
     string title = 2;
     int32 required_rapport_threshold = 3;
-    google.protobuf.BoolValue is_temporary = 4;
+    bool is_temporary = 4;
     repeated SaveEpisodeCutSceneRequest cut_scenes = 5;
 }
 
@@ -164,7 +163,7 @@ message CreateEpisodeResponse {
 
 message FindEpisodesRequest {
     string counselor_id = 1;
-    google.protobuf.BoolValue with_temporary = 2;
+    bool with_temporary = 2;
 }
 
 message FindEpisodesResponse {
@@ -173,7 +172,7 @@ message FindEpisodesResponse {
 
 message FindEpisodeByIdRequest {
     string episode_id = 1;
-    google.protobuf.BoolValue with_temporary = 2;
+    bool with_temporary = 2;
 }
 
 message FindEpisodeByIdResponse {
@@ -185,7 +184,7 @@ message UpdateEpisodeRequest {
     optional string title = 2;
     optional string content = 3;
     optional int32 required_rapport_threshold = 4;
-    optional google.protobuf.BoolValue is_temporary = 5;
+    optional bool is_temporary = 5;
     repeated SaveEpisodeCutSceneRequest cut_scenes = 6;
 }
 

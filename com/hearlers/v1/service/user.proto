@@ -5,7 +5,6 @@ import "com/hearlers/v1/model/user.proto";
 import "com/hearlers/v1/model/auth_user.proto";
 import "com/hearlers/v1/common/pagination.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/wrappers.proto";
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
 
@@ -69,7 +68,7 @@ message SaveRefreshTokenRequest {
 }
 
 message SaveRefreshTokenResponse {
-  google.protobuf.BoolValue success = 1;
+  bool success = 1;
 }
 
 // verifyRefreshToken
@@ -79,7 +78,7 @@ message VerifyRefreshTokenRequest {
 }
 
 message VerifyRefreshTokenResponse {
-  google.protobuf.BoolValue success = 1;
+  bool success = 1;
 }
 
 // findOneUser

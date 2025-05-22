@@ -4,15 +4,13 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
-import "google/protobuf/wrappers.proto";
-
 message PromptVersion {
     string id = 1;
     string name = 2;
     string description = 3;
-    google.protobuf.BoolValue is_active = 4;
-    google.protobuf.BoolValue is_temporary = 5;
-    google.protobuf.BoolValue is_bookmarked = 6;
+    bool is_active = 4;
+    bool is_temporary = 5;
+    bool is_bookmarked = 6;
     repeated CounselorScopedPrompt counselor_scoped_prompts = 7;
     repeated ToneScopedPrompt tone_scoped_prompts = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
@@ -77,7 +75,7 @@ message CounselTechnique {
     string context = 4;
     string instruction = 5;
     int32 message_threshold = 6;
-    google.protobuf.BoolValue    is_temporary = 7;
+    bool is_temporary = 7;
     optional string next_counsel_technique_id = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 9;
