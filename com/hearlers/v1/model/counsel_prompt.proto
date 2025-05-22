@@ -4,6 +4,15 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
+import "google/protobuf/wrappers.proto";
+
+enum GPTModel {
+    GPTMODEL_UNSPECIFIED = 0;
+    GPT_3_5_TURBO = 1;
+    GPT_4 = 2;
+    GPT_4O = 3;
+}
+
 message PromptVersion {
     string id = 1;
     string name = 2;
@@ -11,14 +20,15 @@ message PromptVersion {
     bool is_active = 4;
     bool is_temporary = 5;
     bool is_bookmarked = 6;
-    repeated CounselorScopedPrompt counselor_scoped_prompts = 7;
-    repeated ToneScopedPrompt tone_scoped_prompts = 8;
+    GPTModel gpt_model = 7;
+    repeated CounselorScopedPrompt counselor_scoped_prompts = 8;
+    repeated ToneScopedPrompt tone_scoped_prompts = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 9;
+    string created_at = 10;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 10;
+    string updated_at = 11;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 11;
+    optional string deleted_at = 12;
 }
 
 message CounselorScopedPrompt {
