@@ -36,6 +36,10 @@ service CounselPromptService {
 
     // prompt activate history
     rpc FindPromptActivateHistories (FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
+
+    // GPT Model
+    rpc FindGptModel (FindGptModelRequest) returns (FindGptModelResponse);
+    rpc SetGptModel (SetGptModelRequest) returns (SetGptModelResponse);
 }
 
 // prompt version
@@ -232,4 +236,20 @@ message FindPromptActivateHistoriesRequest {
 
 message FindPromptActivateHistoriesResponse {
     repeated com.hearlers.v1.model.PromptActivateHistory prompt_activate_histories = 1;
+}
+
+
+// GPT Model
+message FindGptModelRequest {}
+
+message FindGptModelResponse {
+    optional com.hearlers.v1.model.GPTModel gpt_model = 1;
+}
+
+message SetGptModelRequest {
+    com.hearlers.v1.model.GPTModel gpt_model = 1;
+}
+
+message SetGptModelResponse {
+    optional com.hearlers.v1.model.GPTModel gpt_model = 1;
 }
