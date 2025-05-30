@@ -31,13 +31,12 @@ message Counselor {
 
 message Bubble {
     string id = 1;
-    string counselor_id = 2;
-    string question = 3;
-    string response_option1 = 4;
-    string response_option2 = 5;
-    string created_at = 6;
-    string updated_at = 7;
-    optional string deleted_at = 8;
+    string question = 2;
+    string response_option1 = 3;
+    string response_option2 = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    optional string deleted_at = 7;
 }
 
 message Episode {
