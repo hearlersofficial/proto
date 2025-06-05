@@ -36,8 +36,8 @@ service CounselService {
 message CreateCounselRequest {
     string user_id = 1;                       
     string counselor_id = 2;
-    optional string intro_message = 3;
-    optional string response_message = 4;
+    optional string bubbleId = 3;
+    optional int32 responseOptionNo = 4;
 }
   
 message CreateCounselResponse {
