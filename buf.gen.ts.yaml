@@ -3,5 +3,5 @@ managed:
   enabled: true
 plugins:
   - remote: buf.build/bufbuild/es:v2.2.1
-    out: ../gen
+    out: ../../.gen
     opt: target=ts
