@@ -87,7 +87,7 @@ message CounselTechnique {
     int32 message_threshold = 6;
     bool is_temporary = 7;
     optional string next_counsel_technique_id = 8;
-    float temperature = 9;
+    double temperature = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 10;
     // ISO 8601 (2024-12-29T12:34:56.000Z)

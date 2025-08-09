@@ -179,7 +179,7 @@ message CreateCounselTechniqueRequest {
     string context = 3;
     string instruction = 4;
     int32 message_threshold = 5;
-    float temperature = 6;
+    double temperature = 6;
 }
 
 message CreateCounselTechniqueResponse {
@@ -211,7 +211,7 @@ message UpdateCounselTechniqueRequest {
     optional string context = 3;
     optional string instruction = 4;
     optional int32 message_threshold = 5;
-    optional float temperature = 6;
+    optional double temperature = 6;
 }
 
 message UpdateCounselTechniqueResponse {
