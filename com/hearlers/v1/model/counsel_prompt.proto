@@ -11,6 +11,9 @@ enum AiModel {
     GPT_4 = 2;
     GPT_4O = 3;
     GPT_4O_MINI = 4;
+    GPT_5_MINI = 5;
+    GPT_5 = 6;
+    GPT_5_CHAT = 7;
 }
 
 message PromptVersion {
