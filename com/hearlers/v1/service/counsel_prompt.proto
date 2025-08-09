@@ -37,9 +37,9 @@ service CounselPromptService {
     // prompt activate history
     rpc FindPromptActivateHistories (FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
 
-    // GPT Model
-    rpc FindGptModel (FindGptModelRequest) returns (FindGptModelResponse);
-    rpc SetGptModel (SetGptModelRequest) returns (SetGptModelResponse);
+    // Model
+    rpc FindAiModel (FindAiModelRequest) returns (FindAiModelResponse);
+    rpc SetAiModel (SetAiModelRequest) returns (SetAiModelResponse);
 }
 
 // prompt version
@@ -88,7 +88,7 @@ message SaveTemporaryVersionRequest {
     string name = 1;
     string description = 2;
     bool is_bookmarked = 3;
-    com.hearlers.v1.model.GPTModel gpt_model = 4;
+    com.hearlers.v1.model.AiModel ai_model = 4;
 }
 
 message SaveTemporaryVersionResponse {
@@ -101,7 +101,7 @@ message UpdatePromptVersionRequest {
     optional string name = 2;
     optional string description = 3;
     optional bool is_bookmarked = 4;
-    optional com.hearlers.v1.model.GPTModel gpt_model = 5;
+    optional com.hearlers.v1.model.AiModel ai_model = 5;
 }
 
 message UpdatePromptVersionResponse {
@@ -240,16 +240,16 @@ message FindPromptActivateHistoriesResponse {
 
 
 // GPT Model
-message FindGptModelRequest {}
+message FindAiModelRequest {}
 
-message FindGptModelResponse {
-    optional com.hearlers.v1.model.GPTModel gpt_model = 1;
+message FindAiModelResponse {
+    optional com.hearlers.v1.model.AiModel ai_model = 1;
 }
 
-message SetGptModelRequest {
-    com.hearlers.v1.model.GPTModel gpt_model = 1;
+message SetAiModelRequest {
+    com.hearlers.v1.model.AiModel ai_model = 1;
 }
 
-message SetGptModelResponse {
-    optional com.hearlers.v1.model.GPTModel gpt_model = 1;
+message SetAiModelResponse {
+    optional com.hearlers.v1.model.AiModel ai_model = 1;
 }
