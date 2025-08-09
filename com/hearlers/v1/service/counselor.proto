@@ -204,7 +204,7 @@ message SaveEpisodeCutSceneRequest {
 
 
 message GenerateCutSceneImageUrlRequest {
-    string episode_id = 1;
+    string counselor_id = 1;
     com.hearlers.v1.common.Extension extension = 2;
 }
 
