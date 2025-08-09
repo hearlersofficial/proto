@@ -35,12 +35,13 @@ message CounselMessage {
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     optional string reacted_at = 5;
     optional CounselMessageReaction reaction = 6;
+    string counsel_technique_id = 7;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 7;
+    string created_at = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 8;
+    string updated_at = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 9;
+    optional string deleted_at = 10;
 }
 
 message CounselorUserRelationship {

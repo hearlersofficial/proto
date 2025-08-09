@@ -38,6 +38,7 @@ message CreateCounselRequest {
     string counselor_id = 2;
     optional string bubbleId = 3;
     optional int32 responseOptionNo = 4;
+    optional string promptVersionId = 5;
 }
   
 message CreateCounselResponse {
