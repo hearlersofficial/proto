@@ -34,12 +34,12 @@ service CounselPromptService {
     rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
     rpc SaveCounselTechniqueSequence (SaveCounselTechniqueSequenceRequest) returns (SaveCounselTechniqueSequenceResponse);
 
+
+    // Ai Model
+    rpc SetAiModel (SetAiModelRequest) returns (SetAiModelResponse);
+
     // prompt activate history
     rpc FindPromptActivateHistories (FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
-
-    // Model
-    rpc FindAiModel (FindAiModelRequest) returns (FindAiModelResponse);
-    rpc SetAiModel (SetAiModelRequest) returns (SetAiModelResponse);
 }
 
 // prompt version
@@ -241,13 +241,7 @@ message FindPromptActivateHistoriesResponse {
 }
 
 
-// GPT Model
-message FindAiModelRequest {}
-
-message FindAiModelResponse {
-    optional com.hearlers.v1.model.AiModel ai_model = 1;
-}
-
+// 임시버전 Ai Model 설정
 message SetAiModelRequest {
     com.hearlers.v1.model.AiModel ai_model = 1;
 }
