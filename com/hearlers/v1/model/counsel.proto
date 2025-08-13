@@ -72,12 +72,12 @@ enum ImpactDomain {
   
   // 문제 체감의 최근성(시간 맥락)
 enum Timeframe {
-    TIME_FRAME_UNSPECIFIED = 0;
-    TIME_FRAME_TODAY = 1;
-    TIME_FRAME_THIS_WEEK = 2;
-    TIME_FRAME_THIS_MONTH = 3;
-    TIME_FRAME_THIS_YEAR = 4;
-    TIME_FRAME_LONGER = 5;
+    TIMEFRAME_UNSPECIFIED = 0;
+    TIMEFRAME_TODAY = 1;
+    TIMEFRAME_THIS_WEEK = 2;
+    TIMEFRAME_THIS_MONTH = 3;
+    TIMEFRAME_THIS_YEAR = 4;
+    TIMEFRAME_LONGER = 5;
 } 
   
 // 원형 감정(라벨은 Circumplex/CBT에서 빈도 높은 것만)
