@@ -56,3 +56,117 @@ message CounselorUserRelationship {
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     optional string deleted_at = 7;
 }
+
+// 삶의 어느 영역이 주로 영향을 받는지(문제 맥락 차원)
+enum ImpactDomain {
+    IMPACT_DOMAIN_UNSPECIFIED= 0;
+    IMPACT_DOMAIN_WORK = 1;
+    IMPACT_DOMAIN_STUDY = 2;
+    IMPACT_DOMAIN_RELATIONSHIP = 3;
+    IMPACT_DOMAIN_FAMILY = 4;
+    IMPACT_DOMAIN_HEALTH = 5;
+    IMPACT_DOMAIN_FINANCE = 6;
+    IMPACT_DOMAIN_SELF = 7;
+    IMPACT_DOMAIN_OTHER = 8;
+} 
+  
+  // 문제 체감의 최근성(시간 맥락)
+enum Timeframe {
+    TIME_FRAME_UNSPECIFIED = 0;
+    TIME_FRAME_TODAY = 1;
+    TIME_FRAME_THIS_WEEK = 2;
+    TIME_FRAME_THIS_MONTH = 3;
+    TIME_FRAME_THIS_YEAR = 4;
+    TIME_FRAME_LONGER = 5;
+} 
+  
+// 원형 감정(라벨은 Circumplex/CBT에서 빈도 높은 것만)
+enum EmotionPrimary {
+    EMOTION_PRIMARY_UNSPECIFIED = 0;
+    EMOTION_PRIMARY_ANXIETY = 1;
+    EMOTION_PRIMARY_SADNESS = 2;
+    EMOTION_PRIMARY_ANGER = 3;
+    EMOTION_PRIMARY_LONELINESS = 4;
+    EMOTION_PRIMARY_GUILT = 5;
+    EMOTION_PRIMARY_SHAME = 6;
+    EMOTION_PRIMARY_STRESS = 7;
+    EMOTION_PRIMARY_HOPE = 8;
+    EMOTION_PRIMARY_CALM = 9;
+    EMOTION_PRIMARY_OTHER = 10;
+} 
+  
+// 정서 쾌·불쾌 축
+enum Valence {
+    VALENCE_UNSPECIFIED = 0;
+    VALENCE_NEGATIVE = 1;
+    VALENCE_NEUTRAL = 2;
+    VALENCE_POSITIVE = 3;
+  }
+  
+  // 각성 수준(에너지 축)
+enum ArousalLevel {
+    AROUSAL_LEVEL_UNSPECIFIED = 0;
+    AROUSAL_LEVEL_LOW = 1;
+    AROUSAL_LEVEL_MEDIUM = 2;
+    AROUSAL_LEVEL_HIGH = 3;
+} 
+  
+// 상황 통제감(인지평가 이론 기반)
+enum PerceivedControl {
+    PERCEIVED_CONTROL_UNSPECIFIED = 0;
+    PERCEIVED_CONTROL_LOW = 1;
+    PERCEIVED_CONTROL_MEDIUM = 2;
+    PERCEIVED_CONTROL_HIGH = 3;
+  } 
+  
+// 변화 단계(Transtheoretical Model)
+enum MotivationStage {
+    MOTIVATION_STAGE_UNSPECIFIED = 0;
+    MOTIVATION_STAGE_PRECONTEMPLATION = 1;
+    MOTIVATION_STAGE_CONTEMPLATION = 2;
+    MOTIVATION_STAGE_PREPARATION = 3;
+    MOTIVATION_STAGE_ACTION = 4;
+    MOTIVATION_STAGE_MAINTENANCE = 5;
+} 
+  
+// 지지 자원
+enum SocialSupportLevel {
+    SOCIAL_SUPPORT_LEVEL_UNSPECIFIED = 0;
+    SOCIAL_SUPPORT_LEVEL_NONE = 1;
+    SOCIAL_SUPPORT_LEVEL_LOW = 2;
+    SOCIAL_SUPPORT_LEVEL_MEDIUM = 3;
+    SOCIAL_SUPPORT_LEVEL_HIGH = 4;
+}
+  
+// 안전 인터럽트 분류(발견 즉시 우선 처리)
+enum RiskKind {
+    RISK_KIND_UNSPECIFIED = 0;
+    RISK_KIND_NONE = 1;
+    RISK_KIND_SELF_HARM = 2;
+    RISK_KIND_HARM_TO_OTHERS = 3;
+    RISK_KIND_ABUSE = 4;
+}
+  
+// 수면(기분·스트레스의 강력한 공변량)
+enum SleepQuality {
+    SLEEP_QUALITY_UNSPECIFIED = 0;
+    SLEEP_QUALITY_POOR = 1;
+    SLEEP_QUALITY_FAIR = 2;
+    SLEEP_QUALITY_GOOD = 3;
+}
+  
+// 인지 부하(집중·결정 피로도)
+enum CognitiveLoad {
+    COGNITIVE_LOAD_UNSPECIFIED = 0;
+    COGNITIVE_LOAD_LOW = 1;
+    COGNITIVE_LOAD_MEDIUM = 2;
+    COGNITIVE_LOAD_HIGH = 3;
+}
+  
+// 라포·작업동맹 체감
+enum AllianceStrength {
+    ALLIANCE_STRENGTH_UNSPECIFIED = 0;
+    ALLIANCE_STRENGTH_WEAK = 1;
+    ALLIANCE_STRENGTH_MEDIUM = 2;
+    ALLIANCE_STRENGTH_STRONG = 3;
+}
