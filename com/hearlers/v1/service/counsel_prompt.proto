@@ -40,7 +40,7 @@ service CounselPromptService {
     // counsel technique transition rule
     rpc CreateCounselTechniqueTransitionRule (CreateCounselTechniqueTransitionRuleRequest) returns (CreateCounselTechniqueTransitionRuleResponse);
     rpc FindCounselTechniqueTransitionRuleById (FindCounselTechniqueTransitionRuleByIdRequest) returns (FindCounselTechniqueTransitionRuleByIdResponse);
-    rpc FindManyCounselTechniqueTransitionRules (FindManyCounselTechniqueTransitionRulesRequest) returns (FindManyCounselTechniqueTransitionRulesResponse);
+    rpc FindCounselTechniqueTransitionRules (FindCounselTechniqueTransitionRulesRequest) returns (FindCounselTechniqueTransitionRulesResponse);
     rpc UpdateCounselTechniqueTransitionRule (UpdateCounselTechniqueTransitionRuleRequest) returns (UpdateCounselTechniqueTransitionRuleResponse);
     rpc DeleteCounselTechniqueTransitionRule (DeleteCounselTechniqueTransitionRuleRequest) returns (DeleteCounselTechniqueTransitionRuleResponse);
 }
@@ -279,13 +279,13 @@ message FindCounselTechniqueTransitionRuleByIdResponse {
     optional com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
 }
 
-message FindManyCounselTechniqueTransitionRulesRequest {
+message FindCounselTechniqueTransitionRulesRequest {
     optional string from_counsel_technique_id = 1;
     optional string to_counsel_technique_id = 2;
     optional string prompt_version_id = 3;
 }
 
-message FindManyCounselTechniqueTransitionRulesResponse {
+message FindCounselTechniqueTransitionRulesResponse {
     repeated com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rules = 1;
 }
 
