@@ -183,6 +183,7 @@ message CreateCounselTechniqueRequest {
     string instruction = 4;
     int32 message_threshold = 5;
     double temperature = 6;
+    bool is_start_technique = 7;
 }
 
 message CreateCounselTechniqueResponse {
@@ -215,6 +216,7 @@ message UpdateCounselTechniqueRequest {
     optional string instruction = 4;
     optional int32 message_threshold = 5;
     optional double temperature = 6;
+    optional bool is_start_technique = 7;
 }
 
 message UpdateCounselTechniqueResponse {
