@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.hearlers.v1.service;
 
 import "com/hearlers/v1/model/counsel_prompt.proto";
+import "com/hearlers/v1/model/counsel.proto";
 
 option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
@@ -29,13 +30,20 @@ service CounselPromptService {
 
     // counsel technique
     rpc CreateCounselTechnique (CreateCounselTechniqueRequest) returns (CreateCounselTechniqueResponse);
-    rpc FindOrderedCounselTechniques (FindOrderedCounselTechniquesRequest) returns (FindOrderedCounselTechniquesResponse);
+    rpc FindManyCounselTechniques (FindManyCounselTechniquesRequest) returns (FindManyCounselTechniquesResponse);
     rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
     rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
     rpc SaveCounselTechniqueSequence (SaveCounselTechniqueSequenceRequest) returns (SaveCounselTechniqueSequenceResponse);
 
     // prompt activate history
     rpc FindPromptActivateHistories (FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
+
+    // counsel technique transition rule
+    rpc CreateCounselTechniqueTransitionRule (CreateCounselTechniqueTransitionRuleRequest) returns (CreateCounselTechniqueTransitionRuleResponse);
+    rpc FindCounselTechniqueTransitionRuleById (FindCounselTechniqueTransitionRuleByIdRequest) returns (FindCounselTechniqueTransitionRuleByIdResponse);
+    rpc FindManyCounselTechniqueTransitionRules (FindManyCounselTechniqueTransitionRulesRequest) returns (FindManyCounselTechniqueTransitionRulesResponse);
+    rpc UpdateCounselTechniqueTransitionRule (UpdateCounselTechniqueTransitionRuleRequest) returns (UpdateCounselTechniqueTransitionRuleResponse);
+    rpc DeleteCounselTechniqueTransitionRule (DeleteCounselTechniqueTransitionRuleRequest) returns (DeleteCounselTechniqueTransitionRuleResponse);
 }
 
 // prompt version
@@ -182,11 +190,11 @@ message CreateCounselTechniqueResponse {
     com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
-message FindOrderedCounselTechniquesRequest {
-    string first_counsel_technique_id = 1;
+message FindManyCounselTechniquesRequest {
+    optional string prompt_version_id = 1;
 }
 
-message FindOrderedCounselTechniquesResponse {
+message FindManyCounselTechniquesResponse {
     repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
 }
 
@@ -236,3 +244,99 @@ message FindPromptActivateHistoriesResponse {
     repeated com.hearlers.v1.model.PromptActivateHistory prompt_activate_histories = 1;
 }
 
+
+// counsel technique transition rule
+message CreateCounselTechniqueTransitionRuleRequest {
+    string from_counsel_technique_id = 1;
+    string to_counsel_technique_id = 2;
+    int32 priority = 3;
+    int32 min_not_compressed_message_count = 4;
+    int32 max_not_compressed_message_count = 5;
+
+    int32 min_current_technique_message_count = 6;
+    int32 max_current_technique_message_count = 7;
+
+    repeated com.hearlers.v1.model.ImpactDomain required_impact_domains = 8;
+    repeated com.hearlers.v1.model.Timeframe required_timeframes = 9;
+    repeated com.hearlers.v1.model.EmotionPrimary required_emotion_primaries = 10;
+    repeated com.hearlers.v1.model.Valence required_valences = 11;
+    repeated com.hearlers.v1.model.ArousalLevel required_arousal_levels = 12;
+    int32 min_emotion_intensity = 13;
+    int32 max_emotion_intensity = 14;
+    repeated com.hearlers.v1.model.PerceivedControl required_perceived_controls = 15;
+    repeated com.hearlers.v1.model.MotivationStage required_motivation_stages = 16;
+    int32 min_self_efficacy = 17;
+    int32 max_self_efficacy = 18;
+    repeated com.hearlers.v1.model.SocialSupportLevel required_social_support_levels = 19;
+    repeated com.hearlers.v1.model.RiskKind required_risk_kinds = 20;
+    int32 min_risk_severity = 21;
+    int32 max_risk_severity = 22;
+    repeated com.hearlers.v1.model.SleepQuality required_sleep_qualities = 23;
+    bool required_physical_symptoms_present = 24;
+    repeated com.hearlers.v1.model.CognitiveLoad required_cognitive_loads = 25;
+    repeated com.hearlers.v1.model.AllianceStrength required_alliance_strengths = 26;
+    bool required_consent_to_depth = 27;
+}
+
+message CreateCounselTechniqueTransitionRuleResponse {
+    com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
+}
+
+message FindCounselTechniqueTransitionRuleByIdRequest {
+    string counsel_technique_transition_rule_id = 1;
+}
+
+message FindCounselTechniqueTransitionRuleByIdResponse {
+    optional com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
+}
+
+message FindManyCounselTechniqueTransitionRulesRequest {
+    optional string from_counsel_technique_id = 1;
+    optional string to_counsel_technique_id = 2;
+    optional string prompt_version_id = 3;
+}
+
+message FindManyCounselTechniqueTransitionRulesResponse {
+    repeated com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rules = 1;
+}
+
+message UpdateCounselTechniqueTransitionRuleRequest {
+    string counsel_technique_transition_rule_id = 1;
+    int32 priority = 2;
+    int32 min_not_compressed_message_count = 3;
+    int32 max_not_compressed_message_count = 4;
+
+    int32 min_current_technique_message_count = 5;
+    int32 max_current_technique_message_count = 6;
+
+    repeated com.hearlers.v1.model.ImpactDomain required_impact_domains = 7;
+    repeated com.hearlers.v1.model.Timeframe required_timeframes = 8;
+    repeated com.hearlers.v1.model.EmotionPrimary required_emotion_primaries = 9;
+    repeated com.hearlers.v1.model.Valence required_valences = 10;
+    repeated com.hearlers.v1.model.ArousalLevel required_arousal_levels = 11;
+    int32 min_emotion_intensity = 12;
+    int32 max_emotion_intensity = 13;
+    repeated com.hearlers.v1.model.PerceivedControl required_perceived_controls = 14;
+    repeated com.hearlers.v1.model.MotivationStage required_motivation_stages = 15;
+    int32 min_self_efficacy = 16;
+    int32 max_self_efficacy = 17;
+    repeated com.hearlers.v1.model.SocialSupportLevel required_social_support_levels = 18;
+    repeated com.hearlers.v1.model.RiskKind required_risk_kinds = 19;
+    int32 min_risk_severity = 20;
+    int32 max_risk_severity = 21;
+    repeated com.hearlers.v1.model.SleepQuality required_sleep_qualities = 22;
+    bool required_physical_symptoms_present = 23;
+    repeated com.hearlers.v1.model.CognitiveLoad required_cognitive_loads = 24;
+    repeated com.hearlers.v1.model.AllianceStrength required_alliance_strengths = 25;
+    bool required_consent_to_depth = 26;
+}
+
+message UpdateCounselTechniqueTransitionRuleResponse {
+    com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
+}
+
+message DeleteCounselTechniqueTransitionRuleRequest {
+    string counsel_technique_transition_rule_id = 1;
+}
+
+message DeleteCounselTechniqueTransitionRuleResponse {}

@@ -4,6 +4,8 @@ package com.hearlers.v1.model;
 option java_package = "com.hearlers.api.proto.v1.model";
 option java_multiple_files = true;
 
+import "com/hearlers/v1/model/counsel.proto";
+
 enum AiModel {
     AI_MODEL_UNSPECIFIED = 0;
     // OpenAI
@@ -14,6 +16,10 @@ enum AiModel {
     GPT_5_MINI = 5;
     GPT_5 = 6;
     GPT_5_CHAT = 7;
+
+    // Gemini
+    GEMINI_2_5_FLASH = 8;
+    GEMINI_2_5_PRO = 9;
 }
 
 message PromptVersion {
@@ -24,61 +30,39 @@ message PromptVersion {
     bool is_temporary = 5;
     bool is_bookmarked = 6;
     AiModel ai_model = 7;
-    repeated CounselorScopedPrompt counselor_scoped_prompts = 8;
-    repeated ToneScopedPrompt tone_scoped_prompts = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 10;
+    string created_at = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 11;
+    string updated_at = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 12;
+    optional string deleted_at = 10;
 }
 
-message CounselorScopedPrompt {
-    string counselor_id = 1;
-    string persona_prompt_id = 2;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 3;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 4;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 5;
-}
-
-message ToneScopedPrompt {
-    string tone_id = 1;
-    optional string tone_prompt_id = 2;
-    optional string first_counsel_technique_id = 3;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 4;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 5;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 6;
-}
 
 message PersonaPrompt {
     string id = 1;
     string body = 2;
     string counselor_id = 3;
+    string prompt_version_id = 4;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 4;
+    string created_at = 5;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 5;
+    string updated_at = 6;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 6;
+    optional string deleted_at = 7;
 }
 
 message TonePrompt {
     string id = 1;
     string body = 2;
     string tone_id = 3;
+    string prompt_version_id = 4;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 4;
+    string created_at = 5;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 5;
+    string updated_at = 6;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 6;
+    optional string deleted_at = 7;
 }
 
 message CounselTechnique {
@@ -89,8 +73,8 @@ message CounselTechnique {
     string instruction = 5;
     int32 message_threshold = 6;
     bool is_temporary = 7;
-    optional string next_counsel_technique_id = 8;
-    double temperature = 9;
+    double temperature = 8;
+    string prompt_version_id = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     string created_at = 10;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
@@ -110,4 +94,42 @@ message PromptActivateHistory {
     string updated_at = 5;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
     optional string deleted_at = 6;
+}
+
+
+message CounselTechniqueTransitionRule {
+    string id = 1;
+    string prompt_version_id = 2;   
+    string from_counsel_technique_id = 3;
+    string to_counsel_technique_id = 4;
+    int32 priority = 5;
+    int32 min_not_compressed_message_count = 6;
+    int32 max_not_compressed_message_count = 7;
+
+    int32 min_current_technique_message_count = 8;
+    int32 max_current_technique_message_count = 9;
+
+    repeated ImpactDomain required_impact_domains = 10;
+    repeated Timeframe required_timeframes = 11;
+    repeated EmotionPrimary required_emotion_primaries = 12;
+    repeated Valence required_valences = 13;
+    repeated ArousalLevel required_arousal_levels = 14;
+    int32 min_emotion_intensity = 15;
+    int32 max_emotion_intensity = 16;
+    repeated PerceivedControl required_perceived_controls = 17;
+    repeated MotivationStage required_motivation_stages = 18;
+    int32 min_self_efficacy = 19;
+    int32 max_self_efficacy = 20;
+    repeated SocialSupportLevel required_social_support_levels = 21;
+    repeated RiskKind required_risk_kinds = 22;
+    int32 min_risk_severity = 23;
+    int32 max_risk_severity = 24;
+    repeated SleepQuality required_sleep_qualities = 25;
+    bool required_physical_symptoms_present = 26;
+    repeated CognitiveLoad required_cognitive_loads = 27;
+    repeated AllianceStrength required_alliance_strengths = 28;
+    bool required_consent_to_depth = 29;
+    string created_at = 30;
+    string updated_at = 31;
+    optional string deleted_at = 32;
 }
