@@ -33,7 +33,6 @@ service CounselPromptService {
     rpc FindManyCounselTechniques (FindManyCounselTechniquesRequest) returns (FindManyCounselTechniquesResponse);
     rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
     rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
-    rpc SaveCounselTechniqueSequence (SaveCounselTechniqueSequenceRequest) returns (SaveCounselTechniqueSequenceResponse);
 
     // prompt activate history
     rpc FindPromptActivateHistories (FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
@@ -219,19 +218,7 @@ message UpdateCounselTechniqueRequest {
 }
 
 message UpdateCounselTechniqueResponse {
-    repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
-}
-
-// 임시버전에서 수정
-// 기존 기법 및 임시기법들을 연결
-// 연결된 최종 기법 리스트 반환
-message SaveCounselTechniqueSequenceRequest {
-    string tone_id = 1;
-    repeated string counsel_technique_ids = 2;
-}
-
-message SaveCounselTechniqueSequenceResponse {
-    repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
+    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
 
