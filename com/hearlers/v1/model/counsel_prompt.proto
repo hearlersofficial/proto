@@ -72,7 +72,7 @@ message CounselTechnique {
     string context = 4;
     string instruction = 5;
     int32 message_threshold = 6;
-    bool is_temporary = 7;
+    bool is_start_technique = 7;
     double temperature = 8;
     string prompt_version_id = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
