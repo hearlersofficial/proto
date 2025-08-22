@@ -22,15 +22,17 @@ service CounselPromptService {
 
     // persona prompt
     rpc FindPersonaPromptById (FindPersonaPromptByIdRequest) returns (FindPersonaPromptByIdResponse);
+    rpc FindPersonaPrompts (FindPersonaPromptsRequest) returns (FindPersonaPromptsResponse);
     rpc UpdatePersonaPrompt (UpdatePersonaPromptRequest) returns (UpdatePersonaPromptResponse);
     
     // tone prompt
     rpc FindTonePromptById (FindTonePromptByIdRequest) returns (FindTonePromptByIdResponse);
+    rpc FindTonePrompts (FindTonePromptsRequest) returns (FindTonePromptsResponse);
     rpc UpdateTonePrompt (UpdateTonePromptRequest) returns (UpdateTonePromptResponse);
 
     // counsel technique
     rpc CreateCounselTechnique (CreateCounselTechniqueRequest) returns (CreateCounselTechniqueResponse);
-    rpc FindManyCounselTechniques (FindManyCounselTechniquesRequest) returns (FindManyCounselTechniquesResponse);
+    rpc FindCounselTechniques (FindCounselTechniquesRequest) returns (FindCounselTechniquesResponse);
     rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
     rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
 
@@ -140,6 +142,15 @@ message FindPersonaPromptByIdResponse {
     optional com.hearlers.v1.model.PersonaPrompt persona_prompt = 1;
 }
 
+message FindPersonaPromptsRequest {
+    optional string prompt_version_id = 1;
+    optional string counselor_id = 2;
+}
+
+message FindPersonaPromptsResponse {
+    repeated com.hearlers.v1.model.PersonaPrompt persona_prompts = 1;
+}
+
 // 임시버전에서 수정
 message UpdatePersonaPromptRequest {
     string counselor_id = 1;
@@ -159,6 +170,15 @@ message FindTonePromptByIdRequest {
 
 message FindTonePromptByIdResponse {
     optional com.hearlers.v1.model.TonePrompt tone_prompt = 1;
+}
+
+message FindTonePromptsRequest {
+    optional string prompt_version_id = 1;
+    optional string tone_id = 2;
+}
+
+message FindTonePromptsResponse {
+    repeated com.hearlers.v1.model.TonePrompt tone_prompts = 1;
 }
 
 // 임시버전에서 수정
@@ -190,11 +210,12 @@ message CreateCounselTechniqueResponse {
     com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
-message FindManyCounselTechniquesRequest {
+message FindCounselTechniquesRequest {
     optional string prompt_version_id = 1;
+    optional string tone_id = 2;
 }
 
-message FindManyCounselTechniquesResponse {
+message FindCounselTechniquesResponse {
     repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
 }
 
