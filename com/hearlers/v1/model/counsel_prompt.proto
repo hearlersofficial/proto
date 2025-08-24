@@ -103,8 +103,6 @@ message CounselTechniqueTransitionRule {
     string from_counsel_technique_id = 3;
     string to_counsel_technique_id = 4;
     int32 priority = 5;
-    optional int32 min_not_compressed_message_count = 6;
-    optional int32 max_not_compressed_message_count = 7;
 
     optional int32 min_current_technique_message_count = 8;
     optional int32 max_current_technique_message_count = 9;
