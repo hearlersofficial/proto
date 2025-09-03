@@ -201,9 +201,8 @@ message CreateCounselTechniqueRequest {
     string tone_id = 2;
     string context = 3;
     string instruction = 4;
-    int32 message_threshold = 5;
-    double temperature = 6;
-    bool is_start_technique = 7;
+    double temperature = 5;
+    bool is_start_technique = 6;
 }
 
 message CreateCounselTechniqueResponse {
@@ -235,9 +234,8 @@ message UpdateCounselTechniqueRequest {
     optional string name = 2;
     optional string context = 3;
     optional string instruction = 4;
-    optional int32 message_threshold = 5;
-    optional double temperature = 6;
-    optional bool is_start_technique = 7;
+    optional double temperature = 5;
+    optional bool is_start_technique = 6;
 }
 
 message UpdateCounselTechniqueResponse {

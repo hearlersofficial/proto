@@ -71,16 +71,15 @@ message CounselTechnique {
     string tone_id = 3;
     string context = 4;
     string instruction = 5;
-    int32 message_threshold = 6;
-    bool is_start_technique = 7;
-    double temperature = 8;
-    string prompt_version_id = 9;
+    bool is_start_technique = 6;
+    double temperature = 7;
+    string prompt_version_id = 8;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 10;
+    string created_at = 9;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 11;
+    string updated_at = 10;
     // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 12;
+    optional string deleted_at = 11;
 }
 
 message PromptActivateHistory {
