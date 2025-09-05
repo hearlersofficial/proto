@@ -36,9 +36,9 @@ service CounselService {
 message CreateCounselRequest {
     string user_id = 1;                       
     string counselor_id = 2;
-    optional string bubbleId = 3;
-    optional int32 responseOptionNo = 4;
-    optional string promptVersionId = 5;
+    optional string bubble_id = 3;
+    optional int32 response_option_no = 4;
+    optional string prompt_version_id = 5;
 }
   
 message CreateCounselResponse {

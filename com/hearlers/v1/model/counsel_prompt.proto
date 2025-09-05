@@ -9,17 +9,17 @@ import "com/hearlers/v1/model/counsel.proto";
 enum AiModel {
     AI_MODEL_UNSPECIFIED = 0;
     // OpenAI
-    GPT_3_5_TURBO = 1;
-    GPT_4 = 2;
-    GPT_4O = 3;
-    GPT_4O_MINI = 4;
-    GPT_5_MINI = 5;
-    GPT_5 = 6;
-    GPT_5_CHAT = 7;
+    AI_MODEL_GPT_3_5_TURBO = 1;
+    AI_MODEL_GPT_4 = 2;
+    AI_MODEL_GPT_4O = 3;
+    AI_MODEL_GPT_4O_MINI = 4;
+    AI_MODEL_GPT_5_MINI = 5;
+    AI_MODEL_GPT_5 = 6;
+    AI_MODEL_GPT_5_CHAT = 7;
 
     // Gemini
-    GEMINI_2_5_FLASH = 8;
-    GEMINI_2_5_PRO = 9;
+    AI_MODEL_GEMINI_2_5_FLASH = 8;
+    AI_MODEL_GEMINI_2_5_PRO = 9;
 }
 
 message PromptVersion {
