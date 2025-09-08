@@ -1,44 +1,44 @@
 syntax = "proto3";
 
 package com.hearlers.v1.service;
-import "com/hearlers/v1/model/user.proto";
-import "com/hearlers/v1/model/auth_user.proto";
+
 import "com/hearlers/v1/common/pagination.proto";
+import "com/hearlers/v1/model/auth_user.proto";
+import "com/hearlers/v1/model/user.proto";
 import "google/protobuf/struct.proto";
-option java_package = "com.hearlers.api.proto.v1.service";
+
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.service";
 
 service UserService {
   // 최초 접속 시 user & authUser 생성
-  rpc InitializeUser (InitializeUserRequest) returns (InitializeUserResponse);
+  rpc InitializeUser(InitializeUserRequest) returns (InitializeUserResponse);
   // 인증 채널 연결
-  rpc ConnectAuthChannel (ConnectAuthChannelRequest) returns (ConnectAuthChannelResponse);
+  rpc ConnectAuthChannel(ConnectAuthChannelRequest) returns (ConnectAuthChannelResponse);
   // 리프레시 토큰 저장
-  rpc SaveRefreshToken (SaveRefreshTokenRequest) returns (SaveRefreshTokenResponse);
+  rpc SaveRefreshToken(SaveRefreshTokenRequest) returns (SaveRefreshTokenResponse);
   // 리프레시 토큰 인증
-  rpc VerifyRefreshToken (VerifyRefreshTokenRequest) returns (VerifyRefreshTokenResponse);
+  rpc VerifyRefreshToken(VerifyRefreshTokenRequest) returns (VerifyRefreshTokenResponse);
   // 유저 조회
-  rpc FindUserByUserId (FindUserByUserIdRequest) returns (FindUserByUserIdResponse);
-  rpc FindUserByNickname (FindUserByNicknameRequest) returns (FindUserByNicknameResponse);
+  rpc FindUserByUserId(FindUserByUserIdRequest) returns (FindUserByUserIdResponse);
+  rpc FindUserByNickname(FindUserByNicknameRequest) returns (FindUserByNicknameResponse);
   // 유저 목록 조회
   // rpc FindManyUser (FindManyUserRequest) returns (FindManyUserResult);
   // 인증 유저 조회
-  rpc FindAuthUserByAuthUserId (FindAuthUserByAuthUserIdRequest) returns (FindAuthUserByAuthUserIdResponse);
-  rpc FindAuthUserByUserId (FindAuthUserByUserIdRequest) returns (FindAuthUserByUserIdResponse);
-  rpc FindAuthUserByChannelInfo (FindAuthUserByChannelInfoRequest) returns (FindAuthUserByChannelInfoResponse);
+  rpc FindAuthUserByAuthUserId(FindAuthUserByAuthUserIdRequest) returns (FindAuthUserByAuthUserIdResponse);
+  rpc FindAuthUserByUserId(FindAuthUserByUserIdRequest) returns (FindAuthUserByUserIdResponse);
+  rpc FindAuthUserByChannelInfo(FindAuthUserByChannelInfoRequest) returns (FindAuthUserByChannelInfoResponse);
   // 잔여 토큰 체크
-  rpc CheckRemainingTokens (CheckRemainingTokensRequest) returns (CheckRemainingTokensResponse);
+  rpc CheckRemainingTokens(CheckRemainingTokensRequest) returns (CheckRemainingTokensResponse);
   // 토큰 예약 (잔여 토큰 없을 시 에러)
-  rpc ReserveTokens (ReserveTokensRequest) returns (ReserveTokensResponse);
+  rpc ReserveTokens(ReserveTokensRequest) returns (ReserveTokensResponse);
   // 유저 업데이트
-  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
   // 활동 생성
-  rpc CreateActivity (CreateActivityRequest) returns (CreateActivityResponse);
+  rpc CreateActivity(CreateActivityRequest) returns (CreateActivityResponse);
   // 권한 변경
-  rpc UpdateAuthority (UpdateAuthorityRequest) returns (UpdateAuthorityResponse);
+  rpc UpdateAuthority(UpdateAuthorityRequest) returns (UpdateAuthorityResponse);
 }
-
-  
 
 // initializeUser
 message InitializeUserRequest {}
@@ -88,7 +88,7 @@ message FindUserByUserIdRequest {
 
 message FindUserByUserIdResponse {
   optional com.hearlers.v1.model.User user = 1;
-} 
+}
 
 // findUserByNickname
 message FindUserByNicknameRequest {
@@ -100,9 +100,9 @@ message FindUserByNicknameResponse {
 }
 
 // findManyUser
-message FindManyUserRequest { 
+message FindManyUserRequest {
   com.hearlers.v1.common.Pagination pagination = 1;
-} 
+}
 
 message FindManyUserResult {
   repeated com.hearlers.v1.model.User users = 1;
@@ -125,7 +125,7 @@ message FindAuthUserByUserIdResponse {
   optional com.hearlers.v1.model.AuthUser auth_user = 1;
 }
 
-message FindAuthUserByChannelInfoRequest {  
+message FindAuthUserByChannelInfoRequest {
   com.hearlers.v1.model.AuthChannel auth_channel = 1;
   string unique_id = 2;
 }
@@ -168,11 +168,11 @@ message UpdateUserRequest {
   optional string birthday = 6;
   optional string introduction = 7;
   optional com.hearlers.v1.model.Mbti mbti = 8;
-} 
+}
 
 message UpdateUserResponse {
   com.hearlers.v1.model.User user = 1;
-} 
+}
 
 // createActivity
 message CreateActivityRequest {

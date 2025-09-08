@@ -2,67 +2,67 @@ syntax = "proto3";
 
 package com.hearlers.v1.service;
 
-import "com/hearlers/v1/model/counsel_prompt.proto";
 import "com/hearlers/v1/model/counsel.proto";
+import "com/hearlers/v1/model/counsel_prompt.proto";
 
-option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.service";
 
 service CounselPromptService {
-    // prompt version
-    rpc FindPromptVersions (FindPromptVersionsRequest) returns (FindPromptVersionsResponse);
-    rpc FindPromptVersionById (FindPromptVersionByIdRequest) returns (FindPromptVersionByIdResponse);
-    rpc FindTemporaryVersion (FindTemporaryVersionRequest) returns (FindTemporaryVersionResponse);
-    rpc FindActiveVersion (FindActiveVersionRequest) returns (FindActiveVersionResponse);
-    rpc LoadExistingPromptVersion (LoadExistingPromptVersionRequest) returns (LoadExistingPromptVersionResponse);
-    rpc SaveTemporaryVersion (SaveTemporaryVersionRequest) returns (SaveTemporaryVersionResponse);
-    rpc UpdatePromptVersion (UpdatePromptVersionRequest) returns (UpdatePromptVersionResponse);
-    rpc ActivatePromptVersion (ActivatePromptVersionRequest) returns (ActivatePromptVersionResponse);
-    rpc DeletePromptVersions (DeletePromptVersionsRequest) returns (DeletePromptVersionsResponse);
+  // prompt version
+  rpc FindPromptVersions(FindPromptVersionsRequest) returns (FindPromptVersionsResponse);
+  rpc FindPromptVersionById(FindPromptVersionByIdRequest) returns (FindPromptVersionByIdResponse);
+  rpc FindTemporaryVersion(FindTemporaryVersionRequest) returns (FindTemporaryVersionResponse);
+  rpc FindActiveVersion(FindActiveVersionRequest) returns (FindActiveVersionResponse);
+  rpc LoadExistingPromptVersion(LoadExistingPromptVersionRequest) returns (LoadExistingPromptVersionResponse);
+  rpc SaveTemporaryVersion(SaveTemporaryVersionRequest) returns (SaveTemporaryVersionResponse);
+  rpc UpdatePromptVersion(UpdatePromptVersionRequest) returns (UpdatePromptVersionResponse);
+  rpc ActivatePromptVersion(ActivatePromptVersionRequest) returns (ActivatePromptVersionResponse);
+  rpc DeletePromptVersions(DeletePromptVersionsRequest) returns (DeletePromptVersionsResponse);
 
-    // persona prompt
-    rpc FindPersonaPromptById (FindPersonaPromptByIdRequest) returns (FindPersonaPromptByIdResponse);
-    rpc FindPersonaPrompts (FindPersonaPromptsRequest) returns (FindPersonaPromptsResponse);
-    rpc UpdatePersonaPrompt (UpdatePersonaPromptRequest) returns (UpdatePersonaPromptResponse);
-    
-    // tone prompt
-    rpc FindTonePromptById (FindTonePromptByIdRequest) returns (FindTonePromptByIdResponse);
-    rpc FindTonePrompts (FindTonePromptsRequest) returns (FindTonePromptsResponse);
-    rpc UpdateTonePrompt (UpdateTonePromptRequest) returns (UpdateTonePromptResponse);
+  // persona prompt
+  rpc FindPersonaPromptById(FindPersonaPromptByIdRequest) returns (FindPersonaPromptByIdResponse);
+  rpc FindPersonaPrompts(FindPersonaPromptsRequest) returns (FindPersonaPromptsResponse);
+  rpc UpdatePersonaPrompt(UpdatePersonaPromptRequest) returns (UpdatePersonaPromptResponse);
 
-    // counsel technique
-    rpc CreateCounselTechnique (CreateCounselTechniqueRequest) returns (CreateCounselTechniqueResponse);
-    rpc FindCounselTechniques (FindCounselTechniquesRequest) returns (FindCounselTechniquesResponse);
-    rpc FindCounselTechniqueById (FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
-    rpc UpdateCounselTechnique (UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
+  // tone prompt
+  rpc FindTonePromptById(FindTonePromptByIdRequest) returns (FindTonePromptByIdResponse);
+  rpc FindTonePrompts(FindTonePromptsRequest) returns (FindTonePromptsResponse);
+  rpc UpdateTonePrompt(UpdateTonePromptRequest) returns (UpdateTonePromptResponse);
 
-    // prompt activate history
-    rpc FindPromptActivateHistories (FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
+  // counsel technique
+  rpc CreateCounselTechnique(CreateCounselTechniqueRequest) returns (CreateCounselTechniqueResponse);
+  rpc FindCounselTechniques(FindCounselTechniquesRequest) returns (FindCounselTechniquesResponse);
+  rpc FindCounselTechniqueById(FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
+  rpc UpdateCounselTechnique(UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
 
-    // counsel technique transition rule
-    rpc CreateCounselTechniqueTransitionRule (CreateCounselTechniqueTransitionRuleRequest) returns (CreateCounselTechniqueTransitionRuleResponse);
-    rpc FindCounselTechniqueTransitionRuleById (FindCounselTechniqueTransitionRuleByIdRequest) returns (FindCounselTechniqueTransitionRuleByIdResponse);
-    rpc FindCounselTechniqueTransitionRules (FindCounselTechniqueTransitionRulesRequest) returns (FindCounselTechniqueTransitionRulesResponse);
-    rpc UpdateCounselTechniqueTransitionRule (UpdateCounselTechniqueTransitionRuleRequest) returns (UpdateCounselTechniqueTransitionRuleResponse);
-    rpc DeleteCounselTechniqueTransitionRule (DeleteCounselTechniqueTransitionRuleRequest) returns (DeleteCounselTechniqueTransitionRuleResponse);
+  // prompt activate history
+  rpc FindPromptActivateHistories(FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
+
+  // counsel technique transition rule
+  rpc CreateCounselTechniqueTransitionRule(CreateCounselTechniqueTransitionRuleRequest) returns (CreateCounselTechniqueTransitionRuleResponse);
+  rpc FindCounselTechniqueTransitionRuleById(FindCounselTechniqueTransitionRuleByIdRequest) returns (FindCounselTechniqueTransitionRuleByIdResponse);
+  rpc FindCounselTechniqueTransitionRules(FindCounselTechniqueTransitionRulesRequest) returns (FindCounselTechniqueTransitionRulesResponse);
+  rpc UpdateCounselTechniqueTransitionRule(UpdateCounselTechniqueTransitionRuleRequest) returns (UpdateCounselTechniqueTransitionRuleResponse);
+  rpc DeleteCounselTechniqueTransitionRule(DeleteCounselTechniqueTransitionRuleRequest) returns (DeleteCounselTechniqueTransitionRuleResponse);
 }
 
 // prompt version
 message FindPromptVersionsRequest {
-    optional string name = 1;
-    optional bool is_bookmarked = 2;
+  optional string name = 1;
+  optional bool is_bookmarked = 2;
 }
 
 message FindPromptVersionsResponse {
-    repeated com.hearlers.v1.model.PromptVersion prompt_versions = 1;
+  repeated com.hearlers.v1.model.PromptVersion prompt_versions = 1;
 }
 
 message FindPromptVersionByIdRequest {
-    string prompt_version_id = 1;
+  string prompt_version_id = 1;
 }
 
 message FindPromptVersionByIdResponse {
-    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+  optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
 // 현재 수정중인 임시버전 조회
@@ -70,281 +70,268 @@ message FindPromptVersionByIdResponse {
 message FindTemporaryVersionRequest {}
 
 message FindTemporaryVersionResponse {
-    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+  optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
 message FindActiveVersionRequest {}
 
 message FindActiveVersionResponse {
-    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+  optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
 // 저장된 버전을 임시버전으로 복사
 message LoadExistingPromptVersionRequest {
-    string prompt_version_id = 1;
+  string prompt_version_id = 1;
 }
 
 message LoadExistingPromptVersionResponse {
-    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+  optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
 // 임시버전 저장
 message SaveTemporaryVersionRequest {
-    string name = 1;
-    string description = 2;
-    bool is_bookmarked = 3;
-    com.hearlers.v1.model.AiModel ai_model = 4;
+  string name = 1;
+  string description = 2;
+  bool is_bookmarked = 3;
+  com.hearlers.v1.model.AiModel ai_model = 4;
 }
 
 message SaveTemporaryVersionResponse {
-    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+  optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
 // 버전 수정
 message UpdatePromptVersionRequest {
-    string prompt_version_id = 1;
-    optional string name = 2;
-    optional string description = 3;
-    optional bool is_bookmarked = 4;
-    optional com.hearlers.v1.model.AiModel ai_model = 5;
+  string prompt_version_id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional bool is_bookmarked = 4;
+  optional com.hearlers.v1.model.AiModel ai_model = 5;
 }
 
 message UpdatePromptVersionResponse {
-    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+  optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
 // 저장된 버전 활성화(서비스 반영)
 // 이후 생성되는 상담들부터 해당 버전 적용(기존 상담들 영향 x)
 // 임시버전은 활성화 불가
 message ActivatePromptVersionRequest {
-    string prompt_version_id = 1;
+  string prompt_version_id = 1;
 }
 
 message ActivatePromptVersionResponse {
-    optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
+  optional com.hearlers.v1.model.PromptVersion prompt_version = 1;
 }
 
 // 삭제
 message DeletePromptVersionsRequest {
-    repeated string prompt_version_ids = 1;
+  repeated string prompt_version_ids = 1;
 }
 
 message DeletePromptVersionsResponse {}
 
-
 // persona prompt
 // 불변객체(수정 시 새로운 객체 생성)
 message FindPersonaPromptByIdRequest {
-    string persona_prompt_id = 1;
+  string persona_prompt_id = 1;
 }
 
 message FindPersonaPromptByIdResponse {
-    optional com.hearlers.v1.model.PersonaPrompt persona_prompt = 1;
+  optional com.hearlers.v1.model.PersonaPrompt persona_prompt = 1;
 }
 
 message FindPersonaPromptsRequest {
-    optional string prompt_version_id = 1;
-    optional string counselor_id = 2;
+  optional string prompt_version_id = 1;
+  optional string counselor_id = 2;
 }
 
 message FindPersonaPromptsResponse {
-    repeated com.hearlers.v1.model.PersonaPrompt persona_prompts = 1;
+  repeated com.hearlers.v1.model.PersonaPrompt persona_prompts = 1;
 }
 
 // 임시버전에서 수정
 message UpdatePersonaPromptRequest {
-    string counselor_id = 1;
-    string body = 2;
+  string counselor_id = 1;
+  string body = 2;
 }
 
 message UpdatePersonaPromptResponse {
-    optional com.hearlers.v1.model.PersonaPrompt persona_prompt = 1;
+  optional com.hearlers.v1.model.PersonaPrompt persona_prompt = 1;
 }
-
 
 // tone prompt
 // 불변객체(수정 시 새로운 객체 생성)
 message FindTonePromptByIdRequest {
-    string tone_prompt_id = 1;
+  string tone_prompt_id = 1;
 }
 
 message FindTonePromptByIdResponse {
-    optional com.hearlers.v1.model.TonePrompt tone_prompt = 1;
+  optional com.hearlers.v1.model.TonePrompt tone_prompt = 1;
 }
 
 message FindTonePromptsRequest {
-    optional string prompt_version_id = 1;
-    optional string tone_id = 2;
+  optional string prompt_version_id = 1;
+  optional string tone_id = 2;
 }
 
 message FindTonePromptsResponse {
-    repeated com.hearlers.v1.model.TonePrompt tone_prompts = 1;
+  repeated com.hearlers.v1.model.TonePrompt tone_prompts = 1;
 }
 
 // 임시버전에서 수정
 message UpdateTonePromptRequest {
-    string tone_id = 1;
-    string body = 2;
+  string tone_id = 1;
+  string body = 2;
 }
 
 message UpdateTonePromptResponse {
-    optional com.hearlers.v1.model.TonePrompt tone_prompt = 1;
+  optional com.hearlers.v1.model.TonePrompt tone_prompt = 1;
 }
-
 
 // counsel technique
 // 불변객체(수정 시 새로운 객체 생성)
 // 임시기법(다른 기법들과 링크x)으로 생성
 // 추후 순서지정 필요
 message CreateCounselTechniqueRequest {
-    string name = 1;
-    string tone_id = 2;
-    string context = 3;
-    string instruction = 4;
-    double temperature = 5;
-    bool is_start_technique = 6;
+  string name = 1;
+  string tone_id = 2;
+  string context = 3;
+  string instruction = 4;
+  double temperature = 5;
+  bool is_start_technique = 6;
 }
 
 message CreateCounselTechniqueResponse {
-    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+  com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
 message FindCounselTechniquesRequest {
-    optional string prompt_version_id = 1;
-    optional string tone_id = 2;
+  optional string prompt_version_id = 1;
+  optional string tone_id = 2;
 }
 
 message FindCounselTechniquesResponse {
-    repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
+  repeated com.hearlers.v1.model.CounselTechnique counsel_techniques = 1;
 }
 
 message FindCounselTechniqueByIdRequest {
-    string counsel_technique_id = 1;
+  string counsel_technique_id = 1;
 }
 
 message FindCounselTechniqueByIdResponse {
-    optional com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+  optional com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
 
 // 임시버전에서 수정
 // 아직 링크되지 않은 임시기법은 수정 불가
 // 수정 후 해당 기법이 포함된 기법리스트 반환
 message UpdateCounselTechniqueRequest {
-    string counsel_technique_id = 1;
-    optional string name = 2;
-    optional string context = 3;
-    optional string instruction = 4;
-    optional double temperature = 5;
-    optional bool is_start_technique = 6;
+  string counsel_technique_id = 1;
+  optional string name = 2;
+  optional string context = 3;
+  optional string instruction = 4;
+  optional double temperature = 5;
+  optional bool is_start_technique = 6;
 }
 
 message UpdateCounselTechniqueResponse {
-    com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
+  com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
-
 
 // prompt activate history
 message FindPromptActivateHistoriesRequest {
-    optional string prompt_version_id = 1;
+  optional string prompt_version_id = 1;
 }
 
 message FindPromptActivateHistoriesResponse {
-    repeated com.hearlers.v1.model.PromptActivateHistory prompt_activate_histories = 1;
+  repeated com.hearlers.v1.model.PromptActivateHistory prompt_activate_histories = 1;
 }
-
 
 // counsel technique transition rule
 message CreateCounselTechniqueTransitionRuleRequest {
-    string from_counsel_technique_id = 1;
-    string to_counsel_technique_id = 2;
-    int32 priority = 3;
-    int32 min_not_compressed_message_count = 4;
-    int32 max_not_compressed_message_count = 5;
-
-    int32 min_current_technique_message_count = 6;
-    int32 max_current_technique_message_count = 7;
-
-    repeated com.hearlers.v1.model.ImpactDomain required_impact_domains = 8;
-    repeated com.hearlers.v1.model.Timeframe required_timeframes = 9;
-    repeated com.hearlers.v1.model.EmotionPrimary required_emotion_primaries = 10;
-    repeated com.hearlers.v1.model.Valence required_valences = 11;
-    repeated com.hearlers.v1.model.ArousalLevel required_arousal_levels = 12;
-    int32 min_emotion_intensity = 13;
-    int32 max_emotion_intensity = 14;
-    repeated com.hearlers.v1.model.PerceivedControl required_perceived_controls = 15;
-    repeated com.hearlers.v1.model.MotivationStage required_motivation_stages = 16;
-    int32 min_self_efficacy = 17;
-    int32 max_self_efficacy = 18;
-    repeated com.hearlers.v1.model.SocialSupportLevel required_social_support_levels = 19;
-    repeated com.hearlers.v1.model.RiskKind required_risk_kinds = 20;
-    int32 min_risk_severity = 21;
-    int32 max_risk_severity = 22;
-    repeated com.hearlers.v1.model.SleepQuality required_sleep_qualities = 23;
-    bool required_physical_symptoms_present = 24;
-    repeated com.hearlers.v1.model.CognitiveLoad required_cognitive_loads = 25;
-    repeated com.hearlers.v1.model.AllianceStrength required_alliance_strengths = 26;
-    bool required_consent_to_depth = 27;
+  string from_counsel_technique_id = 1;
+  string to_counsel_technique_id = 2;
+  int32 priority = 3;
+  optional int32 min_current_technique_message_count = 4;
+  optional int32 max_current_technique_message_count = 5;
+  repeated com.hearlers.v1.model.ImpactDomain required_impact_domains = 6;
+  repeated com.hearlers.v1.model.Timeframe required_timeframes = 7;
+  repeated com.hearlers.v1.model.EmotionPrimary required_emotion_primaries = 8;
+  repeated com.hearlers.v1.model.Valence required_valences = 9;
+  repeated com.hearlers.v1.model.ArousalLevel required_arousal_levels = 10;
+  optional int32 min_emotion_intensity = 11;
+  optional int32 max_emotion_intensity = 12;
+  repeated com.hearlers.v1.model.PerceivedControl required_perceived_controls = 13;
+  repeated com.hearlers.v1.model.MotivationStage required_motivation_stages = 14;
+  optional int32 min_self_efficacy = 15;
+  optional int32 max_self_efficacy = 16;
+  repeated com.hearlers.v1.model.SocialSupportLevel required_social_support_levels = 17;
+  repeated com.hearlers.v1.model.RiskKind required_risk_kinds = 18;
+  optional int32 min_risk_severity = 19;
+  optional int32 max_risk_severity = 20;
+  repeated com.hearlers.v1.model.SleepQuality required_sleep_qualities = 21;
+  optional bool required_physical_symptoms_present = 22;
+  repeated com.hearlers.v1.model.CognitiveLoad required_cognitive_loads = 23;
+  repeated com.hearlers.v1.model.AllianceStrength required_alliance_strengths = 24;
+  optional bool required_consent_to_depth = 25;
 }
 
 message CreateCounselTechniqueTransitionRuleResponse {
-    com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
+  com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
 }
 
 message FindCounselTechniqueTransitionRuleByIdRequest {
-    string counsel_technique_transition_rule_id = 1;
+  string counsel_technique_transition_rule_id = 1;
 }
 
 message FindCounselTechniqueTransitionRuleByIdResponse {
-    optional com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
+  optional com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
 }
 
 message FindCounselTechniqueTransitionRulesRequest {
-    optional string from_counsel_technique_id = 1;
-    optional string to_counsel_technique_id = 2;
-    optional string prompt_version_id = 3;
+  optional string from_counsel_technique_id = 1;
+  optional string to_counsel_technique_id = 2;
+  optional string prompt_version_id = 3;
 }
 
 message FindCounselTechniqueTransitionRulesResponse {
-    repeated com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rules = 1;
+  repeated com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rules = 1;
 }
 
 message UpdateCounselTechniqueTransitionRuleRequest {
-    string counsel_technique_transition_rule_id = 1;
-    int32 priority = 2;
-    int32 min_not_compressed_message_count = 3;
-    int32 max_not_compressed_message_count = 4;
-
-    int32 min_current_technique_message_count = 5;
-    int32 max_current_technique_message_count = 6;
-
-    repeated com.hearlers.v1.model.ImpactDomain required_impact_domains = 7;
-    repeated com.hearlers.v1.model.Timeframe required_timeframes = 8;
-    repeated com.hearlers.v1.model.EmotionPrimary required_emotion_primaries = 9;
-    repeated com.hearlers.v1.model.Valence required_valences = 10;
-    repeated com.hearlers.v1.model.ArousalLevel required_arousal_levels = 11;
-    int32 min_emotion_intensity = 12;
-    int32 max_emotion_intensity = 13;
-    repeated com.hearlers.v1.model.PerceivedControl required_perceived_controls = 14;
-    repeated com.hearlers.v1.model.MotivationStage required_motivation_stages = 15;
-    int32 min_self_efficacy = 16;
-    int32 max_self_efficacy = 17;
-    repeated com.hearlers.v1.model.SocialSupportLevel required_social_support_levels = 18;
-    repeated com.hearlers.v1.model.RiskKind required_risk_kinds = 19;
-    int32 min_risk_severity = 20;
-    int32 max_risk_severity = 21;
-    repeated com.hearlers.v1.model.SleepQuality required_sleep_qualities = 22;
-    bool required_physical_symptoms_present = 23;
-    repeated com.hearlers.v1.model.CognitiveLoad required_cognitive_loads = 24;
-    repeated com.hearlers.v1.model.AllianceStrength required_alliance_strengths = 25;
-    bool required_consent_to_depth = 26;
+  string counsel_technique_transition_rule_id = 1;
+  int32 priority = 2;
+  optional int32 min_current_technique_message_count = 3;
+  optional int32 max_current_technique_message_count = 4;
+  repeated com.hearlers.v1.model.ImpactDomain required_impact_domains = 5;
+  repeated com.hearlers.v1.model.Timeframe required_timeframes = 6;
+  repeated com.hearlers.v1.model.EmotionPrimary required_emotion_primaries = 7;
+  repeated com.hearlers.v1.model.Valence required_valences = 8;
+  repeated com.hearlers.v1.model.ArousalLevel required_arousal_levels = 9;
+  optional int32 min_emotion_intensity = 10;
+  optional int32 max_emotion_intensity = 11;
+  repeated com.hearlers.v1.model.PerceivedControl required_perceived_controls = 12;
+  repeated com.hearlers.v1.model.MotivationStage required_motivation_stages = 13;
+  optional int32 min_self_efficacy = 14;
+  optional int32 max_self_efficacy = 15;
+  repeated com.hearlers.v1.model.SocialSupportLevel required_social_support_levels = 16;
+  repeated com.hearlers.v1.model.RiskKind required_risk_kinds = 17;
+  optional int32 min_risk_severity = 18;
+  optional int32 max_risk_severity = 19;
+  repeated com.hearlers.v1.model.SleepQuality required_sleep_qualities = 20;
+  optional bool required_physical_symptoms_present = 21;
+  repeated com.hearlers.v1.model.CognitiveLoad required_cognitive_loads = 22;
+  repeated com.hearlers.v1.model.AllianceStrength required_alliance_strengths = 23;
+  optional bool required_consent_to_depth = 24;
 }
 
 message UpdateCounselTechniqueTransitionRuleResponse {
-    com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
+  com.hearlers.v1.model.CounselTechniqueTransitionRule counsel_technique_transition_rule = 1;
 }
 
 message DeleteCounselTechniqueTransitionRuleRequest {
-    string counsel_technique_transition_rule_id = 1;
+  string counsel_technique_transition_rule_id = 1;
 }
 
 message DeleteCounselTechniqueTransitionRuleResponse {}

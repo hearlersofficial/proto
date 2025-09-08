@@ -2,21 +2,20 @@ syntax = "proto3";
 
 package com.hearlers.v1.common;
 
-option java_package = "com.hearlers.api.proto.v1.common";
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.common";
 
 message PresignedUrl {
-    string upload_url = 1;
-    string public_url = 2;
-    string file_path = 3;
-    string expires_at = 4;
+  string upload_url = 1;
+  string public_url = 2;
+  string file_path = 3;
+  string expires_at = 4;
 }
 
-
 enum Extension {
-    EXTENSION_UNSPECIFIED = 0;
-    EXTENSION_JPG = 1;
-    EXTENSION_PNG = 2;
-    EXTENSION_GIF = 3;
-    EXTENSION_WEBP = 4;
+  EXTENSION_UNSPECIFIED = 0;
+  EXTENSION_JPG = 1;
+  EXTENSION_PNG = 2;
+  EXTENSION_GIF = 3;
+  EXTENSION_WEBP = 4;
 }

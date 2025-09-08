@@ -1,88 +1,84 @@
 syntax = "proto3";
 
 package com.hearlers.v1.model;
-option java_package = "com.hearlers.api.proto.v1.model";
+
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.model";
 
 enum CounselorGender {
-    COUNSELOR_GENDER_UNSPECIFIED = 0;
-    COUNSELOR_GENDER_MALE = 1;
-    COUNSELOR_GENDER_FEMALE = 2;
-    COUNSELOR_GENDER_NONE = 3;
+  COUNSELOR_GENDER_UNSPECIFIED = 0;
+  COUNSELOR_GENDER_MALE = 1;
+  COUNSELOR_GENDER_FEMALE = 2;
+  COUNSELOR_GENDER_NONE = 3;
 }
 
 enum Speaker {
-    SPEAKER_UNSPECIFIED = 0;
-    SPEAKER_COUNSELOR = 1;
-    SPEAKER_USER = 2;
+  SPEAKER_UNSPECIFIED = 0;
+  SPEAKER_COUNSELOR = 1;
+  SPEAKER_USER = 2;
 }
 
 message Counselor {
-    string id = 1;
-    string tone_id = 2;
-    string name = 3;
-    string description = 4;
-    string profile_image = 5;
-    CounselorGender gender = 6;
-    string created_at = 7;  // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 8;  // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 9;  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string id = 1;
+  string tone_id = 2;
+  string name = 3;
+  string description = 4;
+  string profile_image = 5;
+  CounselorGender gender = 6;
+  string created_at = 7; // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string updated_at = 8; // ISO 8601 (2024-12-29T12:34:56.000Z)
+  optional string deleted_at = 9; // ISO 8601 (2024-12-29T12:34:56.000Z)
 }
 
 message Bubble {
-    string id = 1;
-    string question = 2;
-    string response_option1 = 3;
-    string response_option2 = 4;
-    string created_at = 5;
-    string updated_at = 6;
-    optional string deleted_at = 7;
+  string id = 1;
+  string question = 2;
+  string response_option1 = 3;
+  string response_option2 = 4;
+  string created_at = 5;
+  string updated_at = 6;
+  optional string deleted_at = 7;
 }
 
 message Episode {
-    string id = 1;
-    string counselor_id = 2;
-    string title = 3;
-    int32 required_rapport_threshold = 4;
-    bool is_temporary = 5;
-    repeated EpisodeCutScene cut_scenes = 6;
-    string created_at = 7;
-    string updated_at = 8;
-    optional string deleted_at = 9;
+  string id = 1;
+  string counselor_id = 2;
+  string title = 3;
+  int32 required_rapport_threshold = 4;
+  bool is_temporary = 5;
+  repeated EpisodeCutScene cut_scenes = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  optional string deleted_at = 9;
 }
 
 message EpisodeCutScene {
-    string id = 1;
-    string episode_id = 2;
-    Speaker speaker = 3;
-    string content = 4;
-    int32 order_index = 5;
-    string image = 6;
-    string created_at = 7;
-    string updated_at = 8;
-    optional string deleted_at = 9;
+  string id = 1;
+  string episode_id = 2;
+  Speaker speaker = 3;
+  string content = 4;
+  int32 order_index = 5;
+  string image = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  optional string deleted_at = 9;
 }
-
 
 message Tone {
-    string id = 1;
-    string name = 2;
-    string description = 3;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 4;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 5;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 6;
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string created_at = 4;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string updated_at = 5;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  optional string deleted_at = 6;
 }
-
-
 
 message CounselorAggregate {
-    Counselor counselor = 1;
-    repeated Bubble bubbles = 2;
-    Tone tone = 3;
-    repeated Episode episodes = 4;
+  Counselor counselor = 1;
+  repeated Bubble bubbles = 2;
+  Tone tone = 3;
+  repeated Episode episodes = 4;
 }
-
-

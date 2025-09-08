@@ -1,21 +1,16 @@
 syntax = "proto3";
-
-
-import "google/protobuf/struct.proto";
 package com.hearlers.v1.model;
 
-option java_package = "com.hearlers.api.proto.v1.model";
+import "google/protobuf/struct.proto";
+
 option java_multiple_files = true;
-
-
+option java_package = "com.hearlers.api.proto.v1.model";
 
 enum Gender {
   GENDER_UNSPECIFIED = 0;
   GENDER_MALE = 1;
   GENDER_FEMALE = 2;
 }
-
-
 
 enum Mbti {
   MBTI_UNSPECIFIED = 0;
@@ -65,15 +60,15 @@ enum ActivityType {
 }
 
 message User {
-    string id = 1;
-    string nickname = 2;                       
-    UserProfile user_profile = 3;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 5;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 6;     
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 7;
+  string id = 1;
+  string nickname = 2;
+  UserProfile user_profile = 3;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string created_at = 5;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string updated_at = 6;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  optional string deleted_at = 7;
 }
 
 message UserProfile {
@@ -85,13 +80,12 @@ message UserProfile {
   string introduction = 5;
   Mbti mbti = 6;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string created_at = 7; 
+  string created_at = 7;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
   string updated_at = 8;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
   optional string deleted_at = 9;
 }
-
 
 message UserActivity {
   ActivityType activity_type = 1;

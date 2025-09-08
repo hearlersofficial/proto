@@ -1,9 +1,10 @@
 syntax = "proto3";
+package com.hearlers.v1.message;
 
 import "com/hearlers/v1/model/auth_user.proto";
-package com.hearlers.v1.message;
-option java_package = "com.hearlers.api.proto.v1.message";
+
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.message";
 
 // topic: user.updated
 message UserUpdatedPayload {

@@ -1,57 +1,58 @@
 syntax = "proto3";
 
 package com.hearlers.v1.model;
-option java_package = "com.hearlers.api.proto.v1.model";
+
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.model";
 
 enum Authority {
-    AUTHORITY_UNSPECIFIED = 0;
-    AUTHORITY_USER = 1;
-    AUTHORITY_ADMIN = 2;
+  AUTHORITY_UNSPECIFIED = 0;
+  AUTHORITY_USER = 1;
+  AUTHORITY_ADMIN = 2;
 }
 
 enum AuthChannel {
-    AUTH_CHANNEL_UNSPECIFIED = 0;
-    AUTH_CHANNEL_UNLINKED = 1;
-    AUTH_CHANNEL_KAKAO = 2;
-    AUTH_CHANNEL_NAVER = 3;
+  AUTH_CHANNEL_UNSPECIFIED = 0;
+  AUTH_CHANNEL_UNLINKED = 1;
+  AUTH_CHANNEL_KAKAO = 2;
+  AUTH_CHANNEL_NAVER = 3;
 }
 
 message AuthUser {
-    string id = 1;
-    string user_id = 2;
-    AuthChannel auth_channel = 3;
-    OAuthChannelInfo oauth_channel_info = 4;
-    repeated RefreshToken refresh_tokens = 5;
-    Authority authority = 6;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string last_login_at = 7;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 8;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 9;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 10;
+  string id = 1;
+  string user_id = 2;
+  AuthChannel auth_channel = 3;
+  OAuthChannelInfo oauth_channel_info = 4;
+  repeated RefreshToken refresh_tokens = 5;
+  Authority authority = 6;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string last_login_at = 7;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string created_at = 8;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string updated_at = 9;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  optional string deleted_at = 10;
 }
 
 message OAuthChannelInfo {
-    string id = 1;
-    AuthChannel auth_channel = 2;
-    string unique_id = 3;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 4;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 5;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    optional string deleted_at = 6;
+  string id = 1;
+  AuthChannel auth_channel = 2;
+  string unique_id = 3;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string created_at = 4;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string updated_at = 5;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  optional string deleted_at = 6;
 }
 
 message RefreshToken {
-    string token = 1;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string expires_at = 2;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string created_at = 3;
-    // ISO 8601 (2024-12-29T12:34:56.000Z)
-    string updated_at = 4;
+  string token = 1;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string expires_at = 2;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string created_at = 3;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string updated_at = 4;
 }

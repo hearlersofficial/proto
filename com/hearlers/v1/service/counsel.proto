@@ -4,101 +4,98 @@ package com.hearlers.v1.service;
 
 import "com/hearlers/v1/model/counsel.proto";
 
-option java_package = "com.hearlers.api.proto.v1.service";
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.service";
 
 // TODO: USER_CREATED 시 이벤트를 통해 모든 Counselor 별 Dialogue 생성 (유저 생성과 동기화)
 
 service CounselService {
-    // 상담 (한 사이클)
-    // TODO: 한 사이클의 끝을 어떻게 지정할 지 결정
-    rpc CreateCounsel (CreateCounselRequest) returns (CreateCounselResponse);
-    rpc FindCounsels (FindCounselsRequest) returns (FindCounselsResponse);
-    rpc FindCounselById (FindCounselByIdRequest) returns (FindCounselByIdResponse);
+  // 상담 (한 사이클)
+  // TODO: 한 사이클의 끝을 어떻게 지정할 지 결정
+  rpc CreateCounsel(CreateCounselRequest) returns (CreateCounselResponse);
+  rpc FindCounsels(FindCounselsRequest) returns (FindCounselsResponse);
+  rpc FindCounselById(FindCounselByIdRequest) returns (FindCounselByIdResponse);
 
-    // 상담 메시지 (상담 중 하나의 채팅)
-    rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResponse);
-    rpc FindMessages (FindMessagesRequest) returns (FindMessagesResponse);
-    rpc ReactMessage (ReactMessageRequest) returns (ReactMessageResponse);
+  // 상담 메시지 (상담 중 하나의 채팅)
+  rpc CreateMessage(CreateMessageRequest) returns (CreateMessageResponse);
+  rpc FindMessages(FindMessagesRequest) returns (FindMessagesResponse);
+  rpc ReactMessage(ReactMessageRequest) returns (ReactMessageResponse);
 
-    // 상담사와 유저의 관계
-    // TODO: CQRS 패턴으로 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
-    // Relationship은 읽을 시 싱딤시와, 상담사의 모든 Counsels를 다 가지고 오는게 의미있는 단위
-    // Relationship 뷰 테이블에 이미 상담사와 모든 유저의 대화 내용을 미리 조인해둔 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
-    // DDD를 안함
-    // 별도의 모듈
-    rpc FindCounselorUserRelationships (FindCounselorUserRelationshipsRequest) returns (FindCounselorUserRelationshipsResponse);
+  // 상담사와 유저의 관계
+  // TODO: CQRS 패턴으로 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
+  // Relationship은 읽을 시 싱딤시와, 상담사의 모든 Counsels를 다 가지고 오는게 의미있는 단위
+  // Relationship 뷰 테이블에 이미 상담사와 모든 유저의 대화 내용을 미리 조인해둔 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
+  // DDD를 안함
+  // 별도의 모듈
+  rpc FindCounselorUserRelationships(FindCounselorUserRelationshipsRequest) returns (FindCounselorUserRelationshipsResponse);
 }
-
 
 // 상담
 // 현재 활성화된 프롬프트 버전 적용
 message CreateCounselRequest {
-    string user_id = 1;                       
-    string counselor_id = 2;
-    optional string bubble_id = 3;
-    optional int32 response_option_no = 4;
-    optional string prompt_version_id = 5;
+  string user_id = 1;
+  string counselor_id = 2;
+  optional string bubble_id = 3;
+  optional int32 response_option_no = 4;
+  optional string prompt_version_id = 5;
 }
-  
+
 message CreateCounselResponse {
-    com.hearlers.v1.model.Counsel counsel = 1;
-    repeated com.hearlers.v1.model.CounselMessage counsel_messages = 2;
+  com.hearlers.v1.model.Counsel counsel = 1;
+  repeated com.hearlers.v1.model.CounselMessage counsel_messages = 2;
 }
 
 message FindCounselsRequest {
-    string user_id = 1;
-    optional string counselor_id = 2;
+  string user_id = 1;
+  optional string counselor_id = 2;
 }
 
 message FindCounselsResponse {
-    repeated com.hearlers.v1.model.Counsel counsels = 1;
+  repeated com.hearlers.v1.model.Counsel counsels = 1;
 }
 
 message FindCounselByIdRequest {
-    string counsel_id = 1;
+  string counsel_id = 1;
 }
 
 message FindCounselByIdResponse {
-    optional com.hearlers.v1.model.Counsel counsel = 1;
+  optional com.hearlers.v1.model.Counsel counsel = 1;
 }
-
 
 // 상담 메시지
 message CreateMessageRequest {
-    string counsel_id = 1;
-    string message = 2;
+  string counsel_id = 1;
+  string message = 2;
 }
 
 message CreateMessageResponse {
-    com.hearlers.v1.model.CounselMessage created_counsel_message = 1;
-    com.hearlers.v1.model.CounselMessage counselor_response_message = 2;
+  com.hearlers.v1.model.CounselMessage created_counsel_message = 1;
+  com.hearlers.v1.model.CounselMessage counselor_response_message = 2;
 }
 
 message FindMessagesRequest {
-    string counsel_id = 1;
+  string counsel_id = 1;
 }
 
 message FindMessagesResponse {
-    repeated com.hearlers.v1.model.CounselMessage counsel_messages = 1;
+  repeated com.hearlers.v1.model.CounselMessage counsel_messages = 1;
 }
 
 message ReactMessageRequest {
-    string message_id = 1;
-    com.hearlers.v1.model.CounselMessageReaction reaction = 2;
+  string message_id = 1;
+  com.hearlers.v1.model.CounselMessageReaction reaction = 2;
 }
 
 message ReactMessageResponse {
-    com.hearlers.v1.model.CounselMessage counsel_message = 1;
+  com.hearlers.v1.model.CounselMessage counsel_message = 1;
 }
-
 
 // 상담사와 유저의 관계
 message FindCounselorUserRelationshipsRequest {
-    string counselor_id = 1;
-    string user_id = 2;
+  string counselor_id = 1;
+  string user_id = 2;
 }
 
 message FindCounselorUserRelationshipsResponse {
-    repeated com.hearlers.v1.model.CounselorUserRelationship counselor_user_relationships = 1;
+  repeated com.hearlers.v1.model.CounselorUserRelationship counselor_user_relationships = 1;
 }

@@ -2,249 +2,245 @@ syntax = "proto3";
 
 package com.hearlers.v1.service;
 
-import "com/hearlers/v1/model/counselor.proto";
 import "com/hearlers/v1/common/presigned_url.proto";
-option java_package = "com.hearlers.api.proto.v1.service";
+import "com/hearlers/v1/model/counselor.proto";
+
 option java_multiple_files = true;
+option java_package = "com.hearlers.api.proto.v1.service";
 
 service CounselorService {
-    // 상담사
-    rpc CreateCounselor (CreateCounselorRequest) returns (CreateCounselorResponse);
-    rpc FindCounselors (FindCounselorsRequest) returns (FindCounselorsResponse);
-    rpc FindCounselorById (FindCounselorByIdRequest) returns (FindCounselorByIdResponse);
-    rpc UpdateCounselor (UpdateCounselorRequest) returns (UpdateCounselorResponse);
-    rpc GenerateCounselorImageUrl (GenerateCounselorImageUrlRequest) returns (GenerateCounselorImageUrlResponse);
+  // 상담사
+  rpc CreateCounselor(CreateCounselorRequest) returns (CreateCounselorResponse);
+  rpc FindCounselors(FindCounselorsRequest) returns (FindCounselorsResponse);
+  rpc FindCounselorById(FindCounselorByIdRequest) returns (FindCounselorByIdResponse);
+  rpc UpdateCounselor(UpdateCounselorRequest) returns (UpdateCounselorResponse);
+  rpc GenerateCounselorImageUrl(GenerateCounselorImageUrlRequest) returns (GenerateCounselorImageUrlResponse);
 
-    // 버블
-    rpc CreateBubble (CreateBubbleRequest) returns (CreateBubbleResponse);
-    rpc FindBubbles (FindBubblesRequest) returns (FindBubblesResponse);
-    rpc FindBubbleById (FindBubbleByIdRequest) returns (FindBubbleByIdResponse);
-    rpc FindRandomBubble (FindRandomBubbleRequest) returns (FindRandomBubbleResponse);
-    rpc UpdateBubble (UpdateBubbleRequest) returns (UpdateBubbleResponse);
-    rpc DeleteBubble (DeleteBubbleRequest) returns (DeleteBubbleResponse);
+  // 버블
+  rpc CreateBubble(CreateBubbleRequest) returns (CreateBubbleResponse);
+  rpc FindBubbles(FindBubblesRequest) returns (FindBubblesResponse);
+  rpc FindBubbleById(FindBubbleByIdRequest) returns (FindBubbleByIdResponse);
+  rpc FindRandomBubble(FindRandomBubbleRequest) returns (FindRandomBubbleResponse);
+  rpc UpdateBubble(UpdateBubbleRequest) returns (UpdateBubbleResponse);
+  rpc DeleteBubble(DeleteBubbleRequest) returns (DeleteBubbleResponse);
 
-    // 에피소드
-    rpc CreateEpisode (CreateEpisodeRequest) returns (CreateEpisodeResponse);
-    rpc FindEpisodes (FindEpisodesRequest) returns (FindEpisodesResponse);
-    rpc FindEpisodeById (FindEpisodeByIdRequest) returns (FindEpisodeByIdResponse);
-    rpc UpdateEpisode (UpdateEpisodeRequest) returns (UpdateEpisodeResponse);
-    rpc GenerateCutSceneImageUrl (GenerateCutSceneImageUrlRequest) returns (GenerateCutSceneImageUrlResponse);
+  // 에피소드
+  rpc CreateEpisode(CreateEpisodeRequest) returns (CreateEpisodeResponse);
+  rpc FindEpisodes(FindEpisodesRequest) returns (FindEpisodesResponse);
+  rpc FindEpisodeById(FindEpisodeByIdRequest) returns (FindEpisodeByIdResponse);
+  rpc UpdateEpisode(UpdateEpisodeRequest) returns (UpdateEpisodeResponse);
+  rpc GenerateCutSceneImageUrl(GenerateCutSceneImageUrlRequest) returns (GenerateCutSceneImageUrlResponse);
 
-    // 톤
-    rpc CreateTone (CreateToneRequest) returns (CreateToneResponse);
-    rpc FindTones (FindTonesRequest) returns (FindTonesResponse);
-    rpc FindToneById (FindToneByIdRequest) returns (FindToneByIdResponse);
-    rpc UpdateTone (UpdateToneRequest) returns (UpdateToneResponse);
+  // 톤
+  rpc CreateTone(CreateToneRequest) returns (CreateToneResponse);
+  rpc FindTones(FindTonesRequest) returns (FindTonesResponse);
+  rpc FindToneById(FindToneByIdRequest) returns (FindToneByIdResponse);
+  rpc UpdateTone(UpdateToneRequest) returns (UpdateToneResponse);
 }
 
 // 상담사
 message CreateCounselorRequest {
-    string tone_id = 1;
-    string name = 2;
-    string description = 3;
-    string profile_image = 4;
-    com.hearlers.v1.model.CounselorGender counselor_gender = 5;
+  string tone_id = 1;
+  string name = 2;
+  string description = 3;
+  string profile_image = 4;
+  com.hearlers.v1.model.CounselorGender counselor_gender = 5;
 }
 
 message CreateCounselorResponse {
-    com.hearlers.v1.model.Counselor counselor = 1;
+  com.hearlers.v1.model.Counselor counselor = 1;
 }
 
 message FindCounselorsRequest {
-    optional string tone_id = 1;
+  optional string tone_id = 1;
 }
 
 message FindCounselorsResponse {
-    repeated com.hearlers.v1.model.Counselor counselors = 1;
+  repeated com.hearlers.v1.model.Counselor counselors = 1;
 }
 
 message FindCounselorByIdRequest {
-    string counselor_id = 1;
+  string counselor_id = 1;
 }
 
 message FindCounselorByIdResponse {
-    optional com.hearlers.v1.model.Counselor counselor = 1;
+  optional com.hearlers.v1.model.Counselor counselor = 1;
 }
 
 message UpdateCounselorRequest {
-    string counselor_id = 1;
-    optional string tone_id = 2;
-    optional string name = 3;
-    optional string description = 4;
-    optional string profile_image = 5;
-    optional com.hearlers.v1.model.CounselorGender counselor_gender = 6;
+  string counselor_id = 1;
+  optional string tone_id = 2;
+  optional string name = 3;
+  optional string description = 4;
+  optional string profile_image = 5;
+  optional com.hearlers.v1.model.CounselorGender counselor_gender = 6;
 }
 
 message UpdateCounselorResponse {
-    com.hearlers.v1.model.Counselor counselor = 1;
+  com.hearlers.v1.model.Counselor counselor = 1;
 }
 
 message GenerateCounselorImageUrlRequest {
-    string counselor_id = 1;
-    com.hearlers.v1.common.Extension extension = 2;
+  string counselor_id = 1;
+  com.hearlers.v1.common.Extension extension = 2;
 }
 
 message GenerateCounselorImageUrlResponse {
-    com.hearlers.v1.common.PresignedUrl presigned_url = 1;
+  com.hearlers.v1.common.PresignedUrl presigned_url = 1;
 }
-
 
 // 버블
 message CreateBubbleRequest {
-    string counselor_id = 1;
-    string question = 2;
-    string response_option1 = 3;
-    string response_option2 = 4;
+  string counselor_id = 1;
+  string question = 2;
+  string response_option1 = 3;
+  string response_option2 = 4;
 }
 
 message CreateBubbleResponse {
-    com.hearlers.v1.model.Bubble bubble = 1;
+  com.hearlers.v1.model.Bubble bubble = 1;
 }
 
 message FindBubblesRequest {
-    string counselor_id = 1;
+  string counselor_id = 1;
 }
 
 message FindBubblesResponse {
-    repeated com.hearlers.v1.model.Bubble bubbles = 1;
+  repeated com.hearlers.v1.model.Bubble bubbles = 1;
 }
 
 message FindBubbleByIdRequest {
-    string bubble_id = 1;
-    string counselor_id = 2;
+  string bubble_id = 1;
+  string counselor_id = 2;
 }
 
 message FindBubbleByIdResponse {
-    com.hearlers.v1.model.Bubble bubble = 1;
+  com.hearlers.v1.model.Bubble bubble = 1;
 }
 
 message FindRandomBubbleRequest {
-    string counselor_id = 1;
+  string counselor_id = 1;
 }
 
 message FindRandomBubbleResponse {
-    com.hearlers.v1.model.Bubble bubble = 1;
+  com.hearlers.v1.model.Bubble bubble = 1;
 }
 
 message UpdateBubbleRequest {
-    string bubble_id = 1;
-    string counselor_id = 2;
-    optional string question = 3;
-    optional string response_option1 = 4;
-    optional string response_option2 = 5;
+  string bubble_id = 1;
+  string counselor_id = 2;
+  optional string question = 3;
+  optional string response_option1 = 4;
+  optional string response_option2 = 5;
 }
 
 message UpdateBubbleResponse {
-    com.hearlers.v1.model.Bubble bubble = 1;
+  com.hearlers.v1.model.Bubble bubble = 1;
 }
 
 message DeleteBubbleRequest {
-    string bubble_id = 1;
-    string counselor_id = 2;
+  string bubble_id = 1;
+  string counselor_id = 2;
 }
 
 message DeleteBubbleResponse {
-    bool success = 1;
+  bool success = 1;
 }
-
 
 // 에피소드
 message CreateEpisodeRequest {
-    string counselor_id = 1;
-    string title = 2;
-    int32 required_rapport_threshold = 3;
-    bool is_temporary = 4;
-    repeated SaveEpisodeCutSceneRequest cut_scenes = 5;
+  string counselor_id = 1;
+  string title = 2;
+  int32 required_rapport_threshold = 3;
+  bool is_temporary = 4;
+  repeated SaveEpisodeCutSceneRequest cut_scenes = 5;
 }
 
 message CreateEpisodeResponse {
-    com.hearlers.v1.model.Episode episode = 1;
+  com.hearlers.v1.model.Episode episode = 1;
 }
 
 message FindEpisodesRequest {
-    string counselor_id = 1;
-    bool with_temporary = 2;
+  string counselor_id = 1;
+  bool with_temporary = 2;
 }
 
 message FindEpisodesResponse {
-    repeated com.hearlers.v1.model.Episode episodes = 1;
+  repeated com.hearlers.v1.model.Episode episodes = 1;
 }
 
 message FindEpisodeByIdRequest {
-    string episode_id = 1;
-    bool with_temporary = 2;
+  string episode_id = 1;
+  bool with_temporary = 2;
 }
 
 message FindEpisodeByIdResponse {
-    com.hearlers.v1.model.Episode episode = 1;
+  com.hearlers.v1.model.Episode episode = 1;
 }
 
 message UpdateEpisodeRequest {
-    string episode_id = 1;
-    optional string title = 2;
-    optional string content = 3;
-    optional int32 required_rapport_threshold = 4;
-    optional bool is_temporary = 5;
-    repeated SaveEpisodeCutSceneRequest cut_scenes = 6;
+  string episode_id = 1;
+  optional string title = 2;
+  optional string content = 3;
+  optional int32 required_rapport_threshold = 4;
+  optional bool is_temporary = 5;
+  repeated SaveEpisodeCutSceneRequest cut_scenes = 6;
 }
 
 message UpdateEpisodeResponse {
-    com.hearlers.v1.model.Episode episode = 1;
+  com.hearlers.v1.model.Episode episode = 1;
 }
 
 // 리스트에 빠진 컷 장면은 삭제됨
 message SaveEpisodeCutSceneRequest {
-    optional string id = 1; // 있을 경우 수정, 없을 경우 생성
-    com.hearlers.v1.model.Speaker speaker = 2;
-    string content = 3;
-    int32 order_index = 4;
-    string image = 5;
+  optional string id = 1; // 있을 경우 수정, 없을 경우 생성
+  com.hearlers.v1.model.Speaker speaker = 2;
+  string content = 3;
+  int32 order_index = 4;
+  string image = 5;
 }
 
-
-
 message GenerateCutSceneImageUrlRequest {
-    string counselor_id = 1;
-    com.hearlers.v1.common.Extension extension = 2;
+  string counselor_id = 1;
+  com.hearlers.v1.common.Extension extension = 2;
 }
 
 message GenerateCutSceneImageUrlResponse {
-    com.hearlers.v1.common.PresignedUrl presigned_url = 1;
+  com.hearlers.v1.common.PresignedUrl presigned_url = 1;
 }
-
 
 // 톤
 message CreateToneRequest {
-    string name = 1;
-    string description = 2;
+  string name = 1;
+  string description = 2;
 }
 
 message CreateToneResponse {
-    com.hearlers.v1.model.Tone tone = 1;
+  com.hearlers.v1.model.Tone tone = 1;
 }
 
 message FindTonesRequest {
-    optional string name = 1;
+  optional string name = 1;
 }
 
 message FindTonesResponse {
-    repeated com.hearlers.v1.model.Tone tones = 1;
+  repeated com.hearlers.v1.model.Tone tones = 1;
 }
 
 message FindToneByIdRequest {
-    string tone_id = 1;
+  string tone_id = 1;
 }
 
 message FindToneByIdResponse {
-    optional com.hearlers.v1.model.Tone tone = 1;
+  optional com.hearlers.v1.model.Tone tone = 1;
 }
 
 message UpdateToneRequest {
-    string tone_id = 1;
-    optional string name = 2;
-    optional string description = 3;
+  string tone_id = 1;
+  optional string name = 2;
+  optional string description = 3;
 }
 
 message UpdateToneResponse {
-    com.hearlers.v1.model.Tone tone = 1;
+  com.hearlers.v1.model.Tone tone = 1;
 }
