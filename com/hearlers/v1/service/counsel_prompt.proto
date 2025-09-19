@@ -35,6 +35,7 @@ service CounselPromptService {
   rpc FindCounselTechniques(FindCounselTechniquesRequest) returns (FindCounselTechniquesResponse);
   rpc FindCounselTechniqueById(FindCounselTechniqueByIdRequest) returns (FindCounselTechniqueByIdResponse);
   rpc UpdateCounselTechnique(UpdateCounselTechniqueRequest) returns (UpdateCounselTechniqueResponse);
+  rpc DeleteCounselTechnique(DeleteCounselTechniqueRequest) returns (DeleteCounselTechniqueResponse);
 
   // prompt activate history
   rpc FindPromptActivateHistories(FindPromptActivateHistoriesRequest) returns (FindPromptActivateHistoriesResponse);
@@ -238,6 +239,12 @@ message UpdateCounselTechniqueRequest {
 message UpdateCounselTechniqueResponse {
   com.hearlers.v1.model.CounselTechnique counsel_technique = 1;
 }
+
+message DeleteCounselTechniqueRequest {
+  string counsel_technique_id = 1;
+}
+
+message DeleteCounselTechniqueResponse {}
 
 // prompt activate history
 message FindPromptActivateHistoriesRequest {
