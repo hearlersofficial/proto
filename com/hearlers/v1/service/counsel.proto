@@ -22,11 +22,8 @@ service CounselService {
   rpc ReactMessage(ReactMessageRequest) returns (ReactMessageResponse);
 
   // 상담사와 유저의 관계
-  // TODO: CQRS 패턴으로 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
-  // Relationship은 읽을 시 싱딤시와, 상담사의 모든 Counsels를 다 가지고 오는게 의미있는 단위
-  // Relationship 뷰 테이블에 이미 상담사와 모든 유저의 대화 내용을 미리 조인해둔 뷰 테이블을 만들어 놓고 그냥 꺼내서 준다.
-  // DDD를 안함
-  // 별도의 모듈
+  rpc FindCounselorUserRelationshipById(FindCounselorUserRelationshipByIdRequest) returns (FindCounselorUserRelationshipByIdResponse);
+  rpc FindCounselorUserRelationshipByUserAndCounselorId(FindCounselorUserRelationshipByUserAndCounselorIdRequest) returns (FindCounselorUserRelationshipByUserAndCounselorIdResponse);
   rpc FindCounselorUserRelationships(FindCounselorUserRelationshipsRequest) returns (FindCounselorUserRelationshipsResponse);
 }
 
@@ -91,9 +88,25 @@ message ReactMessageResponse {
 }
 
 // 상담사와 유저의 관계
+message FindCounselorUserRelationshipByIdRequest {
+  string relationship_id = 1;
+}
+
+message FindCounselorUserRelationshipByIdResponse {
+  optional com.hearlers.v1.model.CounselorUserRelationship counselor_user_relationship = 1;
+}
+
+message FindCounselorUserRelationshipByUserAndCounselorIdRequest {
+  string user_id = 1;
+  string counselor_id = 2;
+}
+
+message FindCounselorUserRelationshipByUserAndCounselorIdResponse {
+  optional com.hearlers.v1.model.CounselorUserRelationship counselor_user_relationship = 1;
+}
+
 message FindCounselorUserRelationshipsRequest {
-  string counselor_id = 1;
-  string user_id = 2;
+  string user_id = 1;
 }
 
 message FindCounselorUserRelationshipsResponse {
