@@ -18,14 +18,12 @@ message Counsel {
   optional string last_message = 4;
   optional string last_chated_at = 5;
   string prompt_version_id = 6;
-  string counsel_technique_id = 7;
-  string counselor_user_relationship_id = 8;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string created_at = 9;
+  string created_at = 7;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
-  string updated_at = 10;
+  string updated_at = 8;
   // ISO 8601 (2024-12-29T12:34:56.000Z)
-  optional string deleted_at = 11;
+  optional string deleted_at = 9;
 }
 
 message CounselMessage {
