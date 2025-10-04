@@ -101,3 +101,13 @@ message UserActivity {
   // ISO 8601 (2024-12-29T12:34:56.000Z)
   optional string deleted_at = 9;
 }
+
+message UserTracking {
+  bool has_seen_intro_cutscene = 1;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string created_at = 2;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  string updated_at = 3;
+  // ISO 8601 (2024-12-29T12:34:56.000Z)
+  optional string deleted_at = 4;
+}

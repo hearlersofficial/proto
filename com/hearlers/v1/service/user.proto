@@ -38,6 +38,10 @@ service UserService {
   rpc CreateActivity(CreateActivityRequest) returns (CreateActivityResponse);
   // 권한 변경
   rpc UpdateAuthority(UpdateAuthorityRequest) returns (UpdateAuthorityResponse);
+  // 유저 트래킹 조회
+  rpc FindTrackingByUserId(FindTrackingByUserIdRequest) returns (FindTrackingByUserIdResponse);
+  // 유저 트래킹 업데이트
+  rpc UpdateTracking(UpdateTrackingRequest) returns (UpdateTrackingResponse);
 }
 
 // initializeUser
@@ -196,4 +200,23 @@ message UpdateAuthorityRequest {
 
 message UpdateAuthorityResponse {
   com.hearlers.v1.model.AuthUser auth_user = 1;
+}
+
+// findTrackingByUserId
+message FindTrackingByUserIdRequest {
+  string user_id = 1;
+}
+
+message FindTrackingByUserIdResponse {
+  com.hearlers.v1.model.UserTracking user_tracking = 1;
+}
+
+// updateTracking
+message UpdateTrackingRequest {
+  string user_id = 1;
+  bool has_seen_intro_cutscene = 2;
+}
+
+message UpdateTrackingResponse {
+  com.hearlers.v1.model.UserTracking user_tracking = 1;
 }
